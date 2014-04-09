@@ -1,0 +1,12 @@
+#ifndef MRICOMMON_GLOBAL_H
+#define MRICOMMON_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(MRICOMMON_LIBRARY)
+#  define MRICOMMONSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define MRICOMMONSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // MRICOMMON_GLOBAL_H
