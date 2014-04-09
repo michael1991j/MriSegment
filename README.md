@@ -1,0 +1,4 @@
+MriSegment
+==========
+
+MRI segmentation
