@@ -2,3 +2,20 @@ MriSegment
 ==========
 
 MRI segmentation
+
+Set up Instructions 
+
+
+mkdir ./Proto ./Build ./RawData ./Src  ./ThirdParty
+
+./Proto -  synbolic link to the  project drop box 
+./Build -  Build directory
+./RawData  Source of all the raw data
+./Src   contain all source code
+./ThirdParty  Contain Required Third party lIbares that do not exist natively in this libary 
+
+
+cd  ./Src
+
+git clone   https://github.com/michael1991j/MriSegment.git
+
