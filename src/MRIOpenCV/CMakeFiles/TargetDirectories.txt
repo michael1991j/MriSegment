@@ -1,1 +1,0 @@
-/home/mri/workspace/MRIOpenCV/CMakeFiles/MRIOpenCV.dir
