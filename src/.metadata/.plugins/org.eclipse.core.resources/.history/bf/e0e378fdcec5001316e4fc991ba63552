@@ -1,0 +1,19 @@
+/*
+ * DicomLoader.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef DICOMLOADER_H_
+#define DICOMLOADER_H_
+
+class DicomLoader
+{
+public:
+  DicomLoader();
+  virtual
+  ~DicomLoader();
+};
+
+#endif /* DICOMLOADER_H_ */

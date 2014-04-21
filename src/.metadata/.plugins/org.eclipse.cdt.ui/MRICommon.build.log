@@ -1,0 +1,13 @@
+
+**** Build of configuration Debug for project MRICommon ****
+
+make all 
+Building file: ../DicomLoader.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include/opencv -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"DicomLoader.d" -MT"DicomLoader.d" -o "DicomLoader.o" "../DicomLoader.cpp"
+In file included from ../DicomLoader.cpp:8:0:
+../DicomLoader.h:12:18: fatal error: QImage: No such file or directory
+compilation terminated.
+make: *** [DicomLoader.o] Error 1
+
+**** Build Finished ****

@@ -1,0 +1,26 @@
+/*
+ * MRIProcess.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef MRIPROCESS_H_
+#define MRIPROCESS_H_
+#include <vector>
+#include <iostream>
+using namespace std;
+class MRIProcess {
+public:
+	MRIProcess();
+	virtual ~MRIProcess();
+	void Setup();
+	void Preprocess();
+	void Segment();
+	void PostSegmentProcess();
+	void Label();
+	void PostProcess()
+	vector<labeledResults> LabeledOutput;
+};
+
+#endif /* MRIPROCESS_H_ */

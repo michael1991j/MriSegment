@@ -1,0 +1,17 @@
+/*
+ * MRIDataSet.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef MRIDATASET_H_
+#define MRIDATASET_H_
+
+class MRIDataSet {
+public:
+	MRIDataSet();
+	virtual ~MRIDataSet();
+};
+
+#endif /* MRIDATASET_H_ */

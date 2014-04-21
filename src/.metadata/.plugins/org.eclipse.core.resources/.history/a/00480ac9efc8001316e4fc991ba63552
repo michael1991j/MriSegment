@@ -1,0 +1,29 @@
+/*
+ * MRICommon.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef MRICOMMON_H_
+#define MRICOMMON_H_
+#include <vector>
+#include <string>
+#include <iostream>
+#include "MRIDataSet.h"
+
+
+#include <QThreadPool>
+using namespace std;
+
+class MRICommon {
+public:
+	MRICommon();
+	virtual ~MRICommon();
+	void SaveProcessedData();
+	void LoadImage(vector<string> FileList);
+	MRIDataSet * Data;
+
+};
+
+#endif /* MRICOMMON_H_ */

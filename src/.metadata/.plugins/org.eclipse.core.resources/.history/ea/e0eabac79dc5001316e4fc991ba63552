@@ -1,0 +1,17 @@
+/*
+ * MRICommon.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef MRICOMMON_H_
+#define MRICOMMON_H_
+
+class MRICommon {
+public:
+	MRICommon();
+	virtual ~MRICommon();
+};
+
+#endif /* MRICOMMON_H_ */

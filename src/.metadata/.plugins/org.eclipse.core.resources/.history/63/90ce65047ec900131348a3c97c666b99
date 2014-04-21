@@ -1,0 +1,18 @@
+/*
+ * LabeledResults.cpp
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#include "LabeledResults.h"
+
+LabeledResults::LabeledResults() {
+	// TODO Auto-generated constructor stub
+
+}
+
+LabeledResults::~LabeledResults() {
+	// TODO Auto-generated destructor stub
+}
+

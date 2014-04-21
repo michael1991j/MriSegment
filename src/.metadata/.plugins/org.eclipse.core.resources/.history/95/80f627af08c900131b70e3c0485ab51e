@@ -1,0 +1,34 @@
+/*
+ * DicomLoader.h
+ *
+ *  Created on: Apr 16, 2014
+ *      Author: mri
+ */
+
+#ifndef DICOMLOADER_H_
+#define DICOMLOADER_H_
+#include "MRISliceInfo.h"
+#include <cv.h>
+#include <QImage>
+#include <string>
+#include <iostream>
+#include "gdcmImageReader.h"
+#include <vector>
+#include <QImageWriter>
+using  namespace std;
+
+using namespace std;
+using namespace cv;
+class DicomLoader : public QRunnable
+{
+public:
+  DicomLoader(String Loc , int Index ,Vector<MRISlice *> * Targetlist);
+  virtual
+  ~DicomLoader();
+  int Index;
+  Vector<MRISlice *> * Targetlist;
+  string File;
+  void run();
+};
+
+#endif /* DICOMLOADER_H_ */
