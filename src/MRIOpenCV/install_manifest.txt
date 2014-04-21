@@ -1,0 +1,6 @@
+/usr/local/lib/libMRIOpenCV.so
+/usr/local/include/DebugView.h
+/usr/local/include/FindBoneFemer.h
+/usr/local/include/LabeledResults.h
+/usr/local/include/MRIOpenCV.h
+/usr/local/include/MRIProcess.h

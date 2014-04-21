@@ -1,0 +1,6 @@
+/usr/local/lib/libDisplayImage.so
+/usr/local/include/DicomLoader.h
+/usr/local/include/MRICommon.h
+/usr/local/include/MRIDataSet.h
+/usr/local/include/MRISlice.h
+/usr/local/include/MRISliceInfo.h
