@@ -6,7 +6,8 @@
 #include <QMessageBox>
 #include <QtAlgorithms>
 #include "mrimanualscene.h"
-#include <cv.h>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
 using namespace cv;
 using namespace std;
 MriManuelScene::MriManuelScene(QWidget *parent) :

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="13" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1020" x="1408" y="862">
+<window height="768" width="1020" x="664" y="282">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -12,9 +12,9 @@
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
 <coolItem id="org.eclipse.cdt.ui.buildConfigActionSet" itemType="typeToolBarContribution" x="82" y="30"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="180" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="48" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
@@ -23,7 +23,7 @@
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1397694524169" focus="true" label="Workspace - C/C++">
+<page aggregateWorkingSetId="Aggregate for window 1397694524169" focus="true" label="Workspace - &lt;C/C++&gt;">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -138,9 +138,8 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/DicomLoader.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3570" selectionTopPixel="1581"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.h" partName="DicomLoader.h" path="/home/mri/workspace/MRICommon/DicomLoader.h" title="DicomLoader.h" tooltip="MRICommon/DicomLoader.h" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.h" partName="DicomLoader.h" path="/home/mri/Build/MriSegment/src/MRICommon/DicomLoader.h" title="DicomLoader.h" tooltip="MRICommon/DicomLoader.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/DicomLoader.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="547" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="/home/mri/workspace/Test/Implementation/MRICommon/Test1/main.cpp" title="main.cpp" tooltip="MRICommonTestDriver/main.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommonTestDriver/main.cpp"/>
@@ -158,9 +157,8 @@
 <input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="/usr/local/include/MRICommon.h" project="MRIOpenCV"/>
 <editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="308" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.cpp" partName="DebugView.cpp" path="/home/mri/workspace/MRIOpenCV/DebugView.cpp" title="DebugView.cpp" tooltip="MRIOpenCV/DebugView.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.cpp" partName="DebugView.cpp" path="/home/mri/Build/MriSegment/src/MRIOpenCV/DebugView.cpp" title="DebugView.cpp" tooltip="MRIOpenCV/DebugView.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/DebugView.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.h" partName="DebugView.h" path="/home/mri/workspace/MRIOpenCV/DebugView.h" title="DebugView.h" tooltip="MRIOpenCV/DebugView.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/DebugView.h"/>
@@ -221,24 +219,17 @@
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
-<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
 <view id="org.eclipse.ui.views.PropertySheet" partName="Properties"/>
-<view id="org.eclipse.cdt.make.ui.views.MakeView" partName="Make Target"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Errors (2 items)"/>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="629" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
-<DESCENDING_FIELDS IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console"/>
@@ -247,9 +238,9 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="&lt;C/C++&gt;">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
-<descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
+<descriptor descriptor="org.eclipse.cdt.ui.CPerspective" id="&lt;C/C++&gt;" label="&lt;C/C++&gt;"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
@@ -258,18 +249,9 @@
 <alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
-<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
-<alwaysOnActionSet id="eclox.ui.buildActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.SearchActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.CElementCreationActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.make.ui.makeTargetActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.buildConfigActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.NavigationActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.OpenActionSet"/>
-<alwaysOnActionSet id="org.eclipse.cdt.ui.CodingActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.presentation"/>
 <show_view_action id="org.eclipse.ui.console.ConsoleView"/>
 <show_view_action id="org.eclipse.search.ui.views.SearchView"/>
@@ -303,7 +285,6 @@
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -343,10 +324,9 @@
 <info folder="true" part="topRight" ratio="0.74901444" ratioLeft="570" ratioRight="191" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<page content="org.eclipse.cdt.make.ui.views.MakeView" label="Make Target"/>
+<page content="org.eclipse.cdt.make.ui.views.MakeView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -361,7 +341,6 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIOpenCV.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mrimanualscene.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISlice.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mriscene.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mrimatrix.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mriscene.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mainwindow.cpp"/>
@@ -383,86 +362,84 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIProcess.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/FindBoneFemer.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/DebugView.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/DicomLoader.h"/>
 </editors>
-<item historyLabel="mriscene.cpp" index="4">
+<item historyLabel="mrimatrix.h" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="mrimatrix.h" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="mriscene.h" index="6">
+<item historyLabel="mriscene.h" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="10" y="9"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="81" y="8"/>
 </item>
-<item historyLabel="manualsegmentation.h" index="8">
+<item historyLabel="manualsegmentation.h" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="mainwindow.h" index="9">
+<item historyLabel="mainwindow.h" index="8">
 <position info="not_deleted" x="138" y="0"/>
 </item>
-<item historyLabel="record.h" index="10">
+<item historyLabel="record.h" index="9">
 <position info="not_deleted" x="125" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="201" y="0"/>
 </item>
-<item historyLabel="recordhandel.cpp" index="11">
+<item historyLabel="recordhandel.cpp" index="10">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="recordhandel.h" index="12">
+<item historyLabel="recordhandel.h" index="11">
 <position info="not_deleted" x="83" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="13">
+<item historyLabel="main.cpp" index="12">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="mainwindow.h" index="9">
+<item historyLabel="mainwindow.h" index="8">
 <position info="not_deleted" x="98" y="9"/>
 </item>
-<item historyLabel="MRICommon.h" index="14">
+<item historyLabel="MRICommon.h" index="13">
 <position info="not_deleted" x="308" y="9"/>
 </item>
-<item historyLabel="main.cpp" index="13">
+<item historyLabel="main.cpp" index="12">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="recordhandel.h" index="12">
+<item historyLabel="recordhandel.h" index="11">
 <position info="not_deleted" x="83" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="201" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="81" y="8"/>
 </item>
-<item historyLabel="mainwindow.h" index="9">
+<item historyLabel="mainwindow.h" index="8">
 <position info="not_deleted" x="107" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="81" y="8"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="1655" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="1819" y="0"/>
 </item>
-<item historyLabel="MRIDataSet.h" index="15">
+<item historyLabel="MRIDataSet.h" index="14">
 <position info="not_deleted" x="529" y="8"/>
 </item>
-<item historyLabel="main.cpp" index="13">
+<item historyLabel="main.cpp" index="12">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="2438" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="504" y="0"/>
 </item>
-<item historyLabel="mrimanualscene.h" index="16">
+<item historyLabel="mrimanualscene.h" index="15">
 <position info="not_deleted" x="233" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
@@ -471,37 +448,37 @@
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="473" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="7">
+<item historyLabel="mainwindow.cpp" index="6">
 <position info="not_deleted" x="268" y="0"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="817" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="17">
+<item historyLabel="main.cpp" index="16">
 <position info="not_deleted" x="1355" y="29"/>
 </item>
 <item historyLabel="mrimanualscene.cpp" index="2">
 <position info="not_deleted" x="817" y="0"/>
 </item>
-<item historyLabel="MRICommon.cpp" index="18">
+<item historyLabel="MRICommon.cpp" index="17">
 <position info="not_deleted" x="429" y="8"/>
 </item>
-<item historyLabel="MRIDataSet.cpp" index="19">
+<item historyLabel="MRIDataSet.cpp" index="18">
 <position info="not_deleted" x="2022" y="0"/>
 </item>
 <item historyLabel="MRISlice.cpp" index="3">
 <position info="not_deleted" x="109" y="8"/>
 </item>
-<item historyLabel="MRISlice.h" index="20">
+<item historyLabel="MRISlice.h" index="19">
 <position info="not_deleted" x="461" y="0"/>
 </item>
-<item historyLabel="MRIDataSet.cpp" index="19">
+<item historyLabel="MRIDataSet.cpp" index="18">
 <position info="not_deleted" x="2022" y="0"/>
 </item>
-<item historyLabel="MRIDataSet.h" index="21">
+<item historyLabel="MRIDataSet.h" index="20">
 <position info="not_deleted" x="257" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="17">
+<item historyLabel="main.cpp" index="16">
 <position info="not_deleted" x="1459" y="0"/>
 </item>
 <item historyLabel="MRIOpenCV.h" index="0">
@@ -510,13 +487,13 @@
 <item historyLabel="MRIOpenCV.cpp" index="1">
 <position info="not_deleted" x="112" y="9"/>
 </item>
-<item historyLabel="MRIProcess.cpp" index="22">
+<item historyLabel="MRIProcess.cpp" index="21">
 <position info="not_deleted" x="103" y="0"/>
 </item>
-<item historyLabel="MRIProcess.h" index="23">
+<item historyLabel="MRIProcess.h" index="22">
 <position info="not_deleted" x="397" y="87"/>
 </item>
-<item historyLabel="FindBoneFemer.cpp" index="24">
+<item historyLabel="FindBoneFemer.cpp" index="23">
 <position info="not_deleted" x="180" y="11"/>
 </item>
 <item historyLabel="MRIOpenCV.cpp" index="1">
@@ -528,12 +505,13 @@
 <item historyLabel="MRIOpenCV.cpp" index="1">
 <position info="not_deleted" x="337" y="0"/>
 </item>
-<item historyLabel="FindBoneFemer.cpp" index="24">
+<item historyLabel="FindBoneFemer.cpp" index="23">
 <position info="not_deleted" x="180" y="11"/>
 </item>
-<item active="true" historyLabel="DebugView.cpp" index="25">
+<item historyLabel="DebugView.cpp" index="24">
 <position info="not_deleted" x="0" y="0"/>
 </item>
+<item active="true" historyLabel="DicomLoader.h" index="25"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -551,6 +529,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="DicomLoader.h" tooltip="MRICommon/DicomLoader.h">
+<persistable path="/MRICommon/DicomLoader.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mrimanualscene.h" tooltip="ManualSegment/mrimanualscene.h">
 <persistable path="/ManualSegment/mrimanualscene.h"/>
 </file>
@@ -592,9 +573,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.h" tooltip="MRIOpenCV/DebugView.h">
 <persistable path="/MRIOpenCV/DebugView.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.cpp" tooltip="MRIOpenCV/DebugView.cpp">
-<persistable path="/MRIOpenCV/DebugView.cpp"/>
 </file>
 </mruList>
 </workbench>

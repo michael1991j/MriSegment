@@ -123,7 +123,7 @@ void DicomLoader::run()
 
       }
 
-    std::cout<<"Getting image from ImageReader..."<<std::endl;
+    std::cout<<"Getting image from ImageReader..."<< this->File.c_str() <<std::endl;
 
     const gdcm::Image &gimage = ir.GetImage();
     std::vector<char> vbuffer;

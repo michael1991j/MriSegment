@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 {
         QApplication app (argc, argv);
         QStringList nameFilter("*.dcm");
-               QDir directory("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+               QDir directory("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat");
                QStringList files = directory.entryList(nameFilter);
                for(int i = 0; i <  files.count(); i++)
                    files[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
     for(int i = 0 ; i < files.size(); i++)
     {
-    Mat  img = obj->Data->Transversal->at(60)->Slice;
+    Mat  img = obj->Data->Sagittal->at(60)->Slice;
     imwrite( "test.jpg",  img );
     ///blur( img, img, Size(3,3) );
 
