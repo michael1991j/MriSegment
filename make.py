@@ -43,6 +43,3 @@ else:
 	os.system('make')
 	os.system('make install')
 	os.chdir(top + '/Build')
-
-	
-
