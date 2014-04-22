@@ -22,7 +22,11 @@ i = 0
 for file in files:
 	i += 1
 	print(str(i	) + ':	' + file)
-selection = input('Selection number: ')
+selection = raw_input('Selection number: ')
+
+# Runs all files if user doesn't select an input
+if not selection:
+	selection = 0
 
 # Run cmake on each file and store in Build folder
 if selection == 0:
@@ -36,7 +40,7 @@ if selection == 0:
 
 # Run cmake on selected file and store in Build folder
 else:
-	choice = int(selection-1)
+	choice = int(selection)-1
 	os.system('mkdir -p ' + files[choice])
 	os.chdir(files[choice])
 	os.system('cmake ' + top + '/src/' + files[choice])
