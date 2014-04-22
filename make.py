@@ -1,5 +1,4 @@
 import os
-import shutil
 
 # Build list of CMakeLists.txt locations within the src folder
 files = []
