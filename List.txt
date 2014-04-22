@@ -1,4 +1,5 @@
 MRICommon
 MRIOpenCV
 Test/Implementation/MRICommon/Test1
+Test/Implementation/MRICV/Test1
 Tools/ManualSegment

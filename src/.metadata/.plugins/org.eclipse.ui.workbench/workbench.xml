@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="13" version="2.0">
+<workbench progressCount="24" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1020" x="664" y="282">
+<window height="768" width="1012" x="370" y="711">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -12,18 +12,19 @@
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
 <coolItem id="org.eclipse.cdt.ui.buildConfigActionSet" itemType="typeToolBarContribution" x="82" y="30"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="48" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="172" y="30"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.cdt.make.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1397694524169" focus="true" label="Workspace - &lt;C/C++&gt;">
+<page aggregateWorkingSetId="Aggregate for window 1397694524169" focus="true" label="Workspace - C/C++">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -66,6 +67,8 @@
 <part id="34"/>
 <part id="35"/>
 <part id="36"/>
+<part id="37"/>
+<part id="38"/>
 </presentation>
 </folder>
 </info>
@@ -74,25 +77,25 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRICommon.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="429" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIDataSet.cpp" partName="MRIDataSet.cpp" path="/home/mri/workspace/MRICommon/MRIDataSet.cpp" title="MRIDataSet.cpp" tooltip="MRICommon/MRIDataSet.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIDataSet.cpp" partName="MRIDataSet.cpp" path="/home/mri/build/MriSegment/src/MRICommon/MRIDataSet.cpp" title="MRIDataSet.cpp" tooltip="MRICommon/MRIDataSet.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRIDataSet.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2022" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISlice.cpp" partName="MRISlice.cpp" path="/home/mri/workspace/MRICommon/MRISlice.cpp" title="MRISlice.cpp" tooltip="MRICommon/MRISlice.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISlice.cpp" partName="MRISlice.cpp" path="/home/mri/build/MriSegment/src/MRICommon/MRISlice.cpp" title="MRISlice.cpp" tooltip="MRICommon/MRISlice.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRISlice.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="109" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="221" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISlice.h" partName="MRISlice.h" path="/home/mri/workspace/MRICommon/MRISlice.h" title="MRISlice.h" tooltip="MRICommon/MRISlice.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISlice.h" partName="MRISlice.h" path="/home/mri/build/MriSegment/src/MRICommon/MRISlice.h" title="MRISlice.h" tooltip="MRICommon/MRISlice.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRISlice.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="461" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="191" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISliceInfo.cpp" partName="MRISliceInfo.cpp" path="/home/mri/workspace/MRICommon/MRISliceInfo.cpp" title="MRISliceInfo.cpp" tooltip="MRICommon/MRISliceInfo.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISliceInfo.cpp" partName="MRISliceInfo.cpp" path="/home/mri/build/MriSegment/src/MRICommon/MRISliceInfo.cpp" title="MRISliceInfo.cpp" tooltip="MRICommon/MRISliceInfo.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRISliceInfo.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISliceInfo.h" partName="MRISliceInfo.h" path="/home/mri/workspace/MRICommon/MRISliceInfo.h" title="MRISliceInfo.h" tooltip="MRICommon/MRISliceInfo.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRISliceInfo.h" partName="MRISliceInfo.h" path="/home/mri/build/MriSegment/src/MRICommon/MRISliceInfo.h" title="MRISliceInfo.h" tooltip="MRICommon/MRISliceInfo.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRISliceInfo.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="1" selectionOffset="303" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIDataSet.h" partName="MRIDataSet.h" path="/home/mri/workspace/MRICommon/MRIDataSet.h" title="MRIDataSet.h" tooltip="MRICommon/MRIDataSet.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRIDataSet.h"/>
@@ -102,48 +105,49 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/MRICommon.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="240" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIOpenCV.cpp" partName="MRIOpenCV.cpp" path="/home/mri/workspace/MRIOpenCV/MRIOpenCV.cpp" title="MRIOpenCV.cpp" tooltip="MRIOpenCV/MRIOpenCV.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIOpenCV.cpp" partName="MRIOpenCV.cpp" path="/home/mri/build/MriSegment/src/MRIOpenCV/MRIOpenCV.cpp" title="MRIOpenCV.cpp" tooltip="MRIOpenCV/MRIOpenCV.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/MRIOpenCV.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="337" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="457" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIOpenCV.h" partName="MRIOpenCV.h" path="/home/mri/workspace/MRIOpenCV/MRIOpenCV.h" title="MRIOpenCV.h" tooltip="MRIOpenCV/MRIOpenCV.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIOpenCV.h" partName="MRIOpenCV.h" path="/home/mri/build/MriSegment/src/MRIOpenCV/MRIOpenCV.h" title="MRIOpenCV.h" tooltip="MRIOpenCV/MRIOpenCV.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/MRIOpenCV.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="261" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="184" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIProcess.cpp" partName="MRIProcess.cpp" path="/home/mri/workspace/MRIOpenCV/MRIProcess.cpp" title="MRIProcess.cpp" tooltip="MRIOpenCV/MRIProcess.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIProcess.cpp" partName="MRIProcess.cpp" path="/home/mri/build/MriSegment/src/MRIOpenCV/MRIProcess.cpp" title="MRIProcess.cpp" tooltip="MRIOpenCV/MRIProcess.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/MRIProcess.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="103" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="101" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIProcess.h" partName="MRIProcess.h" path="/home/mri/workspace/MRIOpenCV/MRIProcess.h" title="MRIProcess.h" tooltip="MRIOpenCV/MRIProcess.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MRIProcess.h" partName="MRIProcess.h" path="/home/mri/build/MriSegment/src/MRIOpenCV/MRIProcess.h" title="MRIProcess.h" tooltip="MRIOpenCV/MRIProcess.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/MRIProcess.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="87" selectionOffset="397" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="209" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LabeledResults.cpp" partName="LabeledResults.cpp" path="/home/mri/workspace/MRIOpenCV/LabeledResults.cpp" title="LabeledResults.cpp" tooltip="MRIOpenCV/LabeledResults.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LabeledResults.cpp" partName="LabeledResults.cpp" path="/home/mri/build/MriSegment/src/MRIOpenCV/LabeledResults.cpp" title="LabeledResults.cpp" tooltip="MRIOpenCV/LabeledResults.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/LabeledResults.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="232" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LabeledResults.h" partName="LabeledResults.h" path="/home/mri/workspace/MRIOpenCV/LabeledResults.h" title="LabeledResults.h" tooltip="MRIOpenCV/LabeledResults.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LabeledResults.h" partName="LabeledResults.h" path="/home/mri/build/MriSegment/src/MRIOpenCV/LabeledResults.h" title="LabeledResults.h" tooltip="MRIOpenCV/LabeledResults.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/LabeledResults.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="411" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FindBoneFemer.cpp" partName="FindBoneFemer.cpp" path="/home/mri/workspace/MRIOpenCV/FindBoneFemer.cpp" title="FindBoneFemer.cpp" tooltip="MRIOpenCV/FindBoneFemer.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FindBoneFemer.cpp" partName="FindBoneFemer.cpp" path="/home/mri/build/MriSegment/src/MRIOpenCV/FindBoneFemer.cpp" title="FindBoneFemer.cpp" tooltip="MRIOpenCV/FindBoneFemer.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/FindBoneFemer.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="180" selectionTopPixel="289"/>
+<editorState selectionHorizontalPixel="0" selectionLength="33" selectionOffset="248" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FindBoneFemer.h" partName="FindBoneFemer.h" path="/home/mri/workspace/MRIOpenCV/FindBoneFemer.h" title="FindBoneFemer.h" tooltip="MRIOpenCV/FindBoneFemer.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FindBoneFemer.h" partName="FindBoneFemer.h" path="/home/mri/build/MriSegment/src/MRIOpenCV/FindBoneFemer.h" title="FindBoneFemer.h" tooltip="MRIOpenCV/FindBoneFemer.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/FindBoneFemer.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="466" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="173" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.cpp" partName="DicomLoader.cpp" path="/home/mri/workspace/MRICommon/DicomLoader.cpp" title="DicomLoader.cpp" tooltip="MRICommon/DicomLoader.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.cpp" partName="DicomLoader.cpp" path="/home/mri/build/MriSegment/src/MRICommon/DicomLoader.cpp" title="DicomLoader.cpp" tooltip="MRICommon/DicomLoader.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/DicomLoader.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3570" selectionTopPixel="1581"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3765" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.h" partName="DicomLoader.h" path="/home/mri/Build/MriSegment/src/MRICommon/DicomLoader.h" title="DicomLoader.h" tooltip="MRICommon/DicomLoader.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DicomLoader.h" partName="DicomLoader.h" path="/home/mri/build/MriSegment/src/MRICommon/DicomLoader.h" title="DicomLoader.h" tooltip="MRICommon/DicomLoader.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommon/DicomLoader.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="378" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="/home/mri/workspace/Test/Implementation/MRICommon/Test1/main.cpp" title="main.cpp" tooltip="MRICommonTestDriver/main.cpp" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="/home/mri/workspace/Test/Implementation/MRICommon/Test1/main.cpp" title="main.cpp" tooltip="MRICommonTestDriver/main.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRICommonTestDriver/main.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1459" selectionTopPixel="476"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="545" selectionTopPixel="292"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.hpp" partName="core.hpp" title="core.hpp" tooltip="/usr/local/include/opencv2/core/core.hpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="/usr/local/include/opencv2/core/core.hpp" project="MRICommon"/>
@@ -157,8 +161,9 @@
 <input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="/usr/local/include/MRICommon.h" project="MRIOpenCV"/>
 <editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="308" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.cpp" partName="DebugView.cpp" path="/home/mri/Build/MriSegment/src/MRIOpenCV/DebugView.cpp" title="DebugView.cpp" tooltip="MRIOpenCV/DebugView.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.cpp" partName="DebugView.cpp" path="/home/mri/build/MriSegment/src/MRIOpenCV/DebugView.cpp" title="DebugView.cpp" tooltip="MRIOpenCV/DebugView.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/DebugView.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.h" partName="DebugView.h" path="/home/mri/workspace/MRIOpenCV/DebugView.h" title="DebugView.h" tooltip="MRIOpenCV/DebugView.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOpenCV/DebugView.h"/>
@@ -216,14 +221,27 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ManualSegment/mrimanualscene.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="233" selectionTopPixel="0"/>
 </editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="CMakeLists.txt" partName="CMakeLists.txt" path="/home/mri/build/MriSegment/src/Test/Implementation/MRICV/Test1/CMakeLists.txt" title="CMakeLists.txt" tooltip="MRIOPencvTest/Test1/CMakeLists.txt" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOPencvTest/Test1/CMakeLists.txt"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="378" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.make.editor" name="Makefile" partName="Makefile" path="/home/mri/build/MriSegment/src/Test/Implementation/MRICV/Test1/Makefile" title="Makefile" tooltip="MRIOPencvTest/Test1/Makefile" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MRIOPencvTest/Test1/Makefile"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
-<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
 <view id="org.eclipse.ui.views.PropertySheet" partName="Properties"/>
+<view id="org.eclipse.cdt.make.ui.views.MakeView" partName="Make Target"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors (2 items)"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="629" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -238,9 +256,9 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="&lt;C/C++&gt;">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
-<descriptor descriptor="org.eclipse.cdt.ui.CPerspective" id="&lt;C/C++&gt;" label="&lt;C/C++&gt;"/>
+<descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
@@ -249,9 +267,18 @@
 <alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
+<alwaysOnActionSet id="eclox.ui.buildActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.SearchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.CElementCreationActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.make.ui.makeTargetActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.buildConfigActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.NavigationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.OpenActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.CodingActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.presentation"/>
 <show_view_action id="org.eclipse.ui.console.ConsoleView"/>
 <show_view_action id="org.eclipse.search.ui.views.SearchView"/>
@@ -285,6 +312,7 @@
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -324,9 +352,10 @@
 <info folder="true" part="topRight" ratio="0.74901444" ratioLeft="570" ratioRight="191" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<page content="org.eclipse.cdt.make.ui.views.MakeView" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.make.ui.views.MakeView" label="Make Target"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -337,181 +366,174 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIOpenCV.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOPencvTest/Test1/main.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIOpenCV.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mrimanualscene.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISlice.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mrimatrix.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mriscene.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mainwindow.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/manualsegmentation.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mainwindow.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/record.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/recordhandel.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/recordhandel.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/main.cpp"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/usr/local/include/MRICommon.h" project="MRIOpenCV"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/usr/local/include/MRIDataSet.h" project="ManualSegment"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ManualSegment/mrimanualscene.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommonTestDriver/main.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRICommon.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRIDataSet.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISlice.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRIDataSet.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIProcess.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIProcess.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/FindBoneFemer.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/DebugView.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/FindBoneFemer.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOpenCV/MRIOpenCV.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/MRIOPencvTest/Test1/CMakeLists.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISlice.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRIDataSet.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISliceInfo.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISliceInfo.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/MRIOPencvTest/Test1/Makefile"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/DicomLoader.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/MRISlice.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommon/DicomLoader.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRICommonTestDriver/main.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/MRIOPencvTest/Test1/main.cpp"/>
 </editors>
-<item historyLabel="mrimatrix.h" index="4">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="CMakeLists.txt" index="6">
+<position info="not_deleted" x="500" y="410"/>
 </item>
-<item historyLabel="mriscene.h" index="5">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="207" y="0"/>
 </item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="10" y="9"/>
+<item historyLabel="MRIProcess.h" index="2">
+<position info="not_deleted" x="209" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="81" y="8"/>
+<item historyLabel="MRIOpenCV.h" index="5">
+<position info="not_deleted" x="184" y="0"/>
 </item>
-<item historyLabel="manualsegmentation.h" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="FindBoneFemer.h" index="4">
+<position info="not_deleted" x="363" y="0"/>
 </item>
-<item historyLabel="mainwindow.h" index="8">
-<position info="not_deleted" x="138" y="0"/>
+<item historyLabel="CMakeLists.txt" index="6">
+<position info="not_deleted" x="500" y="410"/>
 </item>
-<item historyLabel="record.h" index="9">
-<position info="not_deleted" x="125" y="0"/>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="140" y="16"/>
 </item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="201" y="0"/>
+<item historyLabel="FindBoneFemer.cpp" index="3">
+<position info="not_deleted" x="536" y="0"/>
 </item>
-<item historyLabel="recordhandel.cpp" index="10">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="FindBoneFemer.h" index="4">
+<position/>
 </item>
-<item historyLabel="recordhandel.h" index="11">
-<position info="not_deleted" x="83" y="0"/>
+<item historyLabel="FindBoneFemer.cpp" index="3">
+<position/>
 </item>
-<item historyLabel="main.cpp" index="12">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="136" y="71"/>
 </item>
-<item historyLabel="mainwindow.h" index="8">
-<position info="not_deleted" x="98" y="9"/>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="156" y="0"/>
 </item>
-<item historyLabel="MRICommon.h" index="13">
-<position info="not_deleted" x="308" y="9"/>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="207" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="12">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="MRIOpenCV.cpp" index="1">
+<position info="not_deleted" x="457" y="0"/>
 </item>
-<item historyLabel="recordhandel.h" index="11">
-<position info="not_deleted" x="83" y="0"/>
+<item historyLabel="MRIOpenCV.h" index="5">
+<position info="not_deleted" x="184" y="0"/>
 </item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="201" y="0"/>
+<item historyLabel="FindBoneFemer.h" index="4">
+<position info="not_deleted" x="505" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="81" y="8"/>
+<item historyLabel="CMakeLists.txt" index="6">
+<position info="not_deleted" x="904" y="0"/>
 </item>
-<item historyLabel="mainwindow.h" index="8">
-<position info="not_deleted" x="107" y="0"/>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1968" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="81" y="8"/>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="156" y="0"/>
 </item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="1655" y="0"/>
-</item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="1819" y="0"/>
-</item>
-<item historyLabel="MRIDataSet.h" index="14">
-<position info="not_deleted" x="529" y="8"/>
-</item>
-<item historyLabel="main.cpp" index="12">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="2438" y="0"/>
-</item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="504" y="0"/>
-</item>
-<item historyLabel="mrimanualscene.h" index="15">
-<position info="not_deleted" x="233" y="0"/>
-</item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="504" y="0"/>
-</item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="473" y="0"/>
-</item>
-<item historyLabel="mainwindow.cpp" index="6">
-<position info="not_deleted" x="268" y="0"/>
-</item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="817" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="16">
-<position info="not_deleted" x="1355" y="29"/>
-</item>
-<item historyLabel="mrimanualscene.cpp" index="2">
-<position info="not_deleted" x="817" y="0"/>
-</item>
-<item historyLabel="MRICommon.cpp" index="17">
-<position info="not_deleted" x="429" y="8"/>
-</item>
-<item historyLabel="MRIDataSet.cpp" index="18">
+<item historyLabel="MRIDataSet.cpp" index="8">
 <position info="not_deleted" x="2022" y="0"/>
 </item>
-<item historyLabel="MRISlice.cpp" index="3">
+<item historyLabel="MRISliceInfo.cpp" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MRISliceInfo.h" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MRISliceInfo.cpp" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="253" y="0"/>
+</item>
+<item historyLabel="FindBoneFemer.cpp" index="3">
+<position/>
+</item>
+<item historyLabel="FindBoneFemer.h" index="4">
+<position info="not_deleted" x="173" y="0"/>
+</item>
+<item historyLabel="MRIOpenCV.cpp" index="1">
+<position info="not_deleted" x="457" y="0"/>
+</item>
+<item historyLabel="MRIOpenCV.h" index="5">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="MRIOpenCV.cpp" index="1">
+<position info="not_deleted" x="457" y="0"/>
+</item>
+<item historyLabel="FindBoneFemer.cpp" index="3">
+<position info="not_deleted" x="248" y="33"/>
+</item>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="270" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1763" y="0"/>
+</item>
+<item historyLabel="Makefile" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="CMakeLists.txt" index="6">
+<position info="not_deleted" x="378" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1763" y="0"/>
+</item>
+<item historyLabel="DicomLoader.h" index="12">
+<position info="not_deleted" x="547" y="0"/>
+</item>
+<item historyLabel="MRISlice.cpp" index="13">
 <position info="not_deleted" x="109" y="8"/>
 </item>
-<item historyLabel="MRISlice.h" index="19">
-<position info="not_deleted" x="461" y="0"/>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="191" y="0"/>
 </item>
-<item historyLabel="MRIDataSet.cpp" index="18">
-<position info="not_deleted" x="2022" y="0"/>
+<item historyLabel="MRISlice.cpp" index="13">
+<position info="not_deleted" x="221" y="0"/>
 </item>
-<item historyLabel="MRIDataSet.h" index="20">
-<position info="not_deleted" x="257" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="16">
-<position info="not_deleted" x="1459" y="0"/>
-</item>
-<item historyLabel="MRIOpenCV.h" index="0">
-<position info="not_deleted" x="261" y="0"/>
-</item>
-<item historyLabel="MRIOpenCV.cpp" index="1">
-<position info="not_deleted" x="112" y="9"/>
-</item>
-<item historyLabel="MRIProcess.cpp" index="21">
-<position info="not_deleted" x="103" y="0"/>
-</item>
-<item historyLabel="MRIProcess.h" index="22">
-<position info="not_deleted" x="397" y="87"/>
-</item>
-<item historyLabel="FindBoneFemer.cpp" index="23">
-<position info="not_deleted" x="180" y="11"/>
-</item>
-<item historyLabel="MRIOpenCV.cpp" index="1">
-<position info="not_deleted" x="337" y="0"/>
-</item>
-<item historyLabel="MRIOpenCV.h" index="0">
-<position info="not_deleted" x="261" y="0"/>
-</item>
-<item historyLabel="MRIOpenCV.cpp" index="1">
-<position info="not_deleted" x="337" y="0"/>
-</item>
-<item historyLabel="FindBoneFemer.cpp" index="23">
-<position info="not_deleted" x="180" y="11"/>
-</item>
-<item historyLabel="DebugView.cpp" index="24">
+<item historyLabel="MRISliceInfo.cpp" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="DicomLoader.h" index="25"/>
+<item historyLabel="MRISliceInfo.h" index="10">
+<position info="not_deleted" x="303" y="1"/>
+</item>
+<item historyLabel="DicomLoader.h" index="12">
+<position info="not_deleted" x="378" y="0"/>
+</item>
+<item historyLabel="MRISlice.cpp" index="13">
+<position info="not_deleted" x="221" y="0"/>
+</item>
+<item historyLabel="MRISlice.h" index="7">
+<position info="not_deleted" x="191" y="0"/>
+</item>
+<item historyLabel="DicomLoader.cpp" index="14">
+<position info="not_deleted" x="3570" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="15">
+<position/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="169" y="39"/>
+</item>
+<item historyLabel="main.cpp" index="15">
+<position/>
+</item>
+<item historyLabel="main.cpp" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="main.cpp" index="15">
+<position info="not_deleted" x="1566" y="0"/>
+</item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -529,8 +551,14 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="DicomLoader.h" tooltip="MRICommon/DicomLoader.h">
-<persistable path="/MRICommon/DicomLoader.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" tooltip="MRIOPencvTest/Test1/main.cpp">
+<persistable path="/MRIOPencvTest/Test1/main.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="MRIOPencvTest/Test1/Makefile">
+<persistable path="/MRIOPencvTest/Test1/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="CMakeLists.txt" tooltip="MRIOPencvTest/Test1/CMakeLists.txt">
+<persistable path="/MRIOPencvTest/Test1/CMakeLists.txt"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mrimanualscene.h" tooltip="ManualSegment/mrimanualscene.h">
 <persistable path="/ManualSegment/mrimanualscene.h"/>
@@ -567,12 +595,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mriscene.cpp" tooltip="ManualSegment/mriscene.cpp">
 <persistable path="/ManualSegment/mriscene.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mrimanualscene.cpp" tooltip="ManualSegment/mrimanualscene.cpp">
-<persistable path="/ManualSegment/mrimanualscene.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DebugView.h" tooltip="MRIOpenCV/DebugView.h">
-<persistable path="/MRIOpenCV/DebugView.h"/>
 </file>
 </mruList>
 </workbench>

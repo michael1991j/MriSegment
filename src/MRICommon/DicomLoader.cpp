@@ -7,13 +7,13 @@
 
 #include "DicomLoader.h"
 
-Mat ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &imageQt)
+Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &imageQt)
 {
   const unsigned int* dimension = gimage.GetDimensions();
 
   unsigned int dimX = dimension[0];
   unsigned int dimY = dimension[1];
-
+  cout << "size:"<< dimX<< "size:"<< dimY;
   gimage.GetBuffer(buffer);
 
   // Let's start with the easy case:
@@ -21,7 +21,7 @@ Mat ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &im
     {
     if( gimage.GetPixelFormat() != gdcm::PixelFormat::UINT8 )
       {
-      return Mat();
+      return  new Mat();
       }
     unsigned char *ubuffer = (unsigned char*)buffer;
     // QImage::Format_RGB888    13      The image is stored using a 24-bit RGB format (8-8-8).
@@ -49,19 +49,8 @@ Mat ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &im
         unsigned short *buffer16 = ( unsigned short*)buffer;
         unsigned short *ubuffer = new  unsigned short[dimX*dimY*3];
         unsigned  short *pubuffer = ubuffer;
-      for(unsigned int i = 0; i < dimX*dimY; i++)
-        {
-        // Scalar Range of gdcmData/012345.002.050.dcm is [0,192], we could simply do:
-         *pubuffer++ = *buffer16;
-         *pubuffer++ = *buffer16;
-         *pubuffer++ = *buffer16;
-        // instead do it right:
-        //*pubuffer++ = (unsigned char)std::min(255, (32768 + *buffer16) / 255);
-        //*pubuffer++ = (unsigned char)std::min(255, (32768 + *buffer16) / 255);
-        //*pubuffer++ = (unsigned char)std::min(255, (32768 + *buffer16) / 255);
-        buffer16++;
-        }
-      Mat  img(dimY,dimX ,CV_16UC1);
+
+      Mat  * img = new Mat(512,512 ,CV_16UC1);
 
                                               for(int y = 0; y <  512; y++)
                                               {
@@ -69,7 +58,7 @@ Mat ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &im
                                                   for(int x = 0; x < 512; x++ )
                                                   {
 
-                                                      img.at<unsigned short >(y,x ) =buffer16[y*512+ x];
+                                                      img->at<unsigned short >(y,x ) =buffer16[y*512+ x];
 
 
                                                   }
@@ -82,16 +71,16 @@ Mat ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &im
     else
       {
       std::cerr << "Pixel Format is: " << gimage.GetPixelFormat() << std::endl;
-      return Mat();
+      return new Mat();
       }
     }
   else
     {
     std::cerr << "Unhandled PhotometricInterpretation: " << gimage.GetPhotometricInterpretation() << std::endl;
-    return Mat();
+    return  new Mat();
     }
 
-  return Mat();
+  return  new Mat();
 }
 
 
@@ -133,7 +122,7 @@ void DicomLoader::run()
     QImage *imageQt = NULL;
 
 
-    cv::Mat mat =  ConvertToFormat_RGB888( gimage, buffer, imageQt );
-    this->Targetlist->at(Index) = new MRISlice(mat, this->Index);
+    cv::Mat * mat =  ConvertToFormat_RGB888( gimage, buffer, imageQt );
+    this->Targetlist->at(Index) = new MRISlice(*mat, this->Index);
 
 }

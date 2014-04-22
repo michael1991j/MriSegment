@@ -9,6 +9,7 @@
 #define MRIOPENCV_H_
 #include <queue>
 #include "MRIProcess.h"
+#include "FindBoneFemer.h"
 using namespace std;
 class MRIOpenCV {
 public:

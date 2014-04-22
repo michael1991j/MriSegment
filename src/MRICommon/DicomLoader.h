@@ -8,8 +8,7 @@
 #ifndef DICOMLOADER_H_
 #define DICOMLOADER_H_
 #include "MRISliceInfo.h"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include <opencv2/opencv.hpp>
 #include <QImage>
 #include <string>
 #include <iostream>

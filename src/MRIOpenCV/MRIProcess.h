@@ -11,18 +11,24 @@
 #include <iostream>
 #include "LabeledResults.h"
 #include <MRICommon.h>
-using namespace std;
+
 class MRIProcess {
 public:
-	 MRIProcess(std::vector<std::vector<MRICommon *> * >  ImageStacks ): ImageStacks(ImageStacks) {} ;
+	 MRIProcess(std::vector<MRICommon *>  ImageStacks ): ImageStacks(ImageStacks) { this->ImageStacks = ImageStacks; } ;
 	virtual ~MRIProcess();
-	virtual void Setup();
-	virtual void Preprocess();
-	virtual void Segment();
-	virtual void PostSegmentProcess();
-	virtual void Label();
-	virtual void PostProcess();
-	 std::vector<std::vector<MRICommon *> * >  ImageStacks;
+	virtual void Setup()
+	{  }
+	virtual void Preprocess()
+	{  }
+	virtual void Segment()
+	{  }
+	virtual void PostSegmentProcess()
+	{  }
+	virtual void Label()
+	{  }
+	virtual void PostProcess()
+	{  }
+	std::vector<MRICommon *> ImageStacks;
 	 vector<LabeledResults> LabeledOutput;
 };
 
