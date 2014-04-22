@@ -20,7 +20,7 @@ print('0:	All files')
 i = 0
 for file in files:
 	i += 1
-	print(str(i	) + ':	' + file)
+	print(str(i) + ':	' + file)
 selection = raw_input('Selection number: ')
 
 # Runs all files if user doesn't select an input
