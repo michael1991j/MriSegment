@@ -10,20 +10,39 @@ with open('List.txt', 'rU') as f:
 # Set top directory (MriSegment)
 top = os.getcwd()
 
-# Check if Build folder exists, and if it does, remove it
-#if os.path.exists(top + '/Build'):
-#	shutil.rmtree('Build')
-
-# Make new Build Folder
-#os.mkdir('Build')
+# Check if Build folder exists, and if it doesn't, add it and go to it
+if not os.path.exists(top + '/Build'):
+	os.mkdir('Build')
 os.chdir('Build')
 
-# Populate Build folder with cmake files
+# Generate list for user to select files to make
+print('Choose path to make')
+print('0:	All files')
+i = 0
 for file in files:
-	os.system('mkdir -p ' + file)
-	os.chdir(file)
-	os.system('cmake ' + top + '/src/' + file)
+	i += 1
+	print(str(i	) + ':	' + file)
+selection = input('Selection number: ')
+
+# Run cmake on each file and store in Build folder
+if selection == 0:
+	for file in files:
+		os.system('mkdir -p ' + file)
+		os.chdir(file)
+		os.system('cmake ' + top + '/src/' + file)
+		os.system('make')
+		os.system('make install')
+		os.chdir(top + '/Build')
+
+# Run cmake on selected file and store in Build folder
+else:
+	choice = int(selection-1)
+	os.system('mkdir -p ' + files[choice])
+	os.chdir(files[choice])
+	os.system('cmake ' + top + '/src/' + files[choice])
 	os.system('make')
 	os.system('make install')
 	os.chdir(top + '/Build')
+
+	
 
