@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project( DisplayImage )
 add_library(DisplayImage SHARED MRIDataSet.cpp MRICommon.cpp MRIDataSet.cpp MRISlice.cpp MRISliceInfo.cpp DicomLoader.cpp)
-
+set(CMAKE_BUILD_TYPE Debug)
 find_package( OpenCV REQUIRED )
 FIND_PACKAGE(Qt4 REQUIRED)
 INCLUDE(${QT_USE_FILE})

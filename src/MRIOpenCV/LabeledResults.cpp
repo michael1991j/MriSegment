@@ -7,10 +7,9 @@
 
 #include "LabeledResults.h"
 
-LabeledResults::LabeledResults(Vector<Mat * > Result ) {
+LabeledResults::LabeledResults() {
 	// TODO Auto-generated constructor stub
-	this->Result = Result;
-
+this->cloud = new pcl::PointCloud<pcl::PointXYZ>();
 }
 
 LabeledResults::~LabeledResults() {

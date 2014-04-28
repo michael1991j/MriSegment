@@ -10,12 +10,23 @@
 #include <vector>
 #include <iostream>
 #include "LabeledResults.h"
-#include <MRICommon.h>
+#include <MRISlice.h>
+#include <vector>
+#include <QRunnable>
+#include "MRICommon.h"
+using namespace std;
 
-class MRIProcess {
+enum ImageType { FATCUBE, WATERCUBE,WATERSPGR  };
+enum Tissue { BONE, CARTILAGE,FEMER };
+
+class MRIProcess : public QRunnable {
 public:
-	 MRIProcess(std::vector<MRICommon *>  ImageStacks ): ImageStacks(ImageStacks) { this->ImageStacks = ImageStacks; } ;
+	 MRIProcess( )  {
+
+		}
+
 	virtual ~MRIProcess();
+	 void run();
 	virtual void Setup()
 	{  }
 	virtual void Preprocess()
@@ -28,8 +39,9 @@ public:
 	{  }
 	virtual void PostProcess()
 	{  }
-	std::vector<MRICommon *> ImageStacks;
-	 vector<LabeledResults> LabeledOutput;
+	std::vector< MRICommon *> * ImageStacks;
+	std::vector<LabeledResults *> * LabeledOutput;
+	int id;
 };
 
 #endif /* MRIPROCESS_H_ */

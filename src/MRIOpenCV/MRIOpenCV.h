@@ -15,7 +15,7 @@ class MRIOpenCV {
 public:
 	MRIOpenCV();
 	virtual ~MRIOpenCV();
-	queue<MRIProcess *> Processes;
+	queue<MRIProcess *> * Processes;
 	void RunProcess();
 };
 

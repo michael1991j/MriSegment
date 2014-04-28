@@ -6,6 +6,7 @@
  */
 
 #include "MRIDataSet.h"
+#include <QThreadPool>
 
 MRIDataSet::MRIDataSet(QStringList * FileList , InputType Types) {
 
@@ -83,7 +84,12 @@ this->Coronial = new vector<MRISlice *>(ymax);
 
       }
     }
-
+}
+  for(int i = 0; i < ymax; i++)
+  {
+      cv::Rect myROI(0, 0,this->Sagittal->size() , ymax);
+      cv::Mat croppedImage =  this->Coronial->at(i)->Slice(myROI);
+      this->Coronial->at(i)->Slice = croppedImage;
   }
 
 	}

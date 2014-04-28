@@ -9,23 +9,29 @@
 
 MRIOpenCV::MRIOpenCV() {
 	// TODO Auto-generated constructor stub
-
+ this->Processes = new queue<MRIProcess *>();
 }
+
 void MRIOpenCV::RunProcess()
 {
 
-for(int i=0; i < this->Processes.size(); i++)
+	QThreadPool *threadPool = QThreadPool::globalInstance();
+for(int i=0; i < this->Processes->size(); i++)
 {
-MRIProcess * process= this->Processes.front();
-this->Processes.pop();
-process->Setup();
-process->Preprocess();
-process->Segment();
-process->PostSegmentProcess();
-process->Label();
-process->PostProcess();
+cout <<  this->Processes->size();
+MRIProcess * process= this->Processes->front();
+this->Processes->pop();
+
+process->run();
+//threadPool->start(process);
+
+
 }
+threadPool->waitForDone();
+
 }
+
+
 MRIOpenCV::~MRIOpenCV() {
 	// TODO Auto-generated destructor stub
 }

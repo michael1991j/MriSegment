@@ -12,4 +12,13 @@
 MRIProcess::~MRIProcess() {
 	// TODO Auto-generated destructor stub
 }
+void MRIProcess::run()
+{
+	this->Setup();
+	this->Preprocess();
+	this->Segment();
+	this->PostSegmentProcess();
+	this->Label();
+	this->PostProcess();
+}
 
