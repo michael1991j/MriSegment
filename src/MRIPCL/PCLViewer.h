@@ -1,3 +1,4 @@
+
 /*
  * PCLViewer.h
  *
@@ -12,6 +13,9 @@ class PCLViewer {
 public:
 	PCLViewer();
 	virtual ~PCLViewer();
+	void viewerOneOff (pcl::visualization::PCLVisualizer& viewer);
+	void viewerPsycho (pcl::visualization::PCLVisualizer& viewer);
+	void displayPointCloud (pcl::PointCloud<pcl::PointXYZ> *cloud);
 };
 
 #endif /* PCLVIEWER_H_ */
