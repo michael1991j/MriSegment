@@ -16,7 +16,7 @@
 #include "MRICommon.h"
 using namespace std;
 
-enum ImageType { FATCUBE, WATERCUBE,WATERSPGR  };
+enum ImageType { FATCUBE, WATERCUBE,WATERSPGR, FATSPGR };
 enum Tissue { BONE, CARTILAGE,FEMER };
 
 class MRIProcess : public QRunnable {
