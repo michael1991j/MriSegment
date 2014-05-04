@@ -75,7 +75,7 @@ bool FindBoneFemer::inrange( std::vector<cv::Point2i >  * points)
     for(int i =0; i< points->size(); i++)
     {
 
-        if( (points->at(i).x >190)&& (points->at(i).x <305) &&  (points->at(i).y >209) && (points->at(i).y<340))
+        if( (points->at(i).x >190)&& (points->at(i).x <305) &&  (points->at(i).y >250) && (points->at(i).y<300))
            return true;
     }
     return false;
@@ -85,13 +85,19 @@ bool FindBoneFemer::inrange( std::vector<cv::Point2i >  * points)
 void FindBoneFemer::Preprocess()
 {
 
-
+	cv::threshold(img,img,15,255,3);
+	Ptr<CLAHE> clahe = cv::createCLAHE();
+	clahe->apply(img,img);
 
 
 }
 
 void FindBoneFemer::Segment()
 {
+
+	cv::threshold(img, img, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+cv::imshow("a",img);
+
 
 }
 
@@ -112,31 +118,18 @@ void FindBoneFemer::Label()
 void FindBoneFemer::PostProcess()
 {
 	int edgeThresh = 1;
-int lowThreshold;
-int const max_lowThreshold = 100;
-int ratio = 3;
-int kernel_size = 3;
-char* window_name = "Edge Map";
-
-	    cv::threshold(img, img, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
-
-	    cv::Mat output = cv::Mat::zeros(img.size(), CV_8UC3);
-
-	    cv::Mat binary;
-	    std::vector < std::vector<cv::Point2i > > blobs;
-	   // equalizeHist( img, img );
-
-	    medianBlur ( img, img, 7 );
-
-	    cv::blur( img, img, Size( 6, 6), Point(-1,-1) );
-
-	    cv::adaptiveThreshold(img,binary,  1.0,CV_ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY,21,-0.8 );
-	    cv::Mat element(2,2,CV_8U,cv::Scalar(1));
-	   cv::dilate(binary,binary,element);
-	    FindBlobs(binary, blobs);
-	 //   cv::imshow("binary", img);
-	    //waitKey(0);
-	    // Randomy color the blobs
+	int lowThreshold;
+	int const max_lowThreshold = 100;
+	int ratio = 3;
+	int kernel_size = 3;
+	char* window_name = "Edge Map";
+	cv::Mat output = cv::Mat::zeros(img.size(), CV_8UC3);
+	cv::Mat binary;
+	std::vector < std::vector<cv::Point2i > > blobs;
+	cv::adaptiveThreshold(img,binary,  1.0,CV_ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY,21,-0.8 );
+	cv::Mat element(2,2,CV_8U,cv::Scalar(1));
+	cv::dilate(binary,binary,element);
+	FindBlobs(binary, blobs);
 	int Max =0;
 	int Maxcount =0;
 	int i =0;
@@ -148,7 +141,7 @@ char* window_name = "Edge Map";
 	          {
 	int pointsintherange  = 0;
 	  for(size_t j=0; j < blobs[i].size(); j++) {
-	        if(( blobs[i][j].x >190)&& (blobs[i][j].x <305) &&  (blobs[i][j].y >250) && (blobs[i][j].y<300))
+            if(( blobs[i][j].x >190)&& (blobs[i][j].x <305) &&  (blobs[i][j].y >250) && (blobs[i][j].y<300))
 			pointsintherange++;
 	       }
 
@@ -166,23 +159,19 @@ char* window_name = "Edge Map";
 	  for(size_t j=0; j < blobs[i].size(); j++) {
 	            int x = blobs[i][j].x;
 	            int y = blobs[i][j].y;
-
+                if (id>50 && id<185){
 	            output.at<cv::Vec3b>(y,x)[0] = b;
-	            output.at<cv::Vec3b>(y,x)[1] = g;
-	            output.at<cv::Vec3b>(y,x)[2] = r;
-	        }
+                output.at<cv::Vec3b>(y,x)[1] = g;
+                output.at<cv::Vec3b>(y,x)[2] = r;}
+            }
 
 	    Canny( output, output, lowThreshold, lowThreshold*ratio, kernel_size );
-	   // cv::imshow("binary", img);
 
-	    //imshow("this is ma",output);
-	    cout << "Hello World!" << endl;
-	    //waitKey(0);
-	    for(int x = 0; x < 512; x++)
+	    for(int x = 0; x < output.cols; x++)
 	    {
-	    	for(int y = 0; y <512; y++)
+	    	for(int y = 0; y <output.rows; y++)
 	    	{
-	    		  if(output.at<uchar>(x,y) == 255)
+	    		  if(output.at<uchar>(y,x) == 255)
 	    		  {
 	    			  PointXYZ point( x, y, id*2);
 	    	this->LabeledOutput->at(BONE)->cloud->push_back(point);

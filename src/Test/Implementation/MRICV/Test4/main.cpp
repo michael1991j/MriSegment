@@ -8,7 +8,9 @@
 #include <QThreadPool>
 #include <opencv2/opencv.hpp>
 #include <MRIProcess.h>
-#include <FindCartilage.h>
+#include <FindBoneFemer.h>
+#include <FindBoneFemurTrans.h>
+#include <FindBonePatella.h>
 #include <LabeledResults.h>
 #include <sstream>      // std::istringstream
 #include <MRIOpenCV.h>
@@ -36,55 +38,57 @@ int main(int argc, char **argv)
        MRIOpenCV * OpencvProcessor = new MRIOpenCV();
 
 
-        QApplication app (argc, argv);
-        QStringList nameFilter("*.dcm");
-               QDir directory("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/500-IdealSPGR-Fat-1P5MM/");
-               QStringList files = directory.entryList(nameFilter);
-               for(int i = 0; i <  files.count(); i++)
-                   files[i]=QString( "/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/500-IdealSPGR-Fat-1P5MM/")+files[i];
+   QApplication app (argc, argv);
+	   QStringList nameFilter("*.dcm");
+			  QDir directory("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+			  QStringList files = directory.entryList(nameFilter);
+			  for(int i = 0; i <  files.count(); i++)
+				  files[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
 
 
-                          QDir dir("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/005-IdealSPGR-Water-1P5MM/");
-                          QStringList filesfat = dir.entryList(nameFilter);
-                          for(int i = 0; i <  filesfat.count(); i++)
-                              filesfat[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/005-IdealSPGR-Water-1P5MM/")+filesfat[i];
+						 QDir dir("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
+						 QStringList filesfat = dir.entryList(nameFilter);
+						 for(int i = 0; i <  filesfat.count(); i++)
+							 filesfat[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
 
 
     MRICommon * fat = new MRICommon();
     fat->LoadImages(&files);
-    //fat->Data->ToTransversal();
-    fat->Data->ToCorronial();
+    fat->Data->ToTransversal();
+    //fat->Data->ToCorronial();
 
 
 
 
     MRICommon * water = new MRICommon();
-       water->LoadImages(&filesfat);
-       water->Data->ToCorronial();
+    water->LoadImages(&filesfat);
+    water->Data->ToTransversal();
+    //water->Data->ToCorronial();
 
-    vector<MRICommon *> Imagesets(500);
-    Imagesets.at(WATERSPGR)= water;
-    Imagesets.at(FATSPGR)= fat;
+    vector<MRICommon *> Imagesets(400);
+    Imagesets.at(FATCUBE)= fat;
+    Imagesets.at(WATERCUBE)= water;
      vector<LabeledResults *> results(400);
 
-     results.at(CARTILAGE) = new LabeledResults();
+     results.at(BONE) = new LabeledResults();
     ///blur( img, img, Size(3,3) );
  	QThreadPool *threadPool = QThreadPool::globalInstance();
 
-    for(int i  =0; i < water->Data->Coronial->size(); i++)
+    for(int i  =0; i < fat->Data->Transversal->size(); i++)
     {
     	cout << "processing image: " << i<<"\n";
-    	FindCartilage * process = new FindCartilage(&Imagesets,&results,i);
+        FindBonePatella * process = new FindBonePatella(&Imagesets,&results,i);
     process->Setup();
     process->Preprocess();
     process->Segment();
     process->PostSegmentProcess();
-   process->PostProcess();
+    process->Label();
+    //process->PostProcess();
 
     }
     threadPool->waitForDone();
 
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(CARTILAGE)->cloud);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(BONE)->cloud);
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>);
   // Create the filtering object

@@ -155,7 +155,7 @@ void FindBoneFemurTrans::PostSegmentProcess()
 			output.at<cv::Vec3b>(y,x)[0] = b;
 			output.at<cv::Vec3b>(y,x)[1] = g;
 			output.at<cv::Vec3b>(y,x)[2] = r;
-			  PointXYZ point( x, y, id*2);
+              PointXYZ point( x, y*2, id);
 			   	    	this->LabeledOutput->at(BONE)->cloud->push_back(point);
 	}
 
@@ -256,13 +256,13 @@ char* window_name = "Edge Map";
 	  	    //imshow("this is ma",output);
 	  	    cout << "Hello World!" << endl;
 	  	    //waitKey(0);
-	    for(int x = 0; x < 512; x++)
+	    for(int x = 0; x < output.cols; x++)
 	    {
-	    	for(int y = 0; y <512; y++)
+	    	for(int y = 0; y <output.rows; y++)
 	    	{
-	    		  if(output.at<uchar>(x,y) == 255)
+	    		  if(output.at<uchar>(y,x) == 255)
 	    		  {
-	    			  PointXYZ point( x, y, id*2);
+                      PointXYZ point( x, y*2, id);
 	    	this->LabeledOutput->at(BONE)->cloud->push_back(point);
 
 	    		  }
