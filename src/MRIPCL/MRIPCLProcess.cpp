@@ -52,7 +52,7 @@ void Preprocess(pcl::PointCloud<pcl::PointXYZ> *cloud, float radius, int minimum
   // print cloud after filter
   displayPointCloud(&cloud_filtered);
   
-  return (0);
+
 }
 
 void Fuse() {

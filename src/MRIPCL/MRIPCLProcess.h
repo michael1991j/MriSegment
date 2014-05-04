@@ -12,7 +12,7 @@ class MRIPCLProcess {
 public:
 	MRIPCLProcess();
 	virtual ~MRIPCLProcess();
-	virtual void Preprocess(pcl::PointCloud<pcl::PointXYZ> *cloud, float radius, int minimumHits);
+	virtual void Preprocess();
 	virtual void Fuse();
 	virtual void Postprocess();
 };
