@@ -40,8 +40,8 @@ this->Transversal = new vector<MRISlice *>(ymax);
   {
 
       this->Transversal->at(i) = new MRISlice( Mat(this->Sagittal->size(),xmax,this->Sagittal->at(0)->Slice.type()), i);
-      SagitaltoCorronal   *  instance = new   SagitaltoCorronal(this->Sagittal,this->Transversal ,i );
-      threadPool->start(instance);
+      SagitaltoTransversal   *  instance = new   SagitaltoTransversal(this->Sagittal,this->Transversal ,i );
+     threadPool->start(instance);
 
   }
   threadPool->waitForDone();
@@ -64,7 +64,7 @@ QThreadPool *threadPool = QThreadPool::globalInstance();
   {
 
       this->Coronial->at(i) = new MRISlice( Mat(xmax,ymax,this->Sagittal->at(0)->Slice.type()), i);
-      SagitaltoTransversal   *  instance = new   SagitaltoTransversal(this->Sagittal,this->Coronial ,i );
+      SagitaltoCorronal   *  instance = new   SagitaltoCorronal(this->Sagittal,this->Coronial ,i );
 
       threadPool->start(instance);
 
