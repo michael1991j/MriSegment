@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project( MRIOpenCV )
-add_library(MRIOpenCV SHARED DebugView.cpp      LabeledResults.cpp  MRIProcess.cpp FindBoneFemer.cpp  MRIOpenCV.cpp FindBoneFemurTrans.cpp FindCartilage.cpp MRIOpenCVSettings.cpp)
+add_library(MRIOpenCV SHARED DebugView.cpp           FindBoneTibia.cpp   MRIOpenCVSettings.cpp
+FindBoneFemer.cpp       FindCartilage.cpp   MRIProcess.cpp
+FindBoneFemurTrans.cpp  LabeledResults.cpp
+FindBonePatella.cpp     MRIOpenCV.cpp)
 set(CMAKE_BUILD_TYPE Debug)
 find_package( OpenCV REQUIRED )
 FIND_PACKAGE(Qt4 REQUIRED)
@@ -20,6 +23,8 @@ target_link_libraries( MRIOpenCV /usr/local/lib/libgdcmcharls.so  /usr/local/lib
 
 
 install(TARGETS MRIOpenCV DESTINATION lib)
-install(FILES DebugView.h  FindBoneFemer.h  LabeledResults.h  MRIOpenCV.h  MRIProcess.h FindBoneFemurTrans.h FindCartilage.h MRIOpenCVSettings.h DESTINATION include)
+install(FILES DebugView.h           FindBonePatella.h  LabeledResults.h     MRIProcess.h
+FindBoneFemer.h       FindBoneTibia.h    MRIOpenCV.h
+FindBoneFemurTrans.h  FindCartilage.h    MRIOpenCVSettings.h DESTINATION include)
 
 
