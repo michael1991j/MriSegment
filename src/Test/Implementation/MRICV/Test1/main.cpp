@@ -39,16 +39,16 @@ int main(int argc, char **argv)
 
         QApplication app (argc, argv);
         QStringList nameFilter("*.dcm");
-               QDir directory("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+               QDir directory("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
                QStringList files = directory.entryList(nameFilter);
                for(int i = 0; i <  files.count(); i++)
-                   files[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
+                   files[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
 
 
-                          QDir dir("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
+                          QDir dir("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
                           QStringList filesfat = dir.entryList(nameFilter);
                           for(int i = 0; i <  filesfat.count(); i++)
-                        	  filesfat[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
+                              filesfat[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
 
 
     MRICommon * fat = new MRICommon();
@@ -60,11 +60,11 @@ int main(int argc, char **argv)
 
 
     MRICommon * water = new MRICommon();
-      //  water->LoadImages(&filesfat);
+    water->LoadImages(&filesfat);
 
     vector<MRICommon *> Imagesets(2);
     Imagesets.at(FATCUBE)= fat;
-    Imagesets.at(WATERCUBE)= fat;
+    Imagesets.at(WATERCUBE)= water;
      vector<LabeledResults *> results(400);
 
      results.at(BONE) = new LabeledResults();
@@ -74,12 +74,12 @@ int main(int argc, char **argv)
     for(int i  =0; i < fat->Data->Sagittal->size(); i++)
     {
     	cout << "processing image: " << i<<"\n";
-    	FindBoneFemurTrans * process = new FindBoneFemurTrans(&Imagesets,&results,i);
+        FindBoneFemer * process = new FindBoneFemer(&Imagesets,&results,i);
     process->Setup();
     process->Preprocess();
     process->Segment();
     process->PostSegmentProcess();
-   //process->PostProcess();
+    process->PostProcess();
 
     }
     threadPool->waitForDone();
@@ -122,19 +122,17 @@ int main(int argc, char **argv)
 
 
       viewer->spin();
-  boost::mutex updateModelMutex;
+
   while (!viewer->wasStopped ())
     {
-      viewer->spinOnce (100);
-                  // Get lock on the boolean update and check if cloud was updated
-                  boost::mutex::scoped_lock updateLock(updateModelMutex);
-                  if(update)
-                  {
-                      if(!viewer->updatePointCloud(cloud, "sample cloud"))
-                        viewer->addPointCloud(cloud, colorHandler, "sample cloud");
-                      update = false;
-                  }
-                  updateLock.unlock();
+    double x , y , z , r , b,o;
+    cout << "give x y  z \n";
+    cin >> x ;
+    cin >> y;
+    cin >> z;
+
+   viewer->setCameraPosition 	( 	x,y,z,0,0,0,0);
+   //updateCamera ();
 
     }
 
