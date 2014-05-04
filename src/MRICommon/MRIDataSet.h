@@ -15,6 +15,7 @@
 #include <QStringList>
 #include "DicomLoader.h"
 #include "MRISlice.h"
+#include "MRITransformation.h"
 
 using namespace std;
 enum InputType {DICOMFILELIST, PRELOADEDFORMAT};
