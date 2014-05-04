@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project( DisplayImage )
-add_library(DisplayImage SHARED MRIDataSet.cpp MRICommon.cpp MRIDataSet.cpp MRISlice.cpp MRISliceInfo.cpp DicomLoader.cpp)
+add_library(DisplayImage SHARED MRIDataSet.cpp MRICommon.cpp MRIDataSet.cpp MRISlice.cpp MRISliceInfo.cpp DicomLoader.cpp MRITransformation.cpp)
 set(CMAKE_BUILD_TYPE Debug)
 find_package( OpenCV REQUIRED )
 FIND_PACKAGE(Qt4 REQUIRED)
@@ -14,6 +14,6 @@ target_link_libraries( DisplayImage /usr/local/lib/libgdcmcharls.so  /usr/local/
 
 
 install(TARGETS DisplayImage DESTINATION lib)
-install(FILES DicomLoader.h  MRICommon.h  MRIDataSet.h  MRISlice.h  MRISliceInfo.h DESTINATION include)
+install(FILES DicomLoader.h  MRICommon.h  MRIDataSet.h  MRISlice.h  MRISliceInfo.h MRITransformation.h DESTINATION include)
 
 

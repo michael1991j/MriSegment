@@ -7889,3 +7889,30 @@ Command-line arguments:  -os linux -ws gtk -arch x86
 
 !ENTRY org.eclipse.cdt.core 1 0 2014-04-27 12:16:32.269
 !MESSAGE Indexed 'shit3' (1 sources, 617 headers) in 9.27 sec: 61,770 declarations; 105,205 references; 23 unresolved inclusions; 39 syntax errors; 438 unresolved names (0.26%)
+!SESSION 2014-04-30 12:24:59.720 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_30
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-04-30 12:25:02.919
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-04-30 12:46:14.851
+!MESSAGE Indexed 'MRIPCL' (0 sources, 98 headers) in 0.59 sec: 2,293 declarations; 2,514 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-04-30 13:07:35.362
+!MESSAGE Indexed 'Ilovecomputers' (1 sources, 617 headers) in 10.85 sec: 61,771 declarations; 105,205 references; 23 unresolved inclusions; 39 syntax errors; 438 unresolved names (0.26%)
+!SESSION 2014-05-04 10:55:52.474 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_30
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-04 10:55:55.934
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-04 10:57:39.513
+!MESSAGE Indexed 'shit4' (0 sources, 98 headers) in 1.03 sec: 2,293 declarations; 2,514 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)

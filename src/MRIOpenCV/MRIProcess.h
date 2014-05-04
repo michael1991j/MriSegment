@@ -14,10 +14,11 @@
 #include <vector>
 #include <QRunnable>
 #include "MRICommon.h"
+
 using namespace std;
 
 enum ImageType { FATCUBE, WATERCUBE,WATERSPGR, FATSPGR };
-enum Tissue { BONE, CARTILAGE,FEMER };
+enum Tissue { BONE, CARTILAGE,FEMER, FEMER_SAT_EDGE };
 
 class MRIProcess : public QRunnable {
 public:

@@ -1,7 +1,10 @@
 MRICommon
 MRIOpenCV
+MRIPCL
 Test/Implementation/MRICommon/Test1
 Test/Implementation/MRICV/Test1
 Test/Implementation/MRICV/Test2
 Test/Implementation/MRICV/Test3
+Test/Implementation/MRICV/Test4
+Test/Implementation/MRIPCL/Test1
 Tools/ManualSegment
