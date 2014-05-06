@@ -14,6 +14,7 @@
 #include <sstream>      // std::istringstream
 #include <MRIOpenCV.h>
 #include <MRIProcess.h>
+#include <MRIOpenCVSettings.h>
 
 #include <vector>
 #include <pcl/io/pcd_io.h>
@@ -31,115 +32,118 @@ int ratio = 3;
 int kernel_size = 3;
 char* window_name = "Edge Map";
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 
-       MRIOpenCV * OpencvProcessor = new MRIOpenCV();
+	MRIOpenCVSettings * config = new MRIOpenCVSettings();
+	config->LoadSettings(
+			"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
+	MRIOpenCV * OpencvProcessor = new MRIOpenCV();
 
-        QApplication app (argc, argv);
-        QStringList nameFilter("*.dcm");
-               QDir directory("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
-               QStringList files = directory.entryList(nameFilter);
-               for(int i = 0; i <  files.count(); i++)
-                   files[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
+	QApplication app(argc, argv);
+	QStringList nameFilter("*.dcm");
+	QDir directory(
+			"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+	QStringList files = directory.entryList(nameFilter);
+	for (int i = 0; i < files.count(); i++)
+		files[i] =
+				QString(
+						"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")
+						+ files[i];
 
+	QDir dir(
+			"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
+	QStringList filesfat = dir.entryList(nameFilter);
+	for (int i = 0; i < filesfat.count(); i++)
+		filesfat[i] =
+				QString(
+						"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")
+						+ filesfat[i];
 
-                          QDir dir("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
-                          QStringList filesfat = dir.entryList(nameFilter);
-                          for(int i = 0; i <  filesfat.count(); i++)
-                              filesfat[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
+	MRICommon * fat = new MRICommon();
+	fat->LoadImages(&files);
+	fat->Data->ToTransversal();
+	//fat->Data->ToCorronial();
 
+	MRICommon * water = new MRICommon();
+	water->LoadImages(&filesfat);
 
-    MRICommon * fat = new MRICommon();
-    fat->LoadImages(&files);
-    fat->Data->ToTransversal();
-    //fat->Data->ToCorronial();
+	vector<MRICommon *> Imagesets(2);
+	Imagesets.at(FATCUBE) = fat;
+	Imagesets.at(WATERCUBE) = water;
+	vector<LabeledResults *> results(400);
 
+	results.at(BONE) = new LabeledResults();
+	///blur( img, img, Size(3,3) );
+	QThreadPool *threadPool = QThreadPool::globalInstance();
 
+	for (int i = 0; i < fat->Data->Sagittal->size(); i++) {
+		cout << "processing image: " << i << "\n";
+		FindBoneFemer * process = new FindBoneFemer(&Imagesets, &results, i,
+				config);
+		process->Setup();
+		process->Preprocess();
+		process->Segment();
+		process->PostSegmentProcess();
+		process->PostProcess();
 
+	}
+	threadPool->waitForDone();
 
-    MRICommon * water = new MRICommon();
-    water->LoadImages(&filesfat);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(BONE)->cloud);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(
+			new pcl::PointCloud<pcl::PointXYZ>);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered(
+			new pcl::PointCloud<pcl::PointXYZ>);
+	// Create the filtering object
+	pcl::VoxelGrid < pcl::PointXYZ > sor;
+	sor.setInputCloud(cloudin);
+	sor.setLeafSize(3, 3, 3);
+	sor.filter(*cloud_filtered);
 
-    vector<MRICommon *> Imagesets(2);
-    Imagesets.at(FATCUBE)= fat;
-    Imagesets.at(WATERCUBE)= water;
-     vector<LabeledResults *> results(400);
+	std::cerr << "PointCloud after filtering: "
+			<< cloud_filtered->width * cloud_filtered->height
+			<< " data points (" << pcl::getFieldsList(*cloud_filtered) << ").";
 
-     results.at(BONE) = new LabeledResults();
-    ///blur( img, img, Size(3,3) );
- 	QThreadPool *threadPool = QThreadPool::globalInstance();
+	pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_xyzrgb(
+			new pcl::PointCloud<pcl::PointXYZRGB>);
 
-    for(int i  =0; i < fat->Data->Sagittal->size(); i++)
-    {
-    	cout << "processing image: " << i<<"\n";
-        FindBoneFemer * process = new FindBoneFemer(&Imagesets,&results,i);
-    process->Setup();
-    process->Preprocess();
-    process->Segment();
-    process->PostSegmentProcess();
-    process->PostProcess();
+	copyPointCloud(*cloud_filtered, *cloud_xyzrgb);
 
-    }
-    threadPool->waitForDone();
+	for (size_t i = 0; i < cloud_xyzrgb->points.size(); ++i) {
+		cloud_xyzrgb->points[i].r = 255;
+	}
+	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(
+			new pcl::visualization::PCLVisualizer("3D Viewer"));
+	viewer->setBackgroundColor(0, 0, 0);
+	pcl::visualization::PointCloudColorHandlerRGBField < pcl::PointXYZRGB
+			> rgb(cloud_xyzrgb);
+	viewer->addPointCloud < pcl::PointXYZRGB
+			> (cloud_xyzrgb, rgb, "sample cloud");
 
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(BONE)->cloud);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>);
-  // Create the filtering object
-    pcl::VoxelGrid<pcl::PointXYZ> sor;
-    sor.setInputCloud ( cloudin);
-    sor.setLeafSize (3, 3, 3);
-    sor.filter (*cloud_filtered);
+	viewer->setPointCloudRenderingProperties(
+			pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "sample cloud");
 
-    std::cerr << "PointCloud after filtering: " << cloud_filtered->width * cloud_filtered->height
-         << " data points (" << pcl::getFieldsList (*cloud_filtered) << ").";
+	viewer->addCoordinateSystem(1, 0, 0, 100);
 
+	viewer->initCameraParameters();
 
+	viewer->spin();
 
-      pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>);
+	while (!viewer->wasStopped()) {
+		double x, y, z, r, b, o;
+		cout << "give x y  z \n";
+		cin >> x;
+		cin >> y;
+		cin >> z;
 
-    copyPointCloud(*cloud_filtered, *cloud_xyzrgb );
+		viewer->setCameraPosition(x, y, z, 0, 0, 0, 0);
+		//updateCamera ();
 
+	}
 
-   for (size_t i = 0; i < cloud_xyzrgb->points.size (); ++i)
-  {
-  cloud_xyzrgb->points[i].r = 255;
-  }
-   boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
-    viewer->setBackgroundColor (0, 0, 0);
-    pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(cloud_xyzrgb);
-    viewer->addPointCloud<pcl::PointXYZRGB> (cloud_xyzrgb, rgb, "sample cloud");
+	cout << "done" << endl;
 
-    viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "sample cloud");
-
-
-
-   viewer->addCoordinateSystem 	( 	1,0,0,100);
-
-    viewer->initCameraParameters ();
-
-
-      viewer->spin();
-
-  while (!viewer->wasStopped ())
-    {
-    double x , y , z , r , b,o;
-    cout << "give x y  z \n";
-    cin >> x ;
-    cin >> y;
-    cin >> z;
-
-   viewer->setCameraPosition 	( 	x,y,z,0,0,0,0);
-   //updateCamera ();
-
-    }
-
-
-    cout << "done" << endl;
-
-
-    return 0;
+	return 0;
 }
 

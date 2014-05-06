@@ -13,6 +13,7 @@
 #include <sstream>      // std::istringstream
 #include <MRIOpenCV.h>
 #include <MRIProcess.h>
+#include <MRIOpenCVSettings.h>
 
 #include <vector>
 #include <pcl/io/pcd_io.h>
@@ -32,6 +33,9 @@ char* window_name = "Edge Map";
 
 int main(int argc, char **argv)
 {
+	MRIOpenCVSettings * config = new MRIOpenCVSettings();
+		config->LoadSettings(
+				"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
        MRIOpenCV * OpencvProcessor = new MRIOpenCV();
 
@@ -74,7 +78,7 @@ int main(int argc, char **argv)
     for(int i  =0; i < water->Data->Coronial->size(); i++)
     {
     	cout << "processing image: " << i<<"\n";
-    	FindCartilage * process = new FindCartilage(&Imagesets,&results,i);
+    	FindCartilage * process = new FindCartilage(&Imagesets,&results,i,config);
     process->Setup();
     process->Preprocess();
     process->Segment();
