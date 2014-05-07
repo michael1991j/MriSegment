@@ -1,0 +1,12 @@
+/usr/local/lib/libMRIOpenCV.so
+/usr/local/include/DebugView.h
+/usr/local/include/FindBonePatella.h
+/usr/local/include/LabeledResults.h
+/usr/local/include/MRIProcess.h
+/usr/local/include/FindBoneFemer.h
+/usr/local/include/FindBoneTibia.h
+/usr/local/include/MRIOpenCV.h
+/usr/local/include/FindBoneFemurTrans.h
+/usr/local/include/FindCartilage.h
+/usr/local/include/MRIOpenCVSettings.h
+/usr/local/include/MRICommonSettings.h

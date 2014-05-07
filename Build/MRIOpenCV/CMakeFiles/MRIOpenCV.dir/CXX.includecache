@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRICommonSettings.cpp
+MRICommonSettings.h
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRICommonSettings.h
+
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRICommonSettings.h
+pugixml.hpp
+-
+iostream
+-
+
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRIOpenCVSettings.cpp
+MRIOpenCVSettings.h
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRIOpenCVSettings.h
+
+/home/mri/Build/MriSegment/src/MRIOpenCV/MRIOpenCVSettings.h
+pugixml.hpp
+-
+iostream
+-
+
+/usr/local/include/pugiconfig.hpp
+
+/usr/local/include/pugixml.hpp
+pugiconfig.hpp
+/usr/local/include/pugiconfig.hpp
+stddef.h
+-
+exception
+-
+iterator
+-
+iosfwd
+-
+string
+-
+
