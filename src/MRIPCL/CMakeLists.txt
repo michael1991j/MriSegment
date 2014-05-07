@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project( MRIPCL )
-add_library(MRIPCL SHARED FemerOperation.cpp  MRIPCL.cpp  MRIPCLProcess.cpp  PCLViewer.cpp  )
+add_library(MRIPCL SHARED FemerOperation.cpp  MRIPCL.cpp  MRIPCLProcess.cpp   )
 set(CMAKE_BUILD_TYPE Debug)
 find_package( OpenCV REQUIRED )
 FIND_PACKAGE(Qt4 REQUIRED)
@@ -20,6 +20,6 @@ target_link_libraries( MRIPCL /usr/local/lib/libgdcmcharls.so  /usr/local/lib/li
 
 
 install(TARGETS MRIPCL DESTINATION lib)
-install(FILES FemerOperation.h  MRIPCL.h  MRIPCLProcess.h  PCLViewer.h DESTINATION include)
+install(FILES FemerOperation.h  MRIPCL.h  MRIPCLProcess.h   DESTINATION include)
 
 

@@ -8,7 +8,10 @@
 #ifndef MRIPCLPROCESS_H_
 #define MRIPCLPROCESS_H_
 
+using namespace std;
+
 class MRIPCLProcess {
+
 public:
 	MRIPCLProcess();
 	virtual ~MRIPCLProcess();

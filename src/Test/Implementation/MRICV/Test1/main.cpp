@@ -15,7 +15,6 @@
 #include <MRIOpenCV.h>
 #include <MRIProcess.h>
 #include <MRIOpenCVSettings.h>
-#include <MRICommonSettings.h>
 
 #include <vector>
 #include <pcl/io/pcd_io.h>
@@ -39,29 +38,27 @@ int main(int argc, char **argv) {
 	config->LoadSettings(
 			"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
-	MRICommonSettings * fileconfig = new MRICommonSettings();
-	fileconfig->LoadSettings(
-			"/home/mri/Build/MriSegment/src/Conf/MRICommon/Default.conf");
-
 	MRIOpenCV * OpencvProcessor = new MRIOpenCV();
 
 	QApplication app(argc, argv);
 	QStringList nameFilter("*.dcm");
-	char* No_Fat_Path =
-			fileconfig->GetSettings("FindBoneFemer", "No_Fat_Path",
-					"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
-	char* Fat_Path =
-			fileconfig->GetSettings("FindBoneFemer", "Fat_Path",
-					"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
-	QDir directory(No_Fat_Path);
+	QDir directory(
+			"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
 	QStringList files = directory.entryList(nameFilter);
 	for (int i = 0; i < files.count(); i++)
-		files[i] = QString(No_Fat_Path) + files[i];
+		files[i] =
+				QString(
+						"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")
+						+ files[i];
 
-	QDir dir(Fat_Path);
+	QDir dir(
+			"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
 	QStringList filesfat = dir.entryList(nameFilter);
 	for (int i = 0; i < filesfat.count(); i++)
-		filesfat[i] = QString(Fat_Path) + filesfat[i];
+		filesfat[i] =
+				QString(
+						"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")
+						+ filesfat[i];
 
 	MRICommon * fat = new MRICommon();
 	fat->LoadImages(&files);
@@ -89,8 +86,8 @@ int main(int argc, char **argv) {
 		process->Segment();
 		process->PostSegmentProcess();
 		process->PostProcess();
-	}
 
+	}
 	threadPool->waitForDone();
 
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(BONE)->cloud);

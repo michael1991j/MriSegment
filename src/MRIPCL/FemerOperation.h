@@ -11,14 +11,25 @@
 #include <vector>
 #include <iostream>
 #include "MRIPCLProcess.h"
+#include <MRIProcess.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
+#include <pcl/visualization/cloud_viewer.h>
+#include <boost/thread/thread.hpp>
+#include <pcl/filters/voxel_grid.h>
 using namespace std;
+
 class FemerOperation: public MRIPCLProcess {
-public:
-	FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput);
-	virtual ~FemerOperation();
-	 void Preprocess();
-	 void Fuse();
-	 void Postprocess();
+		float radius;
+		int minFriends;
+	public:
+		FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput);
+		virtual ~FemerOperation();
+		std::vector<LabeledResults *> * Labeledinput;
+		std::vector<LabeledResults *> * Labeledoutput;
+		void Preprocess();
+		void Fuse();
+		void Postprocess();
 };
 
 #endif /* FEMEROPERATION_H_ */
