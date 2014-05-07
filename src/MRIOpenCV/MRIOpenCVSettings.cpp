@@ -42,7 +42,7 @@ double MRIOpenCVSettings::GetSettings(char * section , char * field , double def
 			if(doc.child(section).child(field).empty())
 			{
 
-		    std:: cout <<  "you are missing this setting attribute therfore the defaul values was used\n";
+		    std:: cout <<  "you are missing this setting attribute therefore the default values was used\n";
 		    return defaultvalue;
 			}
 			else

@@ -169,21 +169,18 @@ void FindCartilage::PostSegmentProcess() {
 		output.at<cv::Vec3b>(y, x)[1] = g;
 		output.at<cv::Vec3b>(y, x)[2] = r;
 	}
-
-	imshow("a", output);
-	//   waitKey(0);
 	Canny(output, output,
 			config->GetSettings("FindCartilage", "Canny_low_thresh", 5),
 			config->GetSettings("FindCartilage", "Canny_high_thresh", 10),
 			config->GetSettings("FindCartilage", "Canny_kernel", 3));
-
 	for (int x = 0; x < output.cols; x++) {
 		for (int y = 0; y < output.rows; y++) {
-			if (binary.at<uchar>(y, x) == 255) {
+			if (output.at<uchar>(y, x) == 255) {
+				double x_mult=config->GetSettings("FindCartilage",
+						"X_axis_multiplier", 512/116);
 				PointXYZ point(
-									x
-											* config->GetSettings("FindCartilage",
-													"X_axis_multiplier", 512/116),
+									(double) x
+											* x_mult,
 									y
 											* config->GetSettings("FindCartilage",
 													"Y_axis_multiplier", 1),
@@ -192,10 +189,10 @@ void FindCartilage::PostSegmentProcess() {
 													"Z_axis_multiplier", 1));
 				if (id
 										> config->GetSettings("FindCartilage",
-												"Image_plane_low", 0)
+												"Image_plane_low", 150)
 										&& id
 												< config->GetSettings("FindCartilage",
-														"Image_plane_high", 512))
+														"Image_plane_high", 295))
 				this->LabeledOutput->at(CARTILAGE)->cloud->push_back(point);
 
 			}

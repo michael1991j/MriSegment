@@ -210,7 +210,6 @@ void FindBoneTibia::Label() {
 			config->GetSettings("FindBoneTibia", "Canny_low_thresh", 5),
 			config->GetSettings("FindBoneTibia", "Canny_high_thresh", 10),
 			config->GetSettings("FindBoneTibia", "Canny_kernel", 3));
-
 	for (int x = 0; x < img.cols; x++) {
 		for (int y = 0; y < img.rows; y++) {
 			if (output.at<uchar>(y, x) == 255) {
