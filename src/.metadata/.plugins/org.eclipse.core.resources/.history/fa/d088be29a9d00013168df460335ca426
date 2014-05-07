@@ -1,0 +1,17 @@
+/*
+ * FindBonePatella.h
+ *
+ *  Created on: Apr 30, 2014
+ *      Author: mri
+ */
+
+#ifndef FINDBONEPATELLA_H_
+#define FINDBONEPATELLA_H_
+
+class FindBonePatella {
+public:
+	FindBonePatella();
+	virtual ~FindBonePatella();
+};
+
+#endif /* FINDBONEPATELLA_H_ */

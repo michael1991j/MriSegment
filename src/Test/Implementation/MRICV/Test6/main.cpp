@@ -14,6 +14,8 @@
 #include <MRIOpenCV.h>
 #include <MRIProcess.h>
 #include <MRIOpenCVSettings.h>
+#include <MRICommonSettings.h>
+
 #include <vector>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
