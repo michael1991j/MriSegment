@@ -1,1 +1,0 @@
-/home/mri/Build/MriSegment/Build/Test/Implementation/MRICV/Test1/CMakeFiles/helloworld.dir
