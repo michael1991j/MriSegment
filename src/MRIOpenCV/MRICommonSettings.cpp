@@ -1,22 +1,22 @@
 /*
- * MRIOpenCVSettings.cpp
+ * MRICommonSettings.cpp
  *
  *  Created on: May 4, 2014
  *      Author: mri
  */
 
-#include "MRIOpenCVSettings.h"
+#include "MRICommonSettings.h"
 
-MRIOpenCVSettings::MRIOpenCVSettings() {
+MRICommonSettings::MRICommonSettings() {
 	// TODO Auto-generated constructor stub
 
 }
 
-MRIOpenCVSettings::~MRIOpenCVSettings() {
+MRICommonSettings::~MRICommonSettings() {
 	// TODO Auto-generated destructor stub
 }
 
-void MRIOpenCVSettings::LoadSettings(char * file )
+void MRICommonSettings::LoadSettings(char * file )
 {
 	pugi::xml_parse_result result =  doc.load_file(file);
 	if (result)
@@ -29,7 +29,7 @@ void MRIOpenCVSettings::LoadSettings(char * file )
 	}
 }
 
-double MRIOpenCVSettings::GetSettings(char * section , char * field , double defaultvalue)
+double MRICommonSettings::GetSettings(char * section , char * field , double defaultvalue)
 {
 	if(doc.child(section).empty())
 		{
@@ -55,32 +55,7 @@ double MRIOpenCVSettings::GetSettings(char * section , char * field , double def
 
 }
 
-int MRIOpenCVSettings::GetSettings(char * section , char * field , int defaultvalue)
-{
-	if(doc.child(section).empty())
-		{
-
-			std::cout << "the settings for this module operation is not present using Default values\n";
-			return defaultvalue;
-		}
-		else
-		{
-			if(doc.child(section).child(field).empty())
-			{
-
-		    std:: cout <<  "you are missing this setting attribute therefore the default values was used\n";
-		    return defaultvalue;
-			}
-			else
-			{
-				return  doc.child(section).child(field).text().as_int();
-			}
-
-		}
-
-}
-
-char * MRIOpenCVSettings::GetSettings(char * section , char * field , char * defaultvalue)
+int MRICommonSettings::GetSettings(char * section , char * field , int defaultvalue)
 {
 	if(doc.child(section).empty())
 		{
@@ -94,6 +69,31 @@ char * MRIOpenCVSettings::GetSettings(char * section , char * field , char * def
 			{
 
 		    std:: cout <<  "you are missing this setting attribute therfore the defaul values was used\n";
+		    return defaultvalue;
+			}
+			else
+			{
+				return  doc.child(section).child(field).text().as_int();
+			}
+
+		}
+
+}
+
+char * MRICommonSettings::GetSettings(char * section , char * field , char * defaultvalue)
+{
+	if(doc.child(section).empty())
+		{
+
+			std::cout << "the settings for this module operation is not present using Default values\n";
+			return defaultvalue;
+		}
+		else
+		{
+			if(doc.child(section).child(field).empty())
+			{
+
+		    std:: cout <<  "you are missing this setting attribute therefore the default values was used\n";
 		    return defaultvalue;
 			}
 			else
