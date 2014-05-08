@@ -7,6 +7,7 @@
 
 #include "LabeledResults.h"
 
+//! Constructor for function to generate new point cloud.
 LabeledResults::LabeledResults() {
 	// TODO Auto-generated constructor stub
 this->cloud = new pcl::PointCloud<pcl::PointXYZ>();

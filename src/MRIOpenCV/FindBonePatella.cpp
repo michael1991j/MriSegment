@@ -92,6 +92,7 @@ void FindBonePatella::Setup() {
 //! Helper function to determine if a blob is within the area of interest.
 /*!
  \param points Input coordinates of blob of interest.
+ \return bool True/False boolean that states whether the point is in the specified range.
  */
 bool FindBonePatella::inrange(std::vector<cv::Point2i> * points) {
 

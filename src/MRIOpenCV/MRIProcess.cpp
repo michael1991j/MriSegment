@@ -8,10 +8,12 @@
 #include "MRIProcess.h"
 
 
-
+//! Destructor for function that runs the image processing algorithms on the loaded image stack.
 MRIProcess::~MRIProcess() {
 	// TODO Auto-generated destructor stub
 }
+
+//! Helper function to run the image processing algorithms on the loaded image stack.
 void MRIProcess::run()
 {
 	this->Setup();

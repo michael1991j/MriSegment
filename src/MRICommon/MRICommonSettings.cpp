@@ -1,20 +1,20 @@
 /*
- * MRIOpenCVSettings.cpp
+ * MRICommonSettings.cpp
  *
  *  Created on: May 4, 2014
  *      Author: mri
  */
 
-#include "MRIOpenCVSettings.h"
+#include "MRICommonSettings.h"
 
-//! Constructor for function that pulls configuration data for MRIOpenCV from a .xml file.
-MRIOpenCVSettings::MRIOpenCVSettings() {
+//! Constructor for function that pulls configuration data for MRICommon from a .xml file.
+MRICommonSettings::MRICommonSettings() {
 	// TODO Auto-generated constructor stub
 
 }
 
-//! Destructor for function that pulls configuration data for MRIOpenCV from a .xml file.
-MRIOpenCVSettings::~MRIOpenCVSettings() {
+//! Destructor for function that pulls configuration data for MRICommon from a .xml file.
+MRICommonSettings::~MRICommonSettings() {
 	// TODO Auto-generated destructor stub
 }
 
@@ -22,7 +22,7 @@ MRIOpenCVSettings::~MRIOpenCVSettings() {
 /*!
  \param file Pointer to file path
  */
-void MRIOpenCVSettings::LoadSettings(char * file )
+void MRICommonSettings::LoadSettings(char * file )
 {
 	pugi::xml_parse_result result =  doc.load_file(file);
 	if (result)
@@ -42,7 +42,7 @@ void MRIOpenCVSettings::LoadSettings(char * file )
  \param defaultvalue Double containing defaultvalue if no value is found in the config file.
  \return double Double containing config file value or default value.
  */
-double MRIOpenCVSettings::GetSettings(char * section , char * field , double defaultvalue)
+double MRICommonSettings::GetSettings(char * section , char * field , double defaultvalue)
 {
 	if(doc.child(section).empty())
 		{
@@ -75,7 +75,7 @@ double MRIOpenCVSettings::GetSettings(char * section , char * field , double def
  \param defaultvalue Int containing defaultvalue if no value is found in the config file.
  \return int Int containing config file value or default value.
  */
-int MRIOpenCVSettings::GetSettings(char * section , char * field , int defaultvalue)
+int MRICommonSettings::GetSettings(char * section , char * field , int defaultvalue)
 {
 	if(doc.child(section).empty())
 		{
@@ -88,7 +88,7 @@ int MRIOpenCVSettings::GetSettings(char * section , char * field , int defaultva
 			if(doc.child(section).child(field).empty())
 			{
 
-		    std:: cout <<  "you are missing this setting attribute therefore the default values was used\n";
+		    std:: cout <<  "you are missing this setting attribute therfore the defaul values was used\n";
 		    return defaultvalue;
 			}
 			else
@@ -107,7 +107,7 @@ int MRIOpenCVSettings::GetSettings(char * section , char * field , int defaultva
  \param defaultvalue Pointer to defaultvalue if no value is found in the config file.
  \return char Pointer containing config file value or default value.
  */
-char * MRIOpenCVSettings::GetSettings(char * section , char * field , char * defaultvalue)
+char * MRICommonSettings::GetSettings(char * section , char * field , char * defaultvalue)
 {
 	if(doc.child(section).empty())
 		{
@@ -120,7 +120,7 @@ char * MRIOpenCVSettings::GetSettings(char * section , char * field , char * def
 			if(doc.child(section).child(field).empty())
 			{
 
-		    std:: cout <<  "you are missing this setting attribute therfore the defaul values was used\n";
+		    std:: cout <<  "you are missing this setting attribute therefore the default values was used\n";
 		    return defaultvalue;
 			}
 			else
