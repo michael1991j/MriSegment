@@ -25,11 +25,16 @@ void FemerOperation::Preprocess()
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
 
 
-	pcl::VoxelGrid < pcl::PointXYZ > sor;
-	sor.setInputCloud(cloudin);
-	sor.setLeafSize(3, 3, 3);
-	sor.filter(*cloud_filtered);
+  pcl::RadiusOutlierRemoval<pcl::PointXYZ> rorfilter (true); // Initializing with true will allow us to extract the removed indices
+	// in implementation
 
+pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
+// build the filter
+outrem.setInputCloud(cloudin);
+outrem.setRadiusSearch(radius);
+outrem.setMinNeighborsInRadius (minFriends);
+// apply filter
+outrem.filter (*cloud_filtered);
 
 // print cloud before filter
 //displayPointCloud(&cloud);

@@ -120,7 +120,7 @@ bool FindBoneTibia::inrange(std::vector<cv::Point2i> * points) {
 void FindBoneTibia::Preprocess() {
 	cv::threshold(img, img,
 			config->GetSettings("FindBoneTibia", "noise_cutoff", 15), 255, 3);
-	Ptr<CLAHE> clahe = cv::createCLAHE();
+	cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
 	clahe->apply(img, img);
 
 }
@@ -130,9 +130,9 @@ void FindBoneTibia::Segment() {
 	int Median_size = config->GetSettings("FindBoneTibia", "Median_size", 7);
 	int Blur_size = config->GetSettings("FindBoneTibia", "Blur_size", 3);
 	if (Median_size > 0)
-		medianBlur(img, img, Median_size);
+		cv::medianBlur(img, img, Median_size);
 	if (Blur_size > 0)
-		blur(img, img, Size(Blur_size, Blur_size));
+		cv::blur(img, img, cv::Size(Blur_size, Blur_size));
 	cv::threshold(img, img, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
 
 }
@@ -147,7 +147,7 @@ void FindBoneTibia::Label() {
 	cv::Mat output = cv::Mat::zeros(img.size(), CV_8UC3);
 	std::vector < std::vector<cv::Point2i> > blobs;
 	cv::adaptiveThreshold(img, binary, 1.0, CV_ADAPTIVE_THRESH_GAUSSIAN_C,
-			THRESH_BINARY, 21, -0.8);
+cv::THRESH_BINARY, 21, -0.8);
 	//binary = 1-binary;
 
 	FindBlobs(binary, blobs);
@@ -201,19 +201,19 @@ void FindBoneTibia::Label() {
 	}
 	int size = config->GetSettings("FindBoneTibia", "dilation_size", 1);
 	;
-	int type = MORPH_ELLIPSE;
-	Mat element = getStructuringElement(type, Size(2 * size, 2 * size),
-			Point(size, size));
+	int type = cv::MORPH_ELLIPSE;
+	cv::Mat element = cv::getStructuringElement(type, cv::Size(2 * size, 2 * size),
+			cv::Point(size, size));
 	if (size > 0)
 		cv::dilate(output, output, element);
-	Canny(output, output,
+	cv::Canny(output, output,
 			config->GetSettings("FindBoneTibia", "Canny_low_thresh", 5),
 			config->GetSettings("FindBoneTibia", "Canny_high_thresh", 10),
 			config->GetSettings("FindBoneTibia", "Canny_kernel", 3));
 	for (int x = 0; x < img.cols; x++) {
 		for (int y = 0; y < img.rows; y++) {
 			if (output.at<uchar>(y, x) == 255) {
-				PointXYZ point(
+				pcl::PointXYZ point(
 						x
 								* config->GetSettings("FindBoneTibia",
 										"X_axis_multiplier", 1),

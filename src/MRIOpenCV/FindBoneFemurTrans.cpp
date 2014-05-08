@@ -126,9 +126,9 @@ void FindBoneFemurTrans::Preprocess() {
 	int MedianSize = config->GetSettings("FindBoneFemurTrans", "Median_size",
 			3);
 	if (GaussianSize > 0)
-		GaussianBlur(img, img, Size(GaussianSize, GaussianSize), 0, 0);
+		cv::GaussianBlur(img, img, cv::Size(GaussianSize, GaussianSize), 0, 0);
 	if (MedianSize > 0)
-		medianBlur(img, img, MedianSize);
+		cv::medianBlur(img, img, MedianSize);
 
 }
 
@@ -140,7 +140,7 @@ void FindBoneFemurTrans::Segment() {
 			"Canny_high_thresh", 27);
 	int kernel_size = config->GetSettings("FindBoneFemurTrans", "Canny_kernel",
 			3);
-	Canny(img, img, lowThreshold, highThreshold, kernel_size);
+	cv::Canny(img, img, lowThreshold, highThreshold, kernel_size);
 
 }
 
@@ -149,11 +149,11 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 	cv::Mat output = cv::Mat::zeros(img.size(), CV_8UC3);
 	cv::Mat binary;
 	cv::adaptiveThreshold(img, binary, 1.0, CV_ADAPTIVE_THRESH_GAUSSIAN_C,
-			THRESH_BINARY, 21, -0.8);
+			cv::THRESH_BINARY, 21, -0.8);
 	int size = config->GetSettings("FindBoneFemurTrans", "dilation_size", 1);
-	int type = MORPH_ELLIPSE;
-	Mat element = getStructuringElement(type, Size(2 * size, 2 * size),
-			Point(size, size));
+	int type = cv::MORPH_ELLIPSE;
+	cv::Mat element = getStructuringElement(type, cv::Size(2 * size, 2 * size),
+			cv::Point(size, size));
 	if(size>0)
 		cv::dilate(binary, binary, element);
 
@@ -207,7 +207,7 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 		output.at<cv::Vec3b>(y, x)[1] = g;
 		output.at<cv::Vec3b>(y, x)[2] = r;
 
-		PointXYZ point(
+		pcl::PointXYZ point(
 				x
 						* config->GetSettings("FindBoneFemurTrans",
 								"X_axis_multiplier", 1),

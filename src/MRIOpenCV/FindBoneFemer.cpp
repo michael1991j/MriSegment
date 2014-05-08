@@ -117,8 +117,8 @@ bool FindBoneFemer::inrange(std::vector<cv::Point2i> * points) {
 void FindBoneFemer::Preprocess() {
 
 	cv::threshold(img, img,
-			config->GetSettings("FindBoneFemer", "noise_cutoff", 15), 255, 3);
-	Ptr<CLAHE> clahe = cv::createCLAHE();
+	config->GetSettings("FindBoneFemer", "noise_cutoff", 15), 255, 3);
+	cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
 	clahe->apply(img, img);
 
 }
@@ -147,7 +147,7 @@ void FindBoneFemer::PostProcess() {
 	cv::Mat binary;
 	std::vector < std::vector<cv::Point2i> > blobs;
 	cv::adaptiveThreshold(img, binary, 1.0, CV_ADAPTIVE_THRESH_GAUSSIAN_C,
-			THRESH_BINARY, 21, -0.8);
+			cv::THRESH_BINARY, 21, -0.8);
 	int size = config->GetSettings("FindBoneFemer", "dilation_size", 2);
 	cv::Mat element(size, size, CV_8U, cv::Scalar(1));
 	if(size>0)
@@ -197,7 +197,7 @@ void FindBoneFemer::PostProcess() {
 			output.at<cv::Vec3b>(y, x)[2] = r;
 	}
 
-	Canny(output, output,
+	cv::Canny(output, output,
 			config->GetSettings("FindBoneFemer", "Canny_low_thresh", 10),
 			config->GetSettings("FindBoneFemer", "Canny_low_thresh", 10)
 					* config->GetSettings("FindBoneFemer", "Canny_ratio", 3),
@@ -206,7 +206,7 @@ void FindBoneFemer::PostProcess() {
 	for (int x = 0; x < output.cols; x++) {
 		for (int y = 0; y < output.rows; y++) {
 			if (output.at<uchar>(y, x) == 255) {
-				PointXYZ point(
+				pcl::PointXYZ point(
 						x
 								* config->GetSettings("FindBoneFemer",
 										"X_axis_multiplier", 1),

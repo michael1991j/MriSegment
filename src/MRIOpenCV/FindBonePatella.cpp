@@ -109,7 +109,7 @@ bool FindBonePatella::inrange(std::vector<cv::Point2i> * points) {
 void FindBonePatella::Preprocess() {
 	//cv::imshow("original",img);
 	cv::threshold(img, img, config->GetSettings("FindBonePatella", "noise_cutoff", 15), 255, 3);
-	Ptr<CLAHE> clahe = cv::createCLAHE();
+	Ptr<cv::CLAHE> clahe = cv::createCLAHE();
 	clahe->apply(img, img);
 	cv::threshold(img, img, config->GetSettings("FindBonePatella", "noise_cutoff2", 42), 255, 3);
 
@@ -120,10 +120,10 @@ void FindBonePatella::Segment() {
 
 	int size = config->GetSettings("FindBonePatella", "dilation_size", 1);
 	int type = MORPH_ELLIPSE;
-	Mat element = getStructuringElement(type, Size(2 * size, 2 * size),
-			Point(size, size));
-	Mat imagewithblack = img;
-	Mat imageblack;
+	cv::Mat element = getStructuringElement(type, cv::Size(2 * size, 2 * size),
+			cv::Point(size, size));
+	cv::Mat imagewithblack = img;
+	cv::Mat imageblack;
 	cv::threshold(img, imagewithblack, config->GetSettings("FindBonePatella", "noise_cutoff2", 42), 255, 1);
 	cv::dilate(imagewithblack, imagewithblack, element);
 	cv::threshold(imagewithblack, imageblack, 1, 255, 0);
@@ -135,7 +135,7 @@ void FindBonePatella::Segment() {
 void FindBonePatella::PostSegmentProcess() {
 	int Median_size = config->GetSettings("FindBonePatella", "Median_size", 5);
 	if(Median_size>0)
-		medianBlur(img, img, 5);
+		cv::medianBlur(img, img, 5);
 
 }
 
@@ -191,12 +191,12 @@ void FindBonePatella::Label() {
 			Point(size, size));
 	if(size>0)
 		cv::dilate(output, output, element);
-	Canny(output, output, config->GetSettings("FindBonePatella", "Canny_low_thresh", 5), config->GetSettings("FindBonePatella", "Canny_high_thresh", 10), config->GetSettings("FindBonePatella", "Canny_kernel", 3));
+	cv::Canny(output, output, config->GetSettings("FindBonePatella", "Canny_low_thresh", 5), config->GetSettings("FindBonePatella", "Canny_high_thresh", 10), config->GetSettings("FindBonePatella", "Canny_kernel", 3));
 	for (int x = 0; x < img.cols; x++) {
 		for (int y = 0; y < img.rows; y++) {
 			//cout << "x:" << x <<" y: " << y<<"\n";
 			if (output.at<uchar>(y, x) == 255) {
-				PointXYZ point(
+				pcl::PointXYZ point(
 										x
 												* config->GetSettings("FindBonePatella",
 														"X_axis_multiplier", 1),

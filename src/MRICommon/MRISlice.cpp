@@ -7,7 +7,7 @@
 
 #include "MRISlice.h"
 
-MRISlice::MRISlice(Mat  Slice , int Id ) {
+MRISlice::MRISlice(cv::Mat  Slice , int Id ) {
 	// TODO Auto-generated constructor stub
  this->Id = Id;
  this->Slice =Slice;

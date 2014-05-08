@@ -10,13 +10,13 @@
 #include <LabeledResults.h>
 #include <vector>
 #include <iostream>
+
+
 #include "MRIPCLProcess.h"
 #include <MRIProcess.h>
-#include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
-#include <pcl/visualization/cloud_viewer.h>
-#include <boost/thread/thread.hpp>
-#include <pcl/filters/voxel_grid.h>
+#include <pcl/filters/radius_outlier_removal.h>
+#include <pcl/filters/conditional_removal.h>
 using namespace std;
 
 class FemerOperation: public MRIPCLProcess {

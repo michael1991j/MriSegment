@@ -22,9 +22,9 @@
 #include <pcl/visualization/cloud_viewer.h>
 #include <boost/thread/thread.hpp>
 #include <pcl/filters/voxel_grid.h>
-using namespace cv;
+
 using namespace std;
-using namespace pcl;
+
 int edgeThresh = 1;
 int lowThreshold;
 int const max_lowThreshold = 100;

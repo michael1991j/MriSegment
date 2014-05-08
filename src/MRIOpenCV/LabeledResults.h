@@ -14,13 +14,12 @@
 #include <string>
 #include <iostream>
 using namespace std;
-using namespace cv;
-using namespace pcl;
+#include <vector>
 class LabeledResults {
 public:
 	LabeledResults( );
 	virtual ~LabeledResults();
-	Vector<Mat *> Result;
+	std::vector<cv::Mat *> Result;
 	pcl::PointCloud<pcl::PointXYZ> * cloud ;
 };
 

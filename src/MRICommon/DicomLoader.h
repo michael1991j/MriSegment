@@ -19,7 +19,7 @@
 #include <QRunnable>
 
 using  namespace std;
-using namespace cv;
+
 
 class DicomLoader : public QRunnable
 {

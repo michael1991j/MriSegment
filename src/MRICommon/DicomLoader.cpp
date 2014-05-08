@@ -7,7 +7,7 @@
 
 #include "DicomLoader.h"
 
-Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &imageQt)
+cv::Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &imageQt)
 {
   const unsigned int* dimension = gimage.GetDimensions();
 
@@ -21,7 +21,7 @@ Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &
     {
     if( gimage.GetPixelFormat() != gdcm::PixelFormat::UINT8 )
       {
-      return  new Mat();
+      return  new cv::Mat();
       }
     unsigned char *ubuffer = (unsigned char*)buffer;
     // QImage::Format_RGB888    13      The image is stored using a 24-bit RGB format (8-8-8).
@@ -50,7 +50,7 @@ Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &
         unsigned short *ubuffer = new  unsigned short[dimX*dimY*3];
         unsigned  short *pubuffer = ubuffer;
 
-      Mat  * img = new Mat(512,512 ,CV_16UC1);
+      cv::Mat  * img = new cv::Mat(512,512 ,CV_16UC1);
 
                                               for(int y = 0; y <  512; y++)
                                               {
@@ -71,16 +71,16 @@ Mat * ConvertToFormat_RGB888(gdcm::Image const & gimage, char *buffer, QImage* &
     else
       {
       std::cerr << "Pixel Format is: " << gimage.GetPixelFormat() << std::endl;
-      return new Mat();
+      return new cv::Mat();
       }
     }
   else
     {
     std::cerr << "Unhandled PhotometricInterpretation: " << gimage.GetPhotometricInterpretation() << std::endl;
-    return  new Mat();
+    return  new cv::Mat();
     }
 
-  return  new Mat();
+  return  new cv::Mat();
 }
 
 

@@ -18,7 +18,7 @@
 #include <QRunnable>
 
 using  namespace std;
-using namespace cv;
+
 
 class SagitaltoCorronal: public QRunnable
 {

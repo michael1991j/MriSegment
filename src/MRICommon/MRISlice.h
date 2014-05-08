@@ -14,15 +14,14 @@
 #include <string>
 #include <iostream>
 using namespace std;
-using namespace cv;
 
 class MRISlice {
 public:
-	MRISlice(Mat  Slice , int Id );
+	MRISlice(cv::Mat  Slice , int Id );
 	virtual ~MRISlice( );
 	int Id;
 	MRISliceInfo MetaData;
-	Mat Slice;
+	cv::Mat Slice;
 	void  SaveImage(string Location , string  Filename , int Type);
 	QImage * ToQImage();
 };

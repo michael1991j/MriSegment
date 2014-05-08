@@ -110,9 +110,9 @@ void FindCartilage::Preprocess() {
 	int Median_size = config->GetSettings("FindCartilage", "Median_size", 3);
 	int Gaussian_size = config->GetSettings("FindCartilage", "Gaussian_size", 7);
 	if(Gaussian_size>0)
-		GaussianBlur(img, img, Size(Gaussian_size, Gaussian_size), 0, 0);
+		cv::GaussianBlur(img, img, cv::Size(Gaussian_size, Gaussian_size), 0, 0);
 	if(Median_size>0)
-		medianBlur(img, img, Median_size);
+		cv::medianBlur(img, img, Median_size);
 
 }
 
@@ -131,7 +131,7 @@ void FindCartilage::PostSegmentProcess() {
 	std::vector < std::vector<cv::Point2i> > blobs;
 
 	cv::adaptiveThreshold(img, binary, 1.0, CV_ADAPTIVE_THRESH_GAUSSIAN_C,
-			THRESH_BINARY, 21, -0.8);
+			cv::THRESH_BINARY, 21, -0.8);
 	int dilation_size = config->GetSettings("FindCartilage", "dilation_size", 2);
 	cv::Mat element(dilation_size, dilation_size, CV_8U, cv::Scalar(1));
 	if(dilation_size>0)
@@ -178,7 +178,7 @@ void FindCartilage::PostSegmentProcess() {
 			if (output.at<uchar>(y, x) == 255) {
 				double x_mult=config->GetSettings("FindCartilage",
 						"X_axis_multiplier", 512/116);
-				PointXYZ point(
+				pcl::PointXYZ point(
 									(double) x
 											* x_mult,
 									y
