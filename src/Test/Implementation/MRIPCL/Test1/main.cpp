@@ -1,12 +1,12 @@
 #include <iostream>
-#include "MRICommon.h"
+#include <MRICommon.h>
+#include "/home/mri/Build/MriSegment/src/MRIOpenCV/MRIOpenCVSettings.h"
 #include <qfile.h>
 #include <qstringlist.h>
 #include <qfiledialog.h>
 #include <QApplication>
 #include <QRunnable>
 #include <QThreadPool>
-
 #include <MRIProcess.h>
 #include <FindBoneFemer.h>
 #include <FindBoneFemurTrans.h>
@@ -17,8 +17,7 @@
 #include <FemerOperation.h>
 #include <MRIPCLProcess.h>
 #include <vector>
-#include <MRIOpenCVSettings.h>
-
+#include <CloudViewer.h>
 
 using namespace std;
 
@@ -85,14 +84,13 @@ int main(int argc, char **argv) {
     	vector<LabeledResults *> pointcloudoutput(400);
     	pointcloudoutput.at(FEMER) = new LabeledResults();
 
-
     	FemerOperation handel(&results,&pointcloudoutput);
     	handel.Preprocess();
 
-
+        //CloudViewer viewer(&results);
+        //viewer.DisplayCloud();
 
     	cout << "done" << endl;
-
 
     	return 0;
 }
