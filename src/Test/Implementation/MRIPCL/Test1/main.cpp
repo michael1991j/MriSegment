@@ -85,9 +85,10 @@ int main(int argc, char **argv) {
     	vector<LabeledResults *> pointcloudoutput(400);
     	pointcloudoutput.at(FEMER) = new LabeledResults();
 
-    	FemerOperation handel(&results,&pointcloudoutput);
+    	FemerOperation handel(&results,&pointcloudoutput, 5, 1);
     	handel.Preprocess();
 
+	// To test registration we need two filtered pooint clouds, one transverse and one sagittal!
         //CloudViewer viewer(&results);
         //viewer.DisplayCloud();
 
