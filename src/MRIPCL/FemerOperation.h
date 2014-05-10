@@ -28,7 +28,7 @@ class FemerOperation: public MRIPCLProcess {
                 double radius;
                 int minFriends;
         public:
-                FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double r, int i);
+                FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double r, int i);
                 FemerOperation (std::vector<LabeledResults *> * filtered_target, std::vector<LabeledResults *> * filtered_source, double s);
                 virtual ~FemerOperation();
                 std::vector<LabeledResults *> * Labeledinput;
