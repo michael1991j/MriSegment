@@ -27,11 +27,11 @@ public:
 	virtual ~RunAll();
 	vector<MRICommon *> * Imagesets;
 
-	vector<LabeledResults *> *  Run_Femur();
-	vector<LabeledResults *> *  Run_Femur_Trans();
-	vector<LabeledResults *> *  Run_Tibia();
-	vector<LabeledResults *> *  Run_Patella();
-	vector<LabeledResults *> *  Run_Cartilage();
+	vector<LabeledResults *> *  RunFemur();
+	vector<LabeledResults *> *  RunFemurTrans();
+	vector<LabeledResults *> *  RunTibia();
+	vector<LabeledResults *> *  RunPatella();
+	vector<LabeledResults *> *  RunCartilage();
 	MRIOpenCVSettings * config;
 };
 

@@ -24,7 +24,7 @@ RunAll::~RunAll() {
 	// TODO Auto-generated destructor stub
 }
 
-vector<LabeledResults *> * RunAll::Run_Femur(){
+vector<LabeledResults *> * RunAll::RunFemur(){
 	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
 
 		results->at(BONE) = new LabeledResults();
@@ -87,7 +87,7 @@ vector<LabeledResults *> * RunAll::RunTibia(){
 	return results;
 }
 
-vector<LabeledResults *> * RunAll::RunFemurPatella(){
+vector<LabeledResults *> * RunAll::RunPatella(){
 	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
 
 		results->at(BONE) = new LabeledResults();
