@@ -1,28 +1,13 @@
-<global>
-<debugmode>0</debugmode>
-</global>
 
-<FindBoneFemer>
-<No_Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</No_Fat_Path>
-<Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</Fat_Path>
-</FindBoneFemer>
 
-<FindBoneFemerTrans>
-<No_Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</No_Fat_Path>
-<Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</Fat_Path>
-</FindBoneFemerTrans>
+<Imagesets>
+<3dcubefat>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</3dcubefat>
 
-<FindCartilage>
-<Water_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/005-IdealSPGR-Water-1P5MM/</Water_Path>
-<Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/500-IdealSPGR-Fat-1P5MM/</Fat_Path>
-</FindCartilage>
+<3dcubewater>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</3dcubewater>
 
-<FindBonePatella>
-<No_Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</No_Fat_Path>
-<Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</Fat_Path>
-</FindBonePatella>
+<spgrwater>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</spgrwater>
 
-<FindBoneTibia>
-<No_Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</No_Fat_Path>
-<Fat_Path>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/a</Fat_Path>
-</FindBoneTibia>
+<spgrfat>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</spgrfat>
+</Imagesets>
+
+

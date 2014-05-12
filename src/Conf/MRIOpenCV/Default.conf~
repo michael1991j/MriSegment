@@ -2,6 +2,14 @@
 <debugmode>0</debugmode>
 </global>
 
+<Imagesets>
+<tdcubefat></tdcubefat>
+<tdcubewater></tdcubewater>
+<spgrwater></spgrwater>
+<spgrfat></spgrfat>
+</Imagesets>
+
+
 <FindBoneFemer>
 <conversion_ratio>0.06</conversion_ratio>
 <noise_cutoff>15</noise_cutoff>
@@ -98,7 +106,7 @@
 <Canny_high_thresh>10</Canny_high_thresh>
 <Canny_kernel>3</Canny_kernel>
 <dilation_size>2</dilation_size>
-
+<X_axis_multiplier>4.413793103</X_axis_multiplier>
 <Y_axis_multiplier>1</Y_axis_multiplier>
 <Z_axis_multiplier>1</Z_axis_multiplier>
 </FindCartilage>

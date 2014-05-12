@@ -8,7 +8,7 @@
 #ifndef FINDCARTILAGE_H_
 #define FINDCARTILAGE_H_
 #include "MRIProcess.h"
-#include <MRIOpenCVSettings.h>
+#include "MRIOpenCVSettings.h"
 #include <iostream>
 #include <opencv2/opencv.hpp>
 

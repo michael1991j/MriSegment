@@ -5,6 +5,9 @@
 #include "wizard_loadimages.h"
 #include "wizard_selectimage.h"
 #include "wizard_processfiles.h"
+#include <MRICommon.h>
+#include <MRICommonSettings.h>
+#include <MRIOpenCVSettings.h>
 enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS};
 class wizardController: public QObject
 {
@@ -12,6 +15,7 @@ class wizardController: public QObject
 public:
     wizardController();
     WizarddataConfig data;
+    MRIOpenCVSettings  CVConfig;
 
 public slots:
     void ProcessState(int Nextstate);

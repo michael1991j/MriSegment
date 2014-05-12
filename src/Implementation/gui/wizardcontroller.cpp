@@ -10,7 +10,8 @@ void wizardController::ProcessState(int Nextstate)
 {
  if(Nextstate == LOADHEADER)
  {
-   Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages();
+     this->CVConfig.LoadSettings("/home/michaelroberts/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
+   Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages(&this->CVConfig);
    connect(imagewindow,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
 
    imagewindow->show();

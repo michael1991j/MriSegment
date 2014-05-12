@@ -8,18 +8,21 @@
 #ifndef MRIOPENCVSETTINGS_H_
 #define MRIOPENCVSETTINGS_H_
 #include <pugixml.hpp>
-
+#include <map>
 #include <iostream>
+#include <string>
+using namespace std;
 class MRIOpenCVSettings {
 public:
 	MRIOpenCVSettings();
 	virtual ~MRIOpenCVSettings();
 	void LoadSettings(char * Filelocation);
-	double GetSettings(char * section , char * field , double defaultvalue);
-	int GetSettings(char * section , char * field , int defaultvalue);
-	char * GetSettings(char * section , char * field , char * defaultvalue);
+	double GetSettings(std::string section , std::string field , double defaultvalue);
+	int GetSettings(std::string section , std::string field , int defaultvalue);
+	char * GetSettings(std::string section , std::string field , char * defaultvalue);
 private:
 	pugi::xml_document doc;
+	std::map< std::string, std::map<std::string ,std::string>* >  * table;
 };
 
 #endif /* MRIOPENCVSETTINGS_H_ */

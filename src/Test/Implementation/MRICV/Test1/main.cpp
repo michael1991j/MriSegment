@@ -36,28 +36,28 @@ int main(int argc, char **argv) {
 
 	MRIOpenCVSettings * config = new MRIOpenCVSettings();
 	config->LoadSettings(
-			"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
+			"/home/michaelroberts/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
 	MRIOpenCV * OpencvProcessor = new MRIOpenCV();
 
 	QApplication app(argc, argv);
 	QStringList nameFilter("*.dcm");
 	QDir directory(
-			"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+			"/home/michaelroberts/Documents/SaikatKnee2012/002-SagittalCube-NoFatSat/");
 	QStringList files = directory.entryList(nameFilter);
 	for (int i = 0; i < files.count(); i++)
 		files[i] =
 				QString(
-						"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")
+						"/home/michaelroberts/Documents/SaikatKnee2012/002-SagittalCube-NoFatSat/")
 						+ files[i];
 
 	QDir dir(
-			"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
+			"/home/michaelroberts/Documents/SaikatKnee2012/003-SagittalCube-FatSat/");
 	QStringList filesfat = dir.entryList(nameFilter);
 	for (int i = 0; i < filesfat.count(); i++)
 		filesfat[i] =
 				QString(
-						"/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")
+						"/home/michaelroberts/Documents/SaikatKnee2012/003-SagittalCube-FatSat/")
 						+ filesfat[i];
 
 	MRICommon * fat = new MRICommon();
