@@ -95,11 +95,14 @@ void FindBonePatella::Setup() {
  \return bool True/False boolean that states whether the point is in the specified range.
  */
 bool FindBonePatella::inrange(std::vector<cv::Point2i> * points) {
-
+	int x1 = config->GetSettings("FindBonePatella", "bounding_box_x1", 120);
+	int x2 = config->GetSettings("FindBonePatella", "bounding_box_x2", 130);
+	int y1 = config->GetSettings("FindBonePatella", "bounding_box_y1", 147);
+	int y2 = config->GetSettings("FindBonePatella", "bounding_box_y2", 157);
 	for (int i = 0; i < points->size(); i++) {
 
-		if ((points->at(i).x > config->GetSettings("FindBonePatella", "bounding_box_x1", 120)) && (points->at(i).x < config->GetSettings("FindBonePatella", "bounding_box_x2", 130))
-				&& (points->at(i).y > config->GetSettings("FindBonePatella", "bounding_box_y1", 147)) && (points->at(i).y < config->GetSettings("FindBonePatella", "bounding_box_y2", 157)))
+		if ((points->at(i).x > x1) && (points->at(i).x < x2)
+				&& (points->at(i).y > y1) && (points->at(i).y < y2))
 			return true;
 	}
 	return false;
@@ -157,13 +160,18 @@ void FindBonePatella::Label() {
 	int Max = 0;
 	int Maxcount = 0;
 	int i = 0;
+	int x1 = config->GetSettings("FindBonePatella", "bounding_box_x1", 120);
+	int x2 = config->GetSettings("FindBonePatella", "bounding_box_x2", 130);
+	int y1 = config->GetSettings("FindBonePatella", "bounding_box_y1", 147);
+	int y2 = config->GetSettings("FindBonePatella", "bounding_box_y2", 157);
+	int blobsize = config->GetSettings("FindBonePatella", "min_blob_size", 200);
 	for (i = 0; i < blobs.size(); i++) {
-		if (blobs[i].size() > config->GetSettings("FindBonePatella", "min_blob_size", 200)) {
+		if (blobs[i].size() > blobsize) {
 			if (inrange (&blobs[i])) {
 				int pointsintherange = 0;
 				for (size_t j = 0; j < blobs[i].size(); j++) {
-					if ((blobs[i][j].x > config->GetSettings("FindBonePatella", "bounding_box_x1", 120)) && (blobs[i][j].x < config->GetSettings("FindBonePatella", "bounding_box_x2", 130))
-							&& (blobs[i][j].y > config->GetSettings("FindBonePatella", "bounding_box_y1", 147)) && (blobs[i][j].y < config->GetSettings("FindBonePatella", "bounding_box_y2", 157)))
+					if ((blobs[i][j].x > x1) && (blobs[i][j].x < x2)
+							&& (blobs[i][j].y > y1) && (blobs[i][j].y < y2))
 						pointsintherange++;
 				}
 
@@ -193,23 +201,18 @@ void FindBonePatella::Label() {
 	if(size>0)
 		cv::dilate(output, output, element);
 	cv::Canny(output, output, config->GetSettings("FindBonePatella", "Canny_low_thresh", 5), config->GetSettings("FindBonePatella", "Canny_high_thresh", 10), config->GetSettings("FindBonePatella", "Canny_kernel", 3));
+	int x_mult = config->GetSettings("FindBonePatella", "X_axis_multiplier", 1);
+	int y_mult = config->GetSettings("FindBonePatella", "Y_axis_multiplier", 2);
+	int z_mult = config->GetSettings("FindBonePatella", "Z_axis_multiplier", 1);
+	int plane_low = config->GetSettings("FindBonePatella", "Image_plane_low", 50);
+	int plane_high = config->GetSettings("FindBonePatella","Image_plane_high", 185);
 	for (int x = 0; x < img.cols; x++) {
 		for (int y = 0; y < img.rows; y++) {
 			//cout << "x:" << x <<" y: " << y<<"\n";
 			if (output.at<uchar>(y, x) == 255) {
-				pcl::PointXYZ point(
-										x
-												* config->GetSettings("FindBonePatella",
-														"X_axis_multiplier", 1),
-										y
-												* config->GetSettings("FindBonePatella",
-														"Y_axis_multiplier", 2),
-										id
-												* config->GetSettings("FindBonePatella",
-														"Z_axis_multiplier", 1));
-				if (id > config->GetSettings("FindBonePatella", "Image_plane_low", 50)
-											&& id< config->GetSettings("FindBonePatella","Image_plane_high", 185))
-				this->LabeledOutput->at(BONE)->cloud->push_back(point);
+				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
+				if (id > plane_low && id < plane_high)
+					this->LabeledOutput->at(BONE)->cloud->push_back(point);
 
 			}
 		}

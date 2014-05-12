@@ -45,26 +45,6 @@ vector<LabeledResults *> * RunAll::RunFemur(){
 	return results;
 }
 
-vector<LabeledResults *> * RunAll::RunFemurTrans(){
-	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
-
-		results->at(BONE) = new LabeledResults();
-		QThreadPool *threadPool = QThreadPool::globalInstance();
-		MRICommon * fat = Imagesets->at(FATCUBE);
-
-		for (int i = 0; i < fat->Data->Transversal->size(); i++) {
-
-			cout << "processing image: " << i << "\n";
-			FindBoneFemurTrans * process = new FindBoneFemurTrans(Imagesets, results, i,
-					config);
-			process->Setup();
-			process->Preprocess();
-			process->Segment();
-			process->PostSegmentProcess();
-			process->PostProcess();
-		}
-	return results;
-}
 
 vector<LabeledResults *> * RunAll::RunTibia(){
 	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);

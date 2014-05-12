@@ -99,21 +99,14 @@ void FindBoneFemurTrans::Setup() {
  \return bool True/False boolean that states whether the point is in the specified range.
  */
 bool FindBoneFemurTrans::inrange(std::vector<cv::Point2i> * points) {
-
+	int x1 = config->GetSettings("FindBoneFemurTrans", "bounding_box_x1", 170);
+	int x2 = config->GetSettings("FindBoneFemurTrans", "bounding_box_x2", 250);
+	int y1 = config->GetSettings("FindBoneFemurTrans", "bounding_box_y1", 90);
+	int y2 = config->GetSettings("FindBoneFemurTrans", "bounding_box_y2", 150);
 	for (int i = 0; i < points->size(); i++) {
 
-		if ((points->at(i).x
-				> config->GetSettings("FindBoneFemurTrans", "bounding_box_x1",
-						170))
-				&& (points->at(i).x
-						< config->GetSettings("FindBoneFemurTrans",
-								"bounding_box_x2", 250))
-				&& (points->at(i).y
-						> config->GetSettings("FindBoneFemurTrans",
-								"bounding_box_y1", 90))
-				&& (points->at(i).y
-						< config->GetSettings("FindBoneFemurTrans",
-								"bounding_box_y2", 150)))
+		if ((points->at(i).x > x1) && (points->at(i).x < x2)
+				&& (points->at(i).y > y1) && (points->at(i).y < y2))
 			return true;
 	}
 	return false;
@@ -166,26 +159,19 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 	int Max = 0;
 	int Maxcount = 0;
 	int i = 0;
+	int x1 = config->GetSettings("FindBoneFemurTrans", "bounding_box_x1", 170);
+	int x2 = config->GetSettings("FindBoneFemurTrans", "bounding_box_x2", 250);
+	int y1 = config->GetSettings("FindBoneFemurTrans", "bounding_box_y1", 90);
+	int y2 = config->GetSettings("FindBoneFemurTrans", "bounding_box_y2", 150);
+	int blobsize = config->GetSettings("FindBoneFemurTrans", "min_blob_size", 200);
 	for (i = 0; i < blobs.size(); i++) {
 
-		if (blobs[i].size()
-				> config->GetSettings("FindBoneFemurTrans", "min_blob_size",
-						200)) {
+		if (blobs[i].size() > blobsize) {
 			if (inrange (&blobs[i])) {
 				int pointsintherange = 0;
 				for (size_t j = 0; j < blobs[i].size(); j++) {
-					if ((blobs[i][j].x
-							> config->GetSettings("FindBoneFemurTrans",
-									"bounding_box_x1", 170))
-							&& (blobs[i][j].x
-									< config->GetSettings("FindBoneFemurTrans",
-											"bounding_box_x2", 250))
-							&& (blobs[i][j].y
-									> config->GetSettings("FindBoneFemurTrans",
-											"bounding_box_y1", 90))
-							&& (blobs[i][j].y
-									< config->GetSettings("FindBoneFemurTrans",
-											"bounding_box_y2", 150)))
+					if ((blobs[i][j].x > x1) && (blobs[i][j].x < x2)
+							&& (blobs[i][j].y > y1) && (blobs[i][j].y < y2))
 						pointsintherange++;
 				}
 
@@ -199,6 +185,11 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 	unsigned char r = 255 * (rand() / (1.0 + RAND_MAX));
 	unsigned char g = 255 * (rand() / (1.0 + RAND_MAX));
 	unsigned char b = 255 * (rand() / (1.0 + RAND_MAX));
+	int x_mult = config->GetSettings("FindBoneFemurTrans", "X_axis_multiplier", 1);
+	int y_mult = config->GetSettings("FindBoneFemurTrans", "Y_axis_multiplier", 2);
+	int z_mult = config->GetSettings("FindBoneFemurTrans", "Z_axis_multiplier", 1);
+	int plane_low = config->GetSettings("FindBoneFemurTrans", "Image_plane_low", 0);
+	int plane_high = config->GetSettings("FindBoneFemurTrans","Image_plane_high", 300);
 	for (size_t j = 0; j < blobs[i].size(); j++) {
 
 		int x = blobs[i][j].x;
@@ -208,20 +199,8 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 		output.at<cv::Vec3b>(y, x)[1] = g;
 		output.at<cv::Vec3b>(y, x)[2] = r;
 
-		pcl::PointXYZ point(
-				x
-						* config->GetSettings("FindBoneFemurTrans",
-								"X_axis_multiplier", 1),
-				y
-						* config->GetSettings("FindBoneFemurTrans",
-								"Y_axis_multiplier", 2),
-				id
-						* config->GetSettings("FindBoneFemurTrans",
-								"Z_axis_multiplier", 1));
-		if (id > config->GetSettings("FindBoneFemurTrans", "Image_plane_low", 180)
-				&& id
-						< config->GetSettings("FindBoneFemurTrans",
-								"Image_plane_high", 260))
+		pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
+		if (id > plane_low && id < plane_high)
 			this->LabeledOutput->at(BONE)->cloud->push_back(point);
 	}
 }

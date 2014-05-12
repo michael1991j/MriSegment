@@ -11,7 +11,6 @@
 #include <vector>
 #include <MRICommon.h>
 #include "FindBoneFemer.h"
-#include "FindBoneFemurTrans.h"
 #include "FindBonePatella.h"
 #include "FindBoneTibia.h"
 #include "LabeledResults.h"
@@ -28,7 +27,6 @@ public:
 	vector<MRICommon *> * Imagesets;
 
 	vector<LabeledResults *> *  RunFemur();
-	vector<LabeledResults *> *  RunFemurTrans();
 	vector<LabeledResults *> *  RunTibia();
 	vector<LabeledResults *> *  RunPatella();
 	vector<LabeledResults *> *  RunCartilage();

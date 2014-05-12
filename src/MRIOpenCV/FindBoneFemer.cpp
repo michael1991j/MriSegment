@@ -95,19 +95,14 @@ void FindBoneFemer::Setup() {
  */
 bool FindBoneFemer::inrange(std::vector<cv::Point2i> * points) {
 
+	int x1 = config->GetSettings("FindBoneFemer", "bounding_box_x1", 190);
+	int x2 = config->GetSettings("FindBoneFemer", "bounding_box_x2", 305);
+	int y1 = config->GetSettings("FindBoneFemer", "bounding_box_y1", 250);
+	int y2 = config->GetSettings("FindBoneFemer", "bounding_box_y2", 300);
 	for (int i = 0; i < points->size(); i++) {
 
-		if ((points->at(i).x
-				> config->GetSettings("FindBoneFemer", "bounding_box_x1", 190))
-				&& (points->at(i).x
-						< config->GetSettings("FindBoneFemer",
-								"bounding_box_x2", 305))
-				&& (points->at(i).y
-						> config->GetSettings("FindBoneFemer",
-								"bounding_box_y1", 250))
-				&& (points->at(i).y
-						< config->GetSettings("FindBoneFemer",
-								"bounding_box_y2", 300)))
+		if ((points->at(i).x > x1) && (points->at(i).x < x2)
+				&& (points->at(i).y > y1) && (points->at(i).y < y2))
 			return true;
 	}
 	return false;
@@ -128,7 +123,7 @@ void FindBoneFemer::Preprocess() {
 void FindBoneFemer::Segment() {
 
 	cv::threshold(img, img, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
-	cv::imshow("a", img);
+
 
 }
 
@@ -157,25 +152,19 @@ void FindBoneFemer::PostProcess() {
 	int Max = 0;
 	int Maxcount = 0;
 	int i = 0;
+	int x1 = config->GetSettings("FindBoneFemer", "bounding_box_x1", 190);
+	int x2 = config->GetSettings("FindBoneFemer", "bounding_box_x2", 305);
+	int y1 = config->GetSettings("FindBoneFemer", "bounding_box_y1", 250);
+	int y2 = config->GetSettings("FindBoneFemer", "bounding_box_y2", 300);
+	int blobsize = config->GetSettings("FindBoneFemer", "min_blob_size", 500);
 	for (i = 0; i < blobs.size(); i++) {
 
-		if (blobs[i].size()
-				> config->GetSettings("FindBoneFemer", "min_blob_size", 500)) {
+		if (blobs[i].size() > blobsize) {
 			if (inrange (&blobs[i])) {
 				int pointsintherange = 0;
 				for (size_t j = 0; j < blobs[i].size(); j++) {
-					if ((blobs[i][j].x
-							> config->GetSettings("FindBoneFemer",
-									"bounding_box_x1", 190))
-							&& (blobs[i][j].x
-									< config->GetSettings("FindBoneFemer",
-											"bounding_box_x2", 305))
-							&& (blobs[i][j].y
-									> config->GetSettings("FindBoneFemer",
-											"bounding_box_y1", 250))
-							&& (blobs[i][j].y
-									< config->GetSettings("FindBoneFemer",
-											"bounding_box_y2", 300)))
+					if ((blobs[i][j].x > x1) && (blobs[i][j].x < x2) && (blobs[i][j].y > y1)
+							&& (blobs[i][j].y < y2))
 						pointsintherange++;
 				}
 
@@ -204,21 +193,16 @@ void FindBoneFemer::PostProcess() {
 					* config->GetSettings("FindBoneFemer", "Canny_ratio", 3),
 			config->GetSettings("FindBoneFemer", "Canny_kernel", 3));
 
+	int x_mult = config->GetSettings("FindBoneFemer", "X_axis_multiplier", 1);
+	int y_mult = config->GetSettings("FindBoneFemer", "Y_axis_multiplier", 1);
+	int z_mult = config->GetSettings("FindBoneFemer", "Z_axis_multiplier", 2);
+	int plane_low = config->GetSettings("FindBoneFemer", "Image_plane_low", 50);
+	int plane_high = config->GetSettings("FindBoneFemer","Image_plane_high", 185);
 	for (int x = 0; x < output.cols; x++) {
 		for (int y = 0; y < output.rows; y++) {
 			if (output.at<uchar>(y, x) == 255) {
-				pcl::PointXYZ point(
-						x
-								* config->GetSettings("FindBoneFemer",
-										"X_axis_multiplier", 1),
-						y
-								* config->GetSettings("FindBoneFemer",
-										"Y_axis_multiplier", 1),
-						id
-								* config->GetSettings("FindBoneFemer",
-										"Z_axis_multiplier", 2));
-				if (id > config->GetSettings("FindBoneFemer", "Image_plane_low", 50)
-							&& id< config->GetSettings("FindBoneFemer","Image_plane_high", 185))
+				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
+				if (id > plane_low && id < plane_high)
 					this->LabeledOutput->at(BONE)->cloud->push_back(point);
 
 			}
