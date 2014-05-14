@@ -16,8 +16,8 @@
 #include <QRunnable>
 #include <QThreadPool>
 #include <MRIProcess.h>
-#include <FindBoneFemer.h>
-#include <FindBoneFemurTrans.h>
+#include <FindBoneTibia.h>
+#include <TibiaOperation.h>
 #include <MRICommon.h>
 #include <MRIOpenCVSettings.h>
 #include <sstream>
@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
 
 	    	MRICommon * fat = new MRICommon();
 	    	fat->LoadImages(&files);
-	    	//fat->Data->ToTransversal();
+	    	fat->Data->ToTransversal();
 	    	//fat->Data->ToCorronial();
 
 
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 
 	    	MRICommon * water = new MRICommon();
 	       	water->LoadImages(&filesfat);
-	       	//water->Data->ToTransversal();
+	       	water->Data->ToTransversal();
 
 	    	vector<MRICommon *> Imagesets(2);
 	    	Imagesets.at(FATCUBE)= fat;
@@ -69,21 +69,21 @@ int main(int argc, char **argv) {
 	    	///blur( img, img, Size(3,3) );
 	 	  QThreadPool *threadPool = QThreadPool::globalInstance();
 
-
-	    	for(int i  =0; i < fat->Data->Sagittal->size(); i++) {
+	    	for(int i  =0; i < fat->Data->Transversal->size(); i++) {
 	    		cout << "processing image: " << i<<"\n";
-	    		FindBoneFemer * process = new FindBoneFemer(&Imagesets,&results,i,config);
+	    		FindBoneTibia * process = new FindBoneTibia(&Imagesets,&results,i,config);
 	    		process->Setup();
 	    		process->Preprocess();
 	    		process->Segment();
 	    		process->PostSegmentProcess();
-	    		process->PostProcess();
-	   		//process->PostProcess();
+	    		process->Label();
 
 	    	}
-	    	results.at(FEMER) = new LabeledResults();
 
-	    	FemerOperation filter(&results, &results, 6, 25, 100);
+
+	    	results.at(TIBIA) = new LabeledResults();
+
+	    	TibiaOperation filter(&results, &results, 5, 10, 1);
 	    	filter.Megaprocess();
 	    	//filter.Fuse();
 	    	//filter.Postprocess();

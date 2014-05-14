@@ -1,6 +1,7 @@
 #include <iostream>
+#include <JustPlotPlease.h>
 #include <MRICommon.h>
-#include "/home/mri/Build/MriSegment/src/MRIOpenCV/MRIOpenCVSettings.h"
+#include <MRIOpenCVSettings.h>
 #include <qfile.h>
 #include <qstringlist.h>
 #include <qfiledialog.h>
@@ -17,8 +18,6 @@
 #include <FemerOperation.h>
 #include <MRIPCLProcess.h>
 #include <vector>
-
-
 
 using namespace std;
 
@@ -82,15 +81,16 @@ int main(int argc, char **argv) {
    		//process->PostProcess();
 
     	}
-    	vector<LabeledResults *> pointcloudoutput(400);
-    	pointcloudoutput.at(FEMER) = new LabeledResults();
+    	results.at(FEMER) = new LabeledResults();
 
-    	FemerOperation handel(&results,&pointcloudoutput, 5, 1);
-    	handel.Preprocess();
+    	FemerOperation filter(&results, &results, 0.02, 5, 25);
+    	filter.Preprocess();
 
-	// To test registration we need two filtered pooint clouds, one transverse and one sagittal!
-        //CloudViewer viewer(&results);
-        //viewer.DisplayCloud();
+    	cout << "Preprocess finished, displaying point cloud.\n";
+
+    	JustPlotPlease shit;
+    	shit.PlusPlot(results.at(FEMER)->cloud, 1, 0xFF, '\0', '\0');
+    	shit.ShowCloud(1);
 
     	cout << "done" << endl;
 

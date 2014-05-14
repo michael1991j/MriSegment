@@ -6,23 +6,15 @@
  */
 
 #include "FemerOperation.h"
+#include "JustPlotPlease.h"
 
-FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double r, int i) {
+FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i) {
         // Constructor called for filtering
-        leafSize = 0;
+        leafSize = s;
         radius = r;
         minFriends = i;
         this->Labeledoutput = Labeledoutput;
         this->Labeledinput = Labeledinput;
-}
-
-FemerOperation::FemerOperation(std::vector<LabeledResults *> * filtered_target, std::vector<LabeledResults *> * filtered_source, double s) {
-        // Constructor called for registration
-        leafSize = s;
-        radius = 0;
-        minFriends = 0;
-        this->filtered_target = filtered_target;
-        this->filtered_source = filtered_source;
 }
 
 FemerOperation::~FemerOperation() {
@@ -33,77 +25,187 @@ void FemerOperation::Preprocess() {
 
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
-	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem (true);
-	//pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
+	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 	cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
 	
 	cout << "points in cloud before filtering: " << cloudin->size() << "\n";
 
-	// build the filter
+	/* Create the filtering object */
+	pcl::VoxelGrid < pcl::PointXYZ > sor;
+	sor.setInputCloud(cloudin);
+	sor.setLeafSize(leafSize, leafSize, leafSize);
+	sor.filter(*cloud_filtered);
+
+	/* build the filter */
 	outrem.setInputCloud(cloudin);
 	outrem.setRadiusSearch(radius);
 	outrem.setMinNeighborsInRadius(minFriends);
 
 	// apply filter
-	outrem.filter (*cloudin);
+	outrem.filter (*cloud_filtered);
 
-        cout << "points in cloud after filtering: " << cloudin->size() << "\n";
-        //cout << "points in cloud after filtering: " << cloud_filtered->size() << "\n";
+	cout << (cloudin->size() - cloud_filtered->size()) << " points removed.\n";
 }
 
 void FemerOperation::Fuse() {
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
 
-        pcl::PointCloud<pcl::PointXYZ>::Ptr target (filtered_target->at(FEMER)->cloud);
-        pcl::PointCloud<pcl::PointXYZ>::Ptr source (filtered_source->at(FEMER)->cloud);
-
+  		cout << "Empty Cloud Check.\n";
         /* Ensure clouds arent empty */
-        if (target.size() == 0)
-                PCL_ERROR ("target point cloud is empty, exiting registration.\n");
-        else if(source.size() == 0)
-                PCL_ERROR ("source point cloud is empty, exiting registration.\n");
+        if (cloudin->size() == 0)
+                PCL_ERROR ("cloudin point cloud is empty, exiting registration.\n");
+        else if(cloud_filtered->size() == 0)
+                PCL_ERROR ("cloud_filtered point cloud is empty, exiting registration.\n");
         else
-                cout << "target size is: " << target.size() << " source size is: " << source.size() << ".\n";
+                cout << "cloudin size is: " << cloudin->size() << " cloud_filtered size is: " << cloud_filtered->size() << ".\n";
 
-        /* Apply down sampling to increase speed */
-        pcl::ApproximateVoxelGrid<pcl::PointXYZ> vox_filter;
-        vox_filter.setLeafSize (leafSize, leafSize, leafSize);
+    	// Defining rotation matrix and translation vector
+    	Eigen::Matrix4f transformation_matrix = Eigen::Matrix4f::Identity(); // We initialize this matrix to a null transformation.
 
-        /* Apply filter to the source cloud */
-        pcl::PointCloud<pcl::PointXYZ>::Ptr filtered_output (new pcl::PointCloud<pcl::PointXYZ>);
-        vox_filter.setInputCloud (source);
-        vox_filter.filter (*filtered_output);
-        cout << "post filtering source size: " << filtered_output.size() << ".\n";
+    	// Defining a rotation matrix (see https://en.wikipedia.org/wiki/Rotation_matrix)
+    	float theta = M_PI/4; // The angle of rotation in radians
+    	transformation_matrix (0,0) = cos(theta);
+    	transformation_matrix (0,1) = -sin(theta);
+    	transformation_matrix (1,0) = sin(theta);
+    	transformation_matrix (1,1) = cos(theta);
 
-        /* Initialize normal distribution transform */
-        /* epsilon, step, and resolution can be edited to alter the resolution, and accuracy of the registration process */
-        pcl::NormalDistributionsTransform<pcl::PointXYZ, pcl::PointXYZ> transform;
-        transform.setTransformEpsilon (0.0001);
-        transform.setStepSize (0.01);
-        transform.setResolution (1.0);
-        transform.setMaximumIterations (25);
-        transform.setInputSource (filtered_output);
-        transform.setInputTarget (target);
-
-        /* May need to use an eigen vector to rotated the point cloud */
-        /* if using point clouds from transverse and sagital, one will need to be rotated */
-        Eigen::AngleAxisf init_rotation (0.6931, Eigen::Vector3f::UnitZ ());
-        Eigen::Translation3f init_translation (1.79387, 0.720047, 0);
-        Eigen::Matrix4f init_guess = (init_translation * init_rotation).matrix ();
-        pcl::PointCloud<pcl::PointXYZ>::Ptr output_cloud (new pcl::PointCloud<pcl::PointXYZ>);
-        transform.align (*output_cloud, init_guess);
-
-        cout << "Normal Distributions Transform has converged:" << transform.hasConverged () << " score: " << transform.getFitnessScore () << ".\n";
-
-        /* Perform teh hax */
-        pcl::transformPointCloud (*source, *target, transform.getFinalTransformation());
-
-        cout << "michael is gay.\n";
-        return;
+    	// Executing the transformation
+    	pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud (new pcl::PointCloud<pcl::PointXYZ> ());	// A pointer on a new cloud
+    	pcl::transformPointCloud (*cloudin, *transformed_cloud, transformation_matrix);
 }
 
-void FemerOperation::Postprocess()
-{
+void FemerOperation::Postprocess() {
+
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+
+		// Normal estimation*
+		pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
+		pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
+		pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+		tree->setInputCloud (cloud_filtered);
+		n.setInputCloud (cloud_filtered);
+		n.setSearchMethod (tree);
+		n.setKSearch (20);
+		n.compute (*normals);
+		//* normals should not contain the point normals + surface curvatures
+
+		// Concatenate the XYZ and normal fields*
+		pcl::PointCloud<pcl::PointNormal>::Ptr cloud_with_normals (new pcl::PointCloud<pcl::PointNormal>);
+		pcl::concatenateFields (*cloud_filtered, *normals, *cloud_with_normals);
+		//* cloud_with_normals = cloud + normals
+
+		// Create search tree*
+		pcl::search::KdTree<pcl::PointNormal>::Ptr tree2 (new pcl::search::KdTree<pcl::PointNormal>);
+		tree2->setInputCloud (cloud_with_normals);
+
+		// Initialize objects
+		pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
+		pcl::PolygonMesh triangles;
+
+		// Set the maximum distance between connected points (maximum edge length)
+		gp3.setSearchRadius (100);
+
+		// Set typical values for the parameters
+		gp3.setMu (2.5);
+		gp3.setMaximumNearestNeighbors (100);
+		gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
+		gp3.setMinimumAngle(M_PI/18); // 10 degrees
+		gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
+		gp3.setNormalConsistency(false);
+
+		// Get result
+		gp3.setInputCloud (cloud_with_normals);
+		gp3.setSearchMethod (tree2);
+		gp3.reconstruct (triangles);
+
+		// Additional vertex information
+		std::vector<int> parts = gp3.getPartIDs();
+		std::vector<int> states = gp3.getPointStates();
+
+		// Finish
+		pcl::io::saveVTKFile ("mesh.vtk", triangles);
+}
+
+void FemerOperation::Megaprocess() {
+
+		long val = 0;
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+  		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
+
+  		cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
+
+  		cout << "points in cloud before filtering: " << cloudin->size() << "\n";
+
+  		/* Create the filtering object */
+		pcl::VoxelGrid < pcl::PointXYZ > sor;
+		sor.setInputCloud(cloudin);
+		sor.setLeafSize(leafSize, leafSize, leafSize);
+		sor.filter(*cloud_filtered);
+
+  		cout << (cloudin->size() - cloud_filtered->size()) << " points removed with down sampling.\n";
+		val = cloud_filtered->size();
+
+  		/* build the filter */
+  		outrem.setInputCloud(cloud_filtered);
+  		outrem.setRadiusSearch(radius);
+  		outrem.setMinNeighborsInRadius(minFriends);
+
+  		// apply filter
+  		outrem.filter (*cloud_filtered);
+
+  		cout << (val - cloud_filtered->size()) << " points removed with outlier removal.\n";
+
+  		cout << "Meshing.\n";
+
+  		// Normal estimation*
+  		pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
+  		pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
+  		pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+  		tree->setInputCloud (cloud_filtered);
+  		n.setInputCloud (cloud_filtered);
+  		n.setSearchMethod (tree);
+  		n.setKSearch (20);
+	  	n.compute (*normals);
+
+	  	// Concatenate the XYZ and normal fields*
+	  	pcl::PointCloud<pcl::PointNormal>::Ptr cloud_with_normals (new pcl::PointCloud<pcl::PointNormal>);
+	  	pcl::concatenateFields (*cloud_filtered, *normals, *cloud_with_normals);
+
+	  	// Create search tree*
+	  	pcl::search::KdTree<pcl::PointNormal>::Ptr tree2 (new pcl::search::KdTree<pcl::PointNormal>);
+	  	tree2->setInputCloud (cloud_with_normals);
+
+	  	// Initialize objects
+	  	pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
+	  	pcl::PolygonMesh triangles;
+	  	pcl::PolygonMesh Postprocessedmesh;
 
 
+	  	// Set the maximum distance between connected points (maximum edge length)
+	  	gp3.setSearchRadius (20000);
+
+	  	// Set typical values for the parameters
+	  	gp3.setMu (2.5);
+	  	gp3.setMaximumNearestNeighbors (10000);
+	  	gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
+	  	gp3.setMinimumAngle(M_PI/18); // 10 degrees
+	  	gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
+	  	gp3.setNormalConsistency(false);
+
+	  	// Get result
+	  	gp3.setInputCloud (cloud_with_normals);
+	  	gp3.setSearchMethod (tree2);
+	  	gp3.reconstruct (triangles);
+
+
+	  	// Additional vertex information
+	  	std::vector<int> parts = gp3.getPartIDs();
+	  	std::vector<int> states = gp3.getPointStates();
+	  	Labeledoutput->at(FEMER)->Mesh = triangles;
+	  	// Finish
+	  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", Postprocessedmesh);
+	  	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

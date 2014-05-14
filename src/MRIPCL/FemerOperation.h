@@ -16,10 +16,22 @@
 #include <pcl/point_types.h>
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/conditional_removal.h>
+#include <pcl/surface/vtk_smoothing/vtk_mesh_smoothing_laplacian.h>
 #include <pcl/registration/ndt.h>
 #include <pcl/filters/approximate_voxel_grid.h>
 #include <pcl/visualization/pcl_visualizer.h>
 #include <boost/thread/thread.hpp>
+#include <pcl/kdtree/kdtree_flann.h>
+#include <pcl/surface/mls.h>
+#include <pcl/io/ply_io.h>
+#include <pcl/point_cloud.h>
+#include <pcl/console/parse.h>
+#include <pcl/registration/ia_ransac.h>
+#include <pcl/surface/mls.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/features/normal_3d.h>
+#include <pcl/surface/gp3.h>
+#include <pcl/io/vtk_io.h>
 
 using namespace std;
 
@@ -28,16 +40,14 @@ class FemerOperation: public MRIPCLProcess {
                 double radius;
                 int minFriends;
         public:
-                FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double r, int i);
-                FemerOperation (std::vector<LabeledResults *> * filtered_target, std::vector<LabeledResults *> * filtered_source, double s);
+                FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i);
                 virtual ~FemerOperation();
                 std::vector<LabeledResults *> * Labeledinput;
                 std::vector<LabeledResults *> * Labeledoutput;
-                std::vector<LabeledResults *> * filtered_target;
-                std::vector<LabeledResults *> * filtered_source;
                 void Preprocess();
                 void Fuse();
                 void Postprocess();
+                void Megaprocess();
 };
 
 #endif /* FEMEROPERATION_H_ */
