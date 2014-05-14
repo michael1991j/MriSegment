@@ -7,32 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>452</height>
+    <height>623</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>400</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Load Images</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="formLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
+     <x>0</x>
+     <y>0</y>
      <width>521</width>
-     <height>499</height>
+     <height>621</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -43,6 +30,16 @@
      <widget class="QLabel" name="label">
       <property name="text">
        <string>Select SPGR Water Images</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="lineEdit_spgrw">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -65,6 +62,66 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Select Fat  SPGR</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLineEdit" name="lineEdit_spgrf">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton_spgrf">
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Select Directory</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Select Cube  water</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLineEdit" name="lineEdit_cubew">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="Load_wcube_button">
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Select Directory</string>
+      </property>
+     </widget>
+    </item>
     <item row="9" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
@@ -72,15 +129,38 @@
       </property>
      </widget>
     </item>
+    <item row="11" column="0">
+     <widget class="QLineEdit" name="lineEdit_cubef">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QPushButton" name="Load_fcube_button">
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Select Directory</string>
+      </property>
+     </widget>
+    </item>
     <item row="15" column="0">
      <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>Load Status for SPGR</string>
+       <string>Load Status for SPGR fat</string>
       </property>
      </widget>
     </item>
     <item row="16" column="0">
-     <widget class="QProgressBar" name="progressBar">
+     <widget class="QProgressBar" name="progressBar_spgrf">
       <property name="minimumSize">
        <size>
         <width>200</width>
@@ -106,7 +186,7 @@
      </widget>
     </item>
     <item row="18" column="0">
-     <widget class="QProgressBar" name="progressBar_3">
+     <widget class="QProgressBar" name="progressBar_cubew">
       <property name="minimumSize">
        <size>
         <width>200</width>
@@ -124,6 +204,13 @@
       </property>
      </widget>
     </item>
+    <item row="18" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Load Images</string>
+      </property>
+     </widget>
+    </item>
     <item row="19" column="0">
      <widget class="QLabel" name="label_6">
       <property name="text">
@@ -132,7 +219,7 @@
      </widget>
     </item>
     <item row="20" column="0">
-     <widget class="QProgressBar" name="progressBar_2">
+     <widget class="QProgressBar" name="progressBar_cubef">
       <property name="minimumSize">
        <size>
         <width>200</width>
@@ -144,96 +231,23 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLineEdit" name="lineEdit_spgrw">
+    <item row="21" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Load Status  fo SPGR Water</string>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="0">
+     <widget class="QProgressBar" name="progressBar_SPGRW">
       <property name="minimumSize">
        <size>
         <width>200</width>
         <height>0</height>
        </size>
       </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Select Fat  SPGR</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Select Cube  water</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLineEdit" name="lineEdit_spgrf">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLineEdit" name="lineEdit_cubef">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLineEdit" name="lineEdit_cubew">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1">
-     <widget class="QPushButton" name="Load_fcube_button">
-      <property name="maximumSize">
-       <size>
-        <width>150</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Select Directory</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QPushButton" name="pushButton_spgrf">
-      <property name="maximumSize">
-       <size>
-        <width>150</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Select Directory</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QPushButton" name="Load_wcube_button">
-      <property name="maximumSize">
-       <size>
-        <width>150</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Select Directory</string>
+      <property name="value">
+       <number>24</number>
       </property>
      </widget>
     </item>

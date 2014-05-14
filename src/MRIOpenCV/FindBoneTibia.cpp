@@ -209,7 +209,7 @@ cv::THRESH_BINARY, 21, -0.8);
 			if (output.at<uchar>(y, x) == 255) {
 				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
 				if (id > plane_low && id < plane_high)
-					this->LabeledOutput->at(BONE)->cloud->push_back(point);
+					this->LabeledOutput->at(TIBA_TRAN)->cloud->push_back(point);
 			}
 		}
 

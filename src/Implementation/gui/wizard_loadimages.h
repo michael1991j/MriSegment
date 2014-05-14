@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <MRIOpenCVSettings.h>
+#include <MRICommon.h>
+#include "loadworkerthread.h"
 namespace Ui {
 class Wizard_Loadimages;
 }
@@ -12,13 +14,13 @@ class Wizard_Loadimages : public QDialog
     Q_OBJECT
 
 public:
-     Wizard_Loadimages(MRIOpenCVSettings * settings, QWidget *parent = 0);
+     Wizard_Loadimages(MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets,QWidget *parent = 0);
     ~Wizard_Loadimages();
+     vector<MRICommon *> * Imagesets;
 signals:
     void nextwindow(int newValue);
 
 private slots:
-    void on_Load_SPGR_button_clicked();
 
     void on_Load_wcube_button_clicked();
 
@@ -27,6 +29,11 @@ private slots:
     void on_pushButton_clicked();
 
     void on_Load_SPGR_button_SPGRW_clicked();
+    void UpdateProgress(int id , int value);
+
+
+
+    void on_pushButton_spgrf_clicked();
 
 private:
     Ui::Wizard_Loadimages *ui;

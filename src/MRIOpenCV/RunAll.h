@@ -22,14 +22,15 @@
 
 class RunAll {
 public:
-	RunAll(MRICommon *  fat_cube, MRICommon *  water_cube, MRICommon *  fat_SPGR, MRICommon *  water_SPGR, MRIOpenCVSettings * config);
+	RunAll(vector<MRICommon *> * Imagesets, MRIOpenCVSettings * config,vector<LabeledResults *> * results);
 	virtual ~RunAll();
 	vector<MRICommon *> * Imagesets;
 
-	vector<LabeledResults *> *  RunFemur();
-	vector<LabeledResults *> *  RunTibia();
-	vector<LabeledResults *> *  RunPatella();
-	vector<LabeledResults *> *  RunCartilage();
+	void  RunFemur();
+	void  RunTibia();
+	void  RunPatella();
+	void RunCartilage();
+	vector<LabeledResults *> * results;
 	MRIOpenCVSettings * config;
 };
 

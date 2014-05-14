@@ -201,7 +201,7 @@ void FindBoneFemurTrans::PostSegmentProcess() {
 
 		pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
 		if (id > plane_low && id < plane_high)
-			this->LabeledOutput->at(BONE)->cloud->push_back(point);
+			this->LabeledOutput->at(FEMER_TRAN)->cloud->push_back(point);
 	}
 }
 

@@ -4,33 +4,14 @@
 #include "wizardcontroller.h"
 #include <MRICommon.h>
 #include <MRIProcess.h>
-class LoadWorkerthread : public QThread
-{
-    LoadWorkerthread(MRICommon * stack, QString path , int id )
-    {
-    }
-
-private:
-    QString path;
-    MRICommon * stack;
-    void run()
-    {
-        stack->LoadImages();
-        emit updatestatusid(id, 40);
-        stack->Data->ToCorronial();
-        emit updatestatusid(id, 70);
-        stack->Data->ToTransversal();
-        emit updatestatusid(id, 100);
-
-    }
-};
 
 
 
-Wizard_Loadimages::Wizard_Loadimages(MRIOpenCVSettings *settings, QWidget *parent) :
+Wizard_Loadimages::Wizard_Loadimages(MRIOpenCVSettings *settings,vector<MRICommon *> * Imagesets,  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Wizard_Loadimages)
 {
+    this->Imagesets = Imagesets;
     ui->setupUi(this);
 
     ui->lineEdit_cubef->setText(  QString::fromAscii(settings->GetSettings("Imagesets","tdcubefat","/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")));
@@ -45,13 +26,7 @@ Wizard_Loadimages::~Wizard_Loadimages()
     delete ui;
 }
 
-void Wizard_Loadimages::on_Load_SPGR_button_clicked()
-{
-   ui->lineEdit_spgrf->setText(  QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                 "/home",
-                                                 QFileDialog::ShowDirsOnly
-                                                 | QFileDialog::DontResolveSymlinks));
-}
+
 
 void Wizard_Loadimages::on_Load_wcube_button_clicked()
 {
@@ -68,16 +43,62 @@ void Wizard_Loadimages::on_Load_fcube_button_clicked()
                                                  QFileDialog::ShowDirsOnly
                                                  | QFileDialog::DontResolveSymlinks));
 }
+void Wizard_Loadimages::UpdateProgress(int id, int value)
+{
+    if(id == 10)
+    {
+    ui->progressBar_cubef->setValue(value);
+    }
+    else if(id ==11)
+    {
+        ui->progressBar_spgrf->setValue(value);
+
+    }
+    else if(id == 12)
+    {
+        ui->progressBar_cubew->setValue(value);
+
+    }
+    else if(id == 13)
+    {
+        ui->progressBar_SPGRW->setValue(value);
+
+    }
+
+    if(ui->progressBar_SPGRW->value() == 100 &&  ui->progressBar_cubew->value() == 100 &&   ui->progressBar_spgrf->value() == 100 && ui->progressBar_cubef->value() == 100 )
+    {
+        emit nextwindow(SELECTREGION);
+        this->close();
+
+    }
+}
 
 void Wizard_Loadimages::on_pushButton_clicked()
 {
-    LoadWorkerthread a(a, "", 10);
-    a.start();
+    ui->progressBar_cubef->setValue(0);
+    ui->progressBar_spgrf->setValue(100);
+    ui->progressBar_cubew->setValue(0);
+    ui->progressBar_SPGRW->setValue(100);
+
+    LoadWorkerthread * t =  new LoadWorkerthread(Imagesets->at(FATCUBE), ui->lineEdit_cubef->text(), 10,true,false);
+    connect(t,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+      t->start();
+
+      LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,false ,true);
+      connect(b,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+       //b->start();
+
+        LoadWorkerthread * c =  new LoadWorkerthread(Imagesets->at(WATERCUBE), ui->lineEdit_cubew->text(), 12, true,false);
+        connect(c,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+        c->start();
+
+          LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,false , true);
+          connect(d,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+          //d->start();
+      std::cout << "hello \n";
 
 
-
-    emit nextwindow(SELECTREGION);
-    this->close();
+//
 }
 
 void Wizard_Loadimages::on_Load_SPGR_button_SPGRW_clicked()
@@ -86,4 +107,12 @@ void Wizard_Loadimages::on_Load_SPGR_button_SPGRW_clicked()
                                                  "/home",
                                                  QFileDialog::ShowDirsOnly
                                                  | QFileDialog::DontResolveSymlinks));
+}
+
+void Wizard_Loadimages::on_pushButton_spgrf_clicked()
+{
+    ui->lineEdit_spgrf->setText(  QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                  "/home",
+                                                  QFileDialog::ShowDirsOnly
+                                                  | QFileDialog::DontResolveSymlinks));
 }

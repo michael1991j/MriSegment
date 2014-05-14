@@ -10,13 +10,10 @@
 #include "MRICommon.h"
 
 
-RunAll::RunAll(MRICommon *  fat_cube, MRICommon *  water_cube, MRICommon *  fat_SPGR, MRICommon *  water_SPGR, MRIOpenCVSettings * config) {
+RunAll::RunAll(vector<MRICommon *> * Imagesets, MRIOpenCVSettings * config , vector<LabeledResults *> * results) {
 	// TODO Auto-generated constructor stub
-	Imagesets = new vector<MRICommon *>(10);
-	Imagesets->at(FATCUBE) = fat_cube;
-	Imagesets->at(WATERCUBE) = water_cube;
-	Imagesets->at(FATSPGR) = fat_SPGR;
-	Imagesets->at(WATERSPGR) = water_SPGR;
+	this->Imagesets = Imagesets;
+    this-> results = results;
 	this->config = config;
 }
 
@@ -24,10 +21,8 @@ RunAll::~RunAll() {
 	// TODO Auto-generated destructor stub
 }
 
-vector<LabeledResults *> * RunAll::RunFemur(){
-	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
+void RunAll::RunFemur(){
 
-		results->at(BONE) = new LabeledResults();
 		QThreadPool *threadPool = QThreadPool::globalInstance();
 		MRICommon * fat = Imagesets->at(FATCUBE);
 
@@ -42,14 +37,11 @@ vector<LabeledResults *> * RunAll::RunFemur(){
 			process->PostSegmentProcess();
 			process->PostProcess();
 		}
-	return results;
 }
 
 
-vector<LabeledResults *> * RunAll::RunTibia(){
-	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
+void RunAll::RunTibia(){
 
-		results->at(BONE) = new LabeledResults();
 		QThreadPool *threadPool = QThreadPool::globalInstance();
 		MRICommon * fat = Imagesets->at(FATCUBE);
 
@@ -64,13 +56,10 @@ vector<LabeledResults *> * RunAll::RunTibia(){
 			process->PostSegmentProcess();
 			process->PostProcess();
 		}
-	return results;
 }
 
-vector<LabeledResults *> * RunAll::RunPatella(){
-	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
+void RunAll::RunPatella(){
 
-		results->at(BONE) = new LabeledResults();
 		QThreadPool *threadPool = QThreadPool::globalInstance();
 		MRICommon * fat = Imagesets->at(FATCUBE);
 
@@ -85,13 +74,11 @@ vector<LabeledResults *> * RunAll::RunPatella(){
 			process->PostSegmentProcess();
 			process->PostProcess();
 		}
-	return results;
 }
 
-vector<LabeledResults *> * RunAll::RunCartilage(){
-	vector<LabeledResults *> * results = new vector<LabeledResults *>(400);
+void RunAll::RunCartilage(){
 
-		results->at(CARTILAGE) = new LabeledResults();
+	/*
 		QThreadPool *threadPool = QThreadPool::globalInstance();
 		MRICommon * fat = Imagesets->at(FATSPGR);
 
@@ -106,5 +93,5 @@ vector<LabeledResults *> * RunAll::RunCartilage(){
 			process->PostSegmentProcess();
 			process->PostProcess();
 		}
-	return results;
+		*/
 }

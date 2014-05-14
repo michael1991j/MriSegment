@@ -18,7 +18,7 @@
 using namespace std;
 
 enum ImageType { FATCUBE, WATERCUBE,WATERSPGR, FATSPGR };
-enum Tissue { BONE, CARTILAGE,FEMER, FEMER_SAT_EDGE };
+enum Tissue { BONE, CARTILAGE,FEMER, FEMER_SAG ,FEMER_TRAN, CARTILAGE_COR,PATELLA_TRAN, PATELLA, TIBIA, TIBA_TRAN  };
 
 class MRIProcess : public QRunnable {
 public:

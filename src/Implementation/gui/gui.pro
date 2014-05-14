@@ -22,7 +22,10 @@ SOURCES += main.cpp\
     layerslide.cpp \
     wizardcontroller.cpp \
     wizarddataconfig.cpp \
-    wizard_processfiles.cpp
+    wizard_processfiles.cpp \
+    loadworkerthread.cpp \
+    mriscene.cpp \
+    processworkerthread.cpp
 
 HEADERS  += mainwindow.h \
     welcomescreen.h \
@@ -33,7 +36,10 @@ HEADERS  += mainwindow.h \
     layerslide.h \
     wizardcontroller.h \
     wizarddataconfig.h \
-    wizard_processfiles.h
+    wizard_processfiles.h \
+    loadworkerthread.h \
+    mriscene.h \
+    processworkerthread.h
 
 FORMS    += mainwindow.ui \
     welcomescreen.ui \

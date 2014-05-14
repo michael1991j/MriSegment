@@ -21,8 +21,8 @@ TibiaOperation::~TibiaOperation() {
 }
 
 void TibiaOperation::Preprocess() {
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(TIBA_TRAN)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(TIBIA)->cloud);
 	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 	cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
@@ -47,7 +47,7 @@ void TibiaOperation::Preprocess() {
 }
 
 void TibiaOperation::Fuse() {
-	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(TIBA_TRAN)->cloud);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
 
 	cout << "Empty Cloud Check.\n";
@@ -127,7 +127,7 @@ void TibiaOperation::Postprocess() {
 
 void TibiaOperation::Megaprocess() {
 	long val = 0;
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(TIBA_TRAN)->cloud);
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(TIBIA)->cloud);
 		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 

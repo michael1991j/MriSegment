@@ -18,6 +18,7 @@ public:
 private slots:
     void on_new_pushButton_clicked();
 
+
 signals:
     void nextwindow(int newValue);
 

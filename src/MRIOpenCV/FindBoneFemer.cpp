@@ -193,6 +193,7 @@ void FindBoneFemer::PostProcess() {
 					* config->GetSettings("FindBoneFemer", "Canny_ratio", 3),
 			config->GetSettings("FindBoneFemer", "Canny_kernel", 3));
 
+
 	int x_mult = config->GetSettings("FindBoneFemer", "X_axis_multiplier", 1);
 	int y_mult = config->GetSettings("FindBoneFemer", "Y_axis_multiplier", 1);
 	int z_mult = config->GetSettings("FindBoneFemer", "Z_axis_multiplier", 2);
@@ -203,12 +204,13 @@ void FindBoneFemer::PostProcess() {
 			if (output.at<uchar>(y, x) == 255) {
 				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
 				if (id > plane_low && id < plane_high)
-					this->LabeledOutput->at(BONE)->cloud->push_back(point);
+					this->LabeledOutput->at(FEMER_SAG)->cloud->push_back(point);
 
 			}
 		}
 
 	}
-
+	output.release();
+	binary.release();
 }
 

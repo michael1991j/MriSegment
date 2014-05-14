@@ -33,80 +33,10 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QProgressBar" name="progressBar_2">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QProgressBar" name="progressBar_3">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QProgressBar" name="progressBar_4">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Peforming Datafusion and downsampling</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QProgressBar" name="progressBar_5">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
-     <widget class="QProgressBar" name="progressBar_6">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="0">
-     <widget class="QProgressBar" name="progressBar_7">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0">
-     <widget class="QProgressBar" name="progressBar_8">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
-     <widget class="QProgressBar" name="progressBar">
+     <widget class="QProgressBar" name="progressBar_femers">
       <property name="value">
-       <number>24</number>
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -117,10 +47,24 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="0">
+     <widget class="QProgressBar" name="progressBar_femert">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_4">
       <property name="text">
        <string>Detecting the Femer Via Transversal</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QProgressBar" name="progressBar_cartc">
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -131,10 +75,10 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Fuseing Femer Data </string>
+    <item row="4" column="0">
+     <widget class="QProgressBar" name="progressBar_tibiat">
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -145,24 +89,94 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
-     <widget class="QLabel" name="label_8">
+    <item row="5" column="0">
+     <widget class="QProgressBar" name="progressBar_petellat">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label_11">
       <property name="text">
-       <string>TextLabel</string>
+       <string>Detectinv the Patella</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Peforming Datafusion and downsampling</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QProgressBar" name="progressBar_femur">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Femur</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QProgressBar" name="progressBar_cartilage">
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="11" column="1">
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="label_8">
       <property name="text">
-       <string>TextLabel</string>
+       <string>Cartilage</string>
       </property>
      </widget>
     </item>
     <item row="12" column="1">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Patella</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QProgressBar" name="progressBar_tibia">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
      <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>TextLabel</string>
+       <string>Tibia</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QProgressBar" name="progressBar_patella">
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>

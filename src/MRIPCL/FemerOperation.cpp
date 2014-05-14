@@ -131,7 +131,7 @@ void FemerOperation::Postprocess() {
 void FemerOperation::Megaprocess() {
 
 		long val = 0;
-  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(FEMER_SAG)->cloud);
   		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
   		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 

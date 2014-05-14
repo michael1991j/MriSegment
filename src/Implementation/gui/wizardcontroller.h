@@ -8,6 +8,9 @@
 #include <MRICommon.h>
 #include <MRICommonSettings.h>
 #include <MRIOpenCVSettings.h>
+#include <MRIProcess.h>
+#include <LabeledResults.h>
+
 enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS};
 class wizardController: public QObject
 {
@@ -16,6 +19,8 @@ public:
     wizardController();
     WizarddataConfig data;
     MRIOpenCVSettings  CVConfig;
+    vector<MRICommon *>  * Imagesets;
+    vector<LabeledResults *> * results;
 
 public slots:
     void ProcessState(int Nextstate);

@@ -192,7 +192,7 @@ void FindCartilage::PostSegmentProcess() {
 			if (output.at<uchar>(y, x) == 255) {
 				pcl::PointXYZ point((double)x * x_mult, y * y_mult, id * z_mult);
 				if (id > plane_low && id < plane_high)
-					this->LabeledOutput->at(CARTILAGE)->cloud->push_back(point);
+					this->LabeledOutput->at(CARTILAGE_COR)->cloud->push_back(point);
 
 			}
 		}

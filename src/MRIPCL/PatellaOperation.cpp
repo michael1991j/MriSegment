@@ -131,7 +131,7 @@ void PatellaOperation::Megaprocess() {
 
 	long val = 0;
 	// instantiate pointclouds
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(PATELLA_TRAN)->cloud);
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(PATELLA)->cloud);
 
   	// instantiate outlier removal filter
