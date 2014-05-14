@@ -28,3 +28,27 @@ Command-line arguments:  -os linux -ws gtk -arch x86
 
 !ENTRY org.eclipse.core.resources 2 10035 2014-05-12 01:54:27.814
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2014-05-14 10:58:54.442 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_30
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-14 10:59:03.164
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-14 10:59:25.008
+!MESSAGE Indexed 'MRICommon' (7 sources, 187 headers) in 15.28 sec: 29,934 declarations; 37,783 references; 128 unresolved inclusions; 873 syntax errors; 3,256 unresolved names (4.59%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-14 10:59:33.644
+!MESSAGE Indexed 'MRIOpenCV' (11 sources, 437 headers) in 8.46 sec: 34,388 declarations; 50,149 references; 161 unresolved inclusions; 1,087 syntax errors; 4,209 unresolved names (4.74%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-14 10:59:39.959
+!MESSAGE Indexed 'MRIPCL' (10 sources, 441 headers) in 6.19 sec: 34,217 declarations; 48,649 references; 240 unresolved inclusions; 1,087 syntax errors; 5,225 unresolved names (5.93%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-14 10:59:50.687
+!MESSAGE Indexed 'Test' (12 sources, 441 headers) in 5.66 sec: 34,462 declarations; 49,441 references; 316 unresolved inclusions; 1,087 syntax errors; 4,588 unresolved names (5.18%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-14 10:59:53.535
+!MESSAGE Indexed 'Tools' (14 sources, 169 headers) in 2.73 sec: 22,670 declarations; 27,591 references; 177 unresolved inclusions; 953 syntax errors; 3,587 unresolved names (6.66%)

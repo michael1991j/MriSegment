@@ -8,5 +8,6 @@ Test/Implementation/MRICV/Test3
 Test/Implementation/MRICV/Test4
 Test/Implementation/MRICV/Test5
 Test/Implementation/MRIPCL/Test1
+Test/Implementation/MRIPCL/Test5
 Implementation/gui
 Tools/ManualSegment

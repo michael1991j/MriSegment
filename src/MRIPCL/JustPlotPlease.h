@@ -25,7 +25,7 @@ public:
 	JustPlotPlease();
 	virtual ~JustPlotPlease();
 	void PlusCloud(pcl::PointCloud<pcl::PointXYZ> * cloudnine, int id, unsigned char r, unsigned char g, unsigned char b);
-	void ShowCloud(int id);
+	void ShowCloud(int id, int id2);
 	pcl::visualization::PCLVisualizer * viewer;
 	std::vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr> * clouds;
 };

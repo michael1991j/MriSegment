@@ -30,12 +30,15 @@ void JustPlotPlease::PlusCloud(pcl::PointCloud<pcl::PointXYZ> * cloudnine, int i
 	this->clouds->at(id) = cloud_xyzrgb;
 }
 
-void JustPlotPlease::ShowCloud(int id) {
+void JustPlotPlease::ShowCloud(int id, int id2) {
 	viewer->setBackgroundColor(0, 0, 0);
 	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(this->clouds->at(id));
 	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id)), rgb, "image");
+	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb2(this->clouds->at(id2));
+	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id2)), rgb2, "image2");
 
 	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "image");
+	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "image2");
 
 	viewer->addCoordinateSystem(1, 0, 0, 100);
 
