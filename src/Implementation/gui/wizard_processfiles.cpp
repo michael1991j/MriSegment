@@ -18,16 +18,15 @@ Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<M
 
     this->Imagesets->at(FATSPGR)->Data->FreeSagittal();
      this->Imagesets->at(WATERSPGR)->Data->FreeSagittal();
-    ui->progressBar_femers->setValue(100);
 
 
     Processworkerthread * A =  new Processworkerthread(FEMER_SAG,settings,Imagesets,results);
     connect(A,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-    //A->start();
+    A->start();
 
       Processworkerthread * B =  new Processworkerthread(FEMER_TRAN,settings,Imagesets,results);
       connect(B,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-       B->start();
+       //B->start();
 
         Processworkerthread * C =  new Processworkerthread(CARTILAGE_COR,settings,Imagesets,results);
        connect(C,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
@@ -50,7 +49,7 @@ void Wizard_processfiles::UpdateProgress(int id, int value)
 
     if(id ==FEMER_SAG)
     {
-    ui->progressBar_femers->setValue(value);
+        ui->progressBar_femers->setValue(value);
     }
     else if(id ==FEMER_TRAN)
     {
@@ -101,13 +100,17 @@ std:cout << "this is true\n";
           Processworkerthread * E =  new Processworkerthread(TIBIA,settings,Imagesets,results);
           connect(E,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
           E->start();
-            Processworkerthread * F =  new Processworkerthread(FEMER,settings,Imagesets,results);
+            Processworkerthread * F =  new Processworkerthread(CARTILAGE,settings,Imagesets,results);
             connect(F,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-           //   F->start();
-    this->toggle =1;
+             F->start();
+             Processworkerthread * G =  new Processworkerthread(FEMER,settings,Imagesets,results);
+             connect(G,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+              G->start();
+     this->toggle =1;
+
         
     }
-    if(ui->progressBar_femur->value() == 0  && ui->progressBar_tibia->value() == 100 && ui->progressBar_patella->value() == 100)
+    if(ui->progressBar_cartilage->value() == 100  && ui->progressBar_tibia->value() == 100 && ui->progressBar_patella->value() == 100 && ui->progressBar_femur->value() == 100)
     {
     emit nextwindow(100);
             this->close();

@@ -13,14 +13,17 @@ void tissueviewer::run()
 {
 
     std::cout << "got here !!\n";
-    this->handel->PlusCloud( this->controller->results->at(TIBA_TRAN)->cloud,TIBA_TRAN,244,23,0);
-    this->handel->PlusCloud( this->controller->results->at(PATELLA_TRAN)->cloud,PATELLA_TRAN,0,255,0);
-    this->handel->PlusCloud( this->controller->results->at(CARTILAGE_COR)->cloud,CARTILAGE_COR,0,0,255);
+    this->handel->PlusCloud( this->controller->results->at(TIBIA)->cloud,TIBIA,244,23,0);
+    this->handel->PlusCloud( this->controller->results->at(PATELLA)->cloud,PATELLA,0,255,0);
+    this->handel->PlusCloud( this->controller->results->at(CARTILAGE)->cloud,CARTILAGE,0,0,255);
+    this->handel->PlusCloud( this->controller->results->at(FEMER)->cloud,FEMER,127,127,127);
 
 
-    this->handel->ShowCloud(CARTILAGE_COR , "name");
-    this->handel->ShowCloud(PATELLA_TRAN, "name3");
-    this->handel->ShowCloud(TIBA_TRAN, "name2");
+
+    this->handel->ShowCloud(CARTILAGE, "name");
+    this->handel->ShowCloud(PATELLA, "name3");
+    this->handel->ShowCloud(TIBIA, "name2");
+    this->handel->ShowCloud(FEMER, "name4");
 
     //this->handel->ShowViewer();
     // Sphere

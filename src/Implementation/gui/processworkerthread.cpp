@@ -19,7 +19,6 @@ void Processworkerthread::run()
     else if(id ==FEMER_TRAN)
     {
      CVrunner.RunFemur();
-
     }
     else if(id ==CARTILAGE_COR)
     {
@@ -36,12 +35,12 @@ void Processworkerthread::run()
     RunAllPCLscripts * as  =new RunAllPCLscripts();
     if(id==FEMER)
     {
-     as->Femer(this->results);
-
+        cout << this->results->at(FEMER_SAG)->cloud->size() << "hi \n";
+    as->Femer(this->results);
     }
     else if(id == CARTILAGE)
     {
-    as->Patella(this->results);
+    as->Cartilage(this->results);
 
     }
     else if(id == TIBIA)
