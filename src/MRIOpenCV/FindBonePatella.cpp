@@ -210,7 +210,7 @@ void FindBonePatella::Label() {
 		for (int y = 0; y < img.rows; y++) {
 			//cout << "x:" << x <<" y: " << y<<"\n";
 			if (output.at<uchar>(y, x) == 255) {
-				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
+				pcl::PointXYZ point(x * x_mult, id * z_mult, y * y_mult);
 				if (id > plane_low && id < plane_high)
 					this->LabeledOutput->at(PATELLA_TRAN)->cloud->push_back(point);
 

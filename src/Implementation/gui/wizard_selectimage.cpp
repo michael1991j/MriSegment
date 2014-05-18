@@ -9,10 +9,9 @@ wizard_selectimage::wizard_selectimage(MRIOpenCVSettings *settings,vector<MRICom
     ui->setupUi(this);
     this->tabWidget = new QTabWidget;
 
-    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATCUBE),"Femer",0.5,1), tr("Dosomething"));
-    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATCUBE),"Femer",0.5,1),tr("b"));
-    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATCUBE),"Femer",0.5,1),tr("c"));
-    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATCUBE),"Femer",0.5,1),tr("d"));
+    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"Femer",0.5,1), tr("Select Femer"));
+    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"patillia",0.5,3),tr("Select Patillia"));
+    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"TIBA_TRAN",0.8,3),tr("Select Tiba"));
 
     this->tabWidget->setMinimumHeight(500);
     ui->formLayout->addWidget(this->tabWidget);

@@ -16,11 +16,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    wizardController * controller ;
+    tissueviewer * viewer;
 private:
     Ui::MainWindow *ui;
     QTabWidget *tabWidget;
-
+public slots:
+    void wizardone(int Nextstate);
 };
 
 #endif // MAINWINDOW_H

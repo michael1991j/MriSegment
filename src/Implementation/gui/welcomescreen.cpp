@@ -6,7 +6,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     ui(new Ui::WelcomeScreen)
 {
     ui->setupUi(this);
-    QPixmap bkgnd("/home/michaelroberts/Build/MriSegment/src/Implementation/build-gui-Desktop-Debug/background.png");
+    QPixmap bkgnd("/home/michaelroberts/Build/MriSegment/src/Implementation/gui/background.png");
        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
        QPalette palette;
        palette.setBrush(QPalette::Background, bkgnd);

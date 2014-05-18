@@ -34,18 +34,18 @@ int main(int argc, char **argv) {
 			config->LoadSettings(
 					"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
-	        QApplication app (argc, argv);
-	        QStringList nameFilter("*.dcm");
-	               QDir directory("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
-	               QStringList files = directory.entryList(nameFilter);
-	               for(int i = 0; i <  files.count(); i++)
-	                   files[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
+			 QApplication app (argc, argv);
+			        QStringList nameFilter("*.dcm");
+			               QDir directory(QString::fromAscii(config->GetSettings("Imagesets","tdcubefat","/hoagittalCube-NoFatSat/")));
+			               QStringList files = directory.entryList(nameFilter);
+			               for(int i = 0; i <  files.count(); i++)
+			                   files[i]=QString::fromAscii(config->GetSettings("Imagesets","tdcubefat","/hoagittalCube-NoFatSat/"))+files[i];
 
 
-	                          QDir dir("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
-	                          QStringList filesfat = dir.entryList(nameFilter);
-	                          for(int i = 0; i <  filesfat.count(); i++)
-	                        	  filesfat[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
+			                          QDir dir(QString::fromAscii(config->GetSettings("Imagesets","tdcubewater","/hoagittalCube-NoFatSat/")));
+			                          QStringList filesfat = dir.entryList(nameFilter);
+			                          for(int i = 0; i <  filesfat.count(); i++)
+			                        	  filesfat[i]=QString::fromAscii(config->GetSettings("Imagesets","tdcubewater","/hoagittalCube-NoFatSat/"))+filesfat[i];
 
 
 	    	MRICommon * fat = new MRICommon();
@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
 	    	Imagesets.at(WATERCUBE)= water;
 	     	vector<LabeledResults *> results(400);
 
-	     	results.at(BONE) = new LabeledResults();
+	     	results.at(PATELLA_TRAN) = new LabeledResults();
 	    	///blur( img, img, Size(3,3) );
 	 	  QThreadPool *threadPool = QThreadPool::globalInstance();
 

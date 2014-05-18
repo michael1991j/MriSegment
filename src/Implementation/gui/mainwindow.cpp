@@ -7,17 +7,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     this->tabWidget = new QTabWidget;
-
-    this->tabWidget->addTab(new tissueviewer(),tr("Feature View"));
-    this->tabWidget->addTab(new Layerslide(),tr("Ladder View"));
-
 
     this->tabWidget->setMinimumHeight(500);
     ui->formLayout->addWidget(this->tabWidget);
+controller = new wizardController();
+this->viewer = new tissueviewer(controller);
+this->tabWidget->addTab(viewer,tr("Feature View"));
+this->tabWidget->addTab(new Layerslide(),tr("Ladder View"));
+connect(controller,SIGNAL(Done(int)), this, SLOT(wizardone(int)));
+}
+void MainWindow:: wizardone(int Nextstate)
+{
+    std::cout << "got here !!";
 
-    wizardController * controller = new wizardController();
-
+this->viewer->run();
 }
 
 MainWindow::~MainWindow()

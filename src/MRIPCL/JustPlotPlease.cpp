@@ -30,12 +30,20 @@ void JustPlotPlease::PlusCloud(pcl::PointCloud<pcl::PointXYZ> * cloudnine, int i
 	this->clouds->at(id) = cloud_xyzrgb;
 }
 
-void JustPlotPlease::ShowCloud(int id) {
-	viewer->setBackgroundColor(0, 0, 0);
-	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(this->clouds->at(id));
-	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id)), rgb, "image");
+void JustPlotPlease::ShowCloud(int id , char *  name ) {
 
-	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "image");
+
+	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(this->clouds->at(id));
+	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id)), rgb, name);
+	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, name);
+
+
+}
+
+void JustPlotPlease::ShowViewer()
+{
+
+	viewer->setBackgroundColor(0, 0, 0);
 
 	viewer->addCoordinateSystem(1, 0, 0, 100);
 
@@ -51,4 +59,5 @@ void JustPlotPlease::ShowCloud(int id) {
 		cin >> z;
 		viewer->setCameraPosition(x, y, z, 0, 0, 0, 0);
 	}
+
 }

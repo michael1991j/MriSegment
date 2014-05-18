@@ -28,7 +28,7 @@ void wizardController::ProcessState(int Nextstate)
     connect(ImageSelect,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
     ImageSelect->show();
  }
- else if(Nextstate = PROCESS)
+ else if(Nextstate == PROCESS)
  {
 
      this->results = new vector<LabeledResults *>(100);
@@ -48,6 +48,10 @@ void wizardController::ProcessState(int Nextstate)
      connect(Process,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
      Process->show();
 
+ }
+ else if(Nextstate == 100)
+ {
+ emit  Done(100);
  }
 
 }

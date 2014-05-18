@@ -25,6 +25,8 @@ public:
 private slots:
 
     void UpdateProgress(int id , int value);
+signals:
+    void nextwindow(int newValue);
 
 private:
     Ui::Wizard_processfiles *ui;

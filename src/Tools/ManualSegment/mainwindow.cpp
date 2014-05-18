@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->myGraphicsView->setScene(scene);
 
+    ui->myGraphicsView->fitInView(p, Qt::KeepAspectRatio);
     ui->myGraphicsView->scale(25,25);
 
     ui->ManualGraphicView->setScene(this->Manualscene);

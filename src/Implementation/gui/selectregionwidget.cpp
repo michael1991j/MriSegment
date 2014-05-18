@@ -32,7 +32,7 @@ Selectregionwidget::Selectregionwidget( MRIOpenCVSettings * settings ,MRICommon 
     connect(ui->treeWidget,SIGNAL(itemSelectionChanged()),this,SLOT(On_tree_itemclicked()));
     this->scene = new MriScene(this);
     cv::Mat a = dataset->at((int ) (index))->Slice;
-    a.convertTo(a, CV_8U);
+    a.convertTo(a, CV_8U,0.06);
     QGraphicsPixmapItem * p = scene->addPixmap(QPixmap::fromImage(Mat2QImage(a)));
     ui->graphicsView->setScene(scene);
 
@@ -45,7 +45,7 @@ void Selectregionwidget::On_tree_itemclicked()
     int rownum  = ui->treeWidget->currentIndex().row();
     scene->clear();
     cv::Mat a = this->Imagesets->Data->Sagittal->at(rownum)->Slice;
-    a.convertTo(a, CV_8U);
+    a.convertTo(a, CV_8U,0.06);
     QGraphicsPixmapItem * p = scene->addPixmap(QPixmap::fromImage(Mat2QImage(a)));
 
 //    qDebug() << rownum;

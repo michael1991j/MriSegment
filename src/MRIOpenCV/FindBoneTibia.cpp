@@ -207,7 +207,7 @@ cv::THRESH_BINARY, 21, -0.8);
 	for (int x = 0; x < img.cols; x++) {
 		for (int y = 0; y < img.rows; y++) {
 			if (output.at<uchar>(y, x) == 255) {
-				pcl::PointXYZ point(x * x_mult, y * y_mult, id * z_mult);
+				pcl::PointXYZ point(x * x_mult, id * z_mult, y * y_mult);
 				if (id > plane_low && id < plane_high)
 					this->LabeledOutput->at(TIBA_TRAN)->cloud->push_back(point);
 			}

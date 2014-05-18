@@ -15,16 +15,14 @@
 #include <MRIProcess.h>
 #include <MRIOpenCVSettings.h>
 #include <MRICommonSettings.h>
-
+#include "pcl/kdtree/kdtree_flann.h"
 #include <vector>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <pcl/visualization/cloud_viewer.h>
 #include <boost/thread/thread.hpp>
 #include <pcl/filters/voxel_grid.h>
-using namespace cv;
 using namespace std;
-using namespace pcl;
 int edgeThresh = 1;
 int lowThreshold;
 int const max_lowThreshold = 100;
@@ -48,10 +46,10 @@ int main(int argc, char **argv) {
 
 	char* Fat_Path =
 				fileconfig->GetSettings("FindCartilage", "Fat_Path",
-						"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/500-IdealSPGR-Fat-1P5MM/");
+						"/home/michaelroberts/Documents/SaikatKnee2012/500-IdealSPGR-Fat-1P5MM/");
 	char* Water_Path =
 				fileconfig->GetSettings("FindCartilage", "Water_Path",
-						"/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/005-IdealSPGR-Water-1P5MM/");
+						"/home/michaelroberts/Documents/SaikatKnee2012/005-IdealSPGR-Water-1P5MM/");
 	QDir directory(Fat_Path);
 	QStringList files = directory.entryList(nameFilter);
 	for (int i = 0; i < files.count(); i++)
@@ -78,7 +76,7 @@ int main(int argc, char **argv) {
 	Imagesets.at(FATSPGR) = fat;
 	vector<LabeledResults *> results(400);
 
-	results.at(CARTILAGE) = new LabeledResults();
+	results.at(CARTILAGE_COR) = new LabeledResults();
 	///blur( img, img, Size(3,3) );
 	QThreadPool *threadPool = QThreadPool::globalInstance();
 
@@ -95,7 +93,7 @@ int main(int argc, char **argv) {
 	}
 	threadPool->waitForDone();
 
-	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(CARTILAGE)->cloud);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin(results.at(CARTILAGE_COR)->cloud);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(
 			new pcl::PointCloud<pcl::PointXYZ>);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered(

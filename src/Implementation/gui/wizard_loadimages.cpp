@@ -75,26 +75,26 @@ void Wizard_Loadimages::UpdateProgress(int id, int value)
 
 void Wizard_Loadimages::on_pushButton_clicked()
 {
-    ui->progressBar_cubef->setValue(0);
-    ui->progressBar_spgrf->setValue(100);
-    ui->progressBar_cubew->setValue(0);
-    ui->progressBar_SPGRW->setValue(100);
+    ui->progressBar_cubef->setValue(100);
+    ui->progressBar_spgrf->setValue(0);
+    ui->progressBar_cubew->setValue(100);
+    ui->progressBar_SPGRW->setValue(0);
 
     LoadWorkerthread * t =  new LoadWorkerthread(Imagesets->at(FATCUBE), ui->lineEdit_cubef->text(), 10,true,false);
     connect(t,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-      t->start();
+     // t->run();
 
-      LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,false ,true);
+      LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,true ,true);
       connect(b,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-       //b->start();
+       b->run();
 
         LoadWorkerthread * c =  new LoadWorkerthread(Imagesets->at(WATERCUBE), ui->lineEdit_cubew->text(), 12, true,false);
         connect(c,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-        c->start();
+       // c->run();
 
-          LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,false , true);
+          LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,true , true);
           connect(d,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-          //d->start();
+         d->run();
       std::cout << "hello \n";
 
 

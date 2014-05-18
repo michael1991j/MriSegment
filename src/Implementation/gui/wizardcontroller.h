@@ -17,6 +17,7 @@ class wizardController: public QObject
        Q_OBJECT
 public:
     wizardController();
+
     WizarddataConfig data;
     MRIOpenCVSettings  CVConfig;
     vector<MRICommon *>  * Imagesets;
@@ -24,7 +25,8 @@ public:
 
 public slots:
     void ProcessState(int Nextstate);
-
+signals:
+    void Done(int newValue);
 
 };
 

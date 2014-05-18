@@ -54,6 +54,8 @@ void RunAll::RunTibia(){
 			process->Preprocess();
 			process->Segment();
 			process->PostSegmentProcess();
+			process->Label();
+
 			process->PostProcess();
 		}
 }
@@ -72,13 +74,14 @@ void RunAll::RunPatella(){
 			process->Preprocess();
 			process->Segment();
 			process->PostSegmentProcess();
+			process->Label();
 			process->PostProcess();
 		}
 }
 
 void RunAll::RunCartilage(){
 
-	/*
+
 		QThreadPool *threadPool = QThreadPool::globalInstance();
 		MRICommon * fat = Imagesets->at(FATSPGR);
 
@@ -91,7 +94,9 @@ void RunAll::RunCartilage(){
 			process->Preprocess();
 			process->Segment();
 			process->PostSegmentProcess();
+			process->Label();
+
 			process->PostProcess();
 		}
-		*/
+
 }
