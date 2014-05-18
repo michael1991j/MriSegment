@@ -13,6 +13,7 @@
 #include "FemerOperation.h"
 #include "TibiaOperation.h"
 #include "PatellaOperation.h"
+#include "CartilageOperation.h"
 #include <LabeledResults.h>
 #include <vector>
 #include <qfile.h>
@@ -25,6 +26,7 @@
 #include <FindBoneFemer.h>
 #include <FindBonePatella.h>
 #include <FindBoneTibia.h>
+#include <FindCartilage.h>
 #include <MRICommon.h>
 #include <MRIOpenCVSettings.h>
 #include <sstream>
@@ -37,6 +39,7 @@ public:
 	void  Femer(vector<LabeledResults *> * input);
 	void  Tibia(vector<LabeledResults *> * input);
 	void  Patella(vector<LabeledResults *> * input);
+	void  Cartilage(vector<LabeledResults *> * input);
 };
 
 #endif /* RunAllPCL_H_ */

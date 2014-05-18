@@ -31,3 +31,8 @@ void RunAllPCLscripts::Tibia(vector<LabeledResults *> * input){
 	filter.Megaprocess();
 }
 
+void RunAllPCLscripts::Cartilage(vector<LabeledResults *> * input){
+    CartilageOperation filter(input, input, 5, 25, 120);
+    filter.Megaprocess();
+}
+

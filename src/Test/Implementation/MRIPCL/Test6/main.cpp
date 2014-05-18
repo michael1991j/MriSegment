@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 
 	    	results.at(CARTILAGE) = new LabeledResults();
 
-	    	CartilageOperation filter(&results, &results, 5, 25, 50);
+	    	CartilageOperation filter(&results, &results, 5, 25, 120);
 	    		    	filter.Megaprocess();
 	    		    	//filter.Fuse();
 	    		    	//filter.Postprocess();
