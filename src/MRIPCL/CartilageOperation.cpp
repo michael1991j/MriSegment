@@ -21,8 +21,8 @@ CartilageOperation::~CartilageOperation() {
 }
 
 void CartilageOperation::Preprocess() {
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(CARTILAGE_COR)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(CARTILAGE)->cloud);
 	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 	cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
@@ -127,8 +127,8 @@ void CartilageOperation::Postprocess() {
 
 void CartilageOperation::Megaprocess() {
 	long val = 0;
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(CARTILAGE_COR)->cloud);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(CARTILAGE)->cloud);
 		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 		cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";

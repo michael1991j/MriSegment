@@ -96,21 +96,21 @@ void Wizard_processfiles::UpdateProgress(int id, int value)
 std:cout << "this is true\n";
         Processworkerthread * D =  new Processworkerthread(PATELLA,settings,Imagesets,results);
         connect(D,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-         D->start();
+        //  D->start();
 
           Processworkerthread * E =  new Processworkerthread(TIBIA,settings,Imagesets,results);
           connect(E,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-          E->start();
+           // E->start();
             Processworkerthread * F =  new Processworkerthread(FEMER,settings,Imagesets,results);
             connect(F,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
            //   F->start();
     this->toggle =1;
-        
-    }
-    if(ui->progressBar_femur->value() == 0  && ui->progressBar_tibia->value() == 100 && ui->progressBar_patella->value() == 100)
-    {
-    emit nextwindow(100);
+            emit nextwindow(100);
             this->close();
+
+    }
+    if(ui->progressBar_femur->value() == 100  && ui->progressBar_tibia->value() == 100 && ui->progressBar_patella->value() == 100)
+    {
 
     }
 

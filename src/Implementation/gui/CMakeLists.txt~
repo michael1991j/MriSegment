@@ -27,7 +27,7 @@ selectregionwidget.cpp  wizarddataconfig.cpp loadworkerthread.cpp mriscene.cpp p
 SET(Gui_FORMS layerslide.ui          tissueviewer.ui       wizard_processfiles.ui
 mainwindow.ui          welcomescreen.ui      wizard_selectimage.ui
 selectregionwidget.ui  wizard_loadimages.ui)
-include_directories(/home/mri/Build4/MriSegment/Build/Implementation/gui/ /home/mri/Build4/MriSegment/src/Implementation/gui/ )
+include_directories(/home/michaelroberts/Build/MriSegment/Build/Implementation/gui/ /home/michaelroberts/Build/MriSegment/src/Implementation/gui/ )
 SET(Gui_HEADERS   layerslide.h          welcomescreen.h      wizard_processfiles.h wizardcontroller.h processworkerthread.h
 mainwindow.h            wizard_selectimage.h
 selectregionwidget.h  wizarddataconfig.h
