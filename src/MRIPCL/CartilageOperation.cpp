@@ -124,11 +124,11 @@ void CartilageOperation::Postprocess() {
 	// Finish
 	pcl::io::saveVTKFile ("mesh.vtk", triangles);
 }
-
 void CartilageOperation::Megaprocess() {
 	long val = 0;
+
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(CARTILAGE_COR)->cloud);
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(CARTILAGE)->cloud);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(CARTILAGE)->cloud, NullDeleter());
 		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 		cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
@@ -197,6 +197,7 @@ void CartilageOperation::Megaprocess() {
   	// Additional vertex information
   	std::vector<int> parts = gp3.getPartIDs();
   	std::vector<int> states = gp3.getPointStates();
+  	Labeledoutput->at(CARTILAGE)->Mesh = triangles;
 
   	// Finish
   	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);

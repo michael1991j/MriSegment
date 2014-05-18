@@ -132,7 +132,7 @@ void FemerOperation::Megaprocess() {
 
 		long val = 0;
   		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(FEMER_SAG)->cloud);
-  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud, NullDeleter());
   		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
   		cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
@@ -181,7 +181,7 @@ void FemerOperation::Megaprocess() {
 	  	// Initialize objects
 	  	pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
 	  	pcl::PolygonMesh triangles;
-	  	pcl::PolygonMesh Postprocessedmesh;
+	  	//pcl::PolygonMesh Postprocessedmesh;
 
 
 	  	// Set the maximum distance between connected points (maximum edge length)
@@ -206,6 +206,6 @@ void FemerOperation::Megaprocess() {
 	  	std::vector<int> states = gp3.getPointStates();
 	  	Labeledoutput->at(FEMER)->Mesh = triangles;
 	  	// Finish
-	  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", Postprocessedmesh);
+	  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
 	  	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

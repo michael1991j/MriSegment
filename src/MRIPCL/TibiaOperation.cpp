@@ -128,7 +128,7 @@ void TibiaOperation::Postprocess() {
 void TibiaOperation::Megaprocess() {
 	long val = 0;
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(TIBA_TRAN)->cloud);
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(TIBIA)->cloud);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(TIBIA)->cloud, NullDeleter());
 		pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
 
 		cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";

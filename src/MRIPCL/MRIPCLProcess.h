@@ -7,6 +7,7 @@
 
 #ifndef MRIPCLPROCESS_H_
 #define MRIPCLPROCESS_H_
+struct NullDeleter {template<typename T> void operator()(T*) {} };
 
 using namespace std;
 
