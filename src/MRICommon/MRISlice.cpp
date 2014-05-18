@@ -15,6 +15,8 @@ MRISlice::MRISlice(cv::Mat  Slice , int Id ) {
 
 MRISlice::~MRISlice() {
 	// TODO Auto-generated destructor stub
+  this->Slice.release();
+
 }
 
 void   MRISlice::SaveImage(string Location , string  Filename , int Type)
@@ -27,3 +29,5 @@ QImage * MRISlice::ToQImage()
 
 return 0;
 }
+
+

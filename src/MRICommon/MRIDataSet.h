@@ -34,6 +34,7 @@ public:
 	void ToTransversal();
 	void ToCorronial();
 	void ToSagittal();
+        void FreeSagittal();
 
 
 };

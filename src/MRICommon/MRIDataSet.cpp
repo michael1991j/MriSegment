@@ -23,6 +23,18 @@ MRIDataSet::MRIDataSet(QStringList * FileList , InputType Types) {
 
 }
 
+void MRIDataSet::FreeSagittal()
+{
+  for(int i= 0; i < this->Sagittal->size(); i++)
+    {
+      this->Sagittal->at(i)->~MRISlice();
+
+    }
+
+
+}
+
+
 MRIDataSet::~MRIDataSet() {
 	// TODO Auto-generated destructor stub
 }
