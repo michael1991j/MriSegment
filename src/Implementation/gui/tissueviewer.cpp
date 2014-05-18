@@ -15,7 +15,7 @@ void tissueviewer::run()
     std::cout << "got here !!\n";
   // this->handel->PlusCloud( this->controller->results->at(FEMER_SAG)->cloud,FEMER_SAG,244,23,0);
    // this->handel->PlusCloud( this->controller->results->at(PATELLA_TRAN)->cloud,PATELLA_TRAN,0,255,0);
-    this->handel->PlusCloud( this->controller->results->at(TIBA_TRAN)->cloud,CARTILAGE_COR,0,0,255);
+    this->handel->PlusCloud( this->controller->results->at(CARTILAGE_COR)->cloud,CARTILAGE_COR,0,0,255);
 
 
     this->handel->ShowCloud(CARTILAGE_COR , "name");

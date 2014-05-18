@@ -82,7 +82,7 @@ void Wizard_Loadimages::on_pushButton_clicked()
 
     LoadWorkerthread * t =  new LoadWorkerthread(Imagesets->at(FATCUBE), ui->lineEdit_cubef->text(), 10,true,false);
     connect(t,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-     // t->run();
+     t->run();
 
       LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,true ,true);
       connect(b,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
@@ -90,7 +90,7 @@ void Wizard_Loadimages::on_pushButton_clicked()
 
         LoadWorkerthread * c =  new LoadWorkerthread(Imagesets->at(WATERCUBE), ui->lineEdit_cubew->text(), 12, true,false);
         connect(c,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-       // c->run();
+        c->run();
 
           LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,true , true);
           connect(d,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));

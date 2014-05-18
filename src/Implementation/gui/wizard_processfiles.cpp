@@ -16,17 +16,18 @@ Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<M
     ui->setupUi(this);
 
 
-
+    this->Imagesets->at(FATSPGR)->Data->FreeSagittal();
+     this->Imagesets->at(WATERSPGR)->Data->FreeSagittal();
     ui->progressBar_femers->setValue(0);
 
 
     Processworkerthread * A =  new Processworkerthread(FEMER_SAG,settings,Imagesets,results);
     connect(A,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-  //    A->start();
+    A->start();
 
-      //Processworkerthread * B =  new Processworkerthread(FEMER_TRAN,settings,Imagesets,results);
-      //connect(B,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-      //  B->start();
+      Processworkerthread * B =  new Processworkerthread(FEMER_TRAN,settings,Imagesets,results);
+      connect(B,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
+       B->start();
 
         Processworkerthread * C =  new Processworkerthread(CARTILAGE_COR,settings,Imagesets,results);
        connect(C,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
@@ -35,11 +36,11 @@ Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<M
 
           Processworkerthread * D =  new Processworkerthread(PATELLA_TRAN,settings,Imagesets,results);
           connect(D,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-    //        D->start();
+           D->start();
 
             Processworkerthread * E =  new Processworkerthread(TIBA_TRAN,settings,Imagesets,results);
             connect(E,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-     //         E->start();
+             E->start();
 
 
       std::cout << "hello \n";
@@ -88,8 +89,7 @@ void Wizard_processfiles::UpdateProgress(int id, int value)
         ui->progressBar_patella->setValue(value);
     }
 
-    emit nextwindow(100);
-    this->close();
+
     if((this->toggle == 0)&&ui->progressBar_femers->value() == 100  &&  ui->progressBar_petellat->value() == 100 && ui->progressBar_tibiat->value() == 100)
     {
 
