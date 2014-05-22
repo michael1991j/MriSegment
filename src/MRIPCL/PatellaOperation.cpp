@@ -204,7 +204,6 @@ void PatellaOperation::Megaprocess() {
 	std::vector<int> parts = gp3.getPartIDs();
 	std::vector<int> states = gp3.getPointStates();
 	Labeledoutput->at(PATELLA)->Mesh = triangles;
-
 	// Finish
 	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
 	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";

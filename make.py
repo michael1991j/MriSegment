@@ -33,7 +33,7 @@ if selection == 0:
 		os.system('mkdir -p ' + file)
 		os.chdir(file)
 		os.system('cmake ' + top + '/src/' + file)
-		os.system('make -j2')
+		os.system('make -j3')
 		os.system('make install')
 		os.chdir(top + '/Build')
 
@@ -43,6 +43,6 @@ else:
 	os.system('mkdir -p ' + files[choice])
 	os.chdir(files[choice])
 	os.system('cmake ' + top + '/src/' + files[choice])
-	os.system('make')
+	os.system('make -j3')
 	os.system('make install')
 	os.chdir(top + '/Build')

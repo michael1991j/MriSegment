@@ -4,6 +4,7 @@
  *  Created on: May 12, 2014
  *      Author: mri
  */
+#include <flann/flann.hpp>
 #include <JustPlotPlease.h>
 #include <MRIPCLProcess.h>
 #include <FemerOperation.h>

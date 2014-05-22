@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->tabWidget = new QTabWidget;
 
-    this->tabWidget->setMinimumHeight(500);
+    this->tabWidget->setMinimumHeight(1500);
     ui->formLayout->addWidget(this->tabWidget);
 controller = new wizardController();
 this->viewer = new tissueviewer(controller);

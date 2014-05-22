@@ -16,7 +16,7 @@ void wizardController::ProcessState(int Nextstate)
      Imagesets->at(FATSPGR) =new MRICommon();
      Imagesets->at(WATERSPGR) =new MRICommon();
 
-     this->CVConfig.LoadSettings("/home/mri/Build4/MriSegment/src/Conf/MRIOpenCV/Default.conf");
+     this->CVConfig.LoadSettings("/home/michaelroberts/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
    Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages(&this->CVConfig,Imagesets);
    connect(imagewindow,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
 

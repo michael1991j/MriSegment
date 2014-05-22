@@ -27,7 +27,7 @@ selectregionwidget.cpp  wizarddataconfig.cpp loadworkerthread.cpp mriscene.cpp p
 SET(Gui_FORMS layerslide.ui          tissueviewer.ui       wizard_processfiles.ui
 mainwindow.ui          welcomescreen.ui      wizard_selectimage.ui
 selectregionwidget.ui  wizard_loadimages.ui)
-include_directories(/home/mri/Build4/MriSegment/Build/Implementation/gui/ /home/mri/Build4/MriSegment/src/Implementation/gui/ )
+include_directories(/home/michaelroberts/Build/MriSegment/Build/Implementation/gui/ /home/michaelroberts/Build/MriSegment/src/Implementation/gui/ )
 SET(Gui_HEADERS   layerslide.h          welcomescreen.h      wizard_processfiles.h wizardcontroller.h processworkerthread.h
 mainwindow.h            wizard_selectimage.h
 selectregionwidget.h  wizarddataconfig.h
@@ -47,7 +47,7 @@ ADD_DEFINITIONS(${QT_DEFINITIONS})
 
 include_directories(/usr/local/include/gdcm-2.4/)
 LINK_DIRECTORIES(/usr/local/lib/)
-target_link_libraries( ManualSEG /usr/local/lib/libgdcmcharls.so  /usr/local/lib/libgdcmjpeg16.so /usr/local/lib/libgdcmCommon.so  ${VTK_LIBRARIES} QVTK /usr/local/lib/libgdcmjpeg8.so /usr/local/lib/libgdcmDICT.so    /usr/local/lib/libgdcmMEXD.so /usr/local/lib/libgdcmDSED.so    /usr/local/lib/libgdcmMSFF.so /usr/local/lib/libgdcmexpat.so   /usr/local/lib/libgdcmopenjpeg.so /usr/local/lib/libgdcmIOD.so     /usr/local/lib/libgdcmuuid.so /usr/local/lib/libgdcmjpeg12.so  /usr/local/lib/libgdcmzlib.so   ${QT_LIBRARIES} /usr/local/lib/libDisplayImage.so /usr/local/lib/libMRIOpenCV.so /usr/local/lib/libMRIPCL.so ${OpenCV_LIBS}  ${PCL_LIBRARIES}
+target_link_libraries( ManualSEG /usr/local/lib/libgdcmcharls.so  /usr/local/lib/libgdcmjpeg16.so /usr/local/lib/libgdcmCommon.so  ${VTK_LIBRARIES} QVTK /usr/local/lib/libgdcmjpeg8.so /usr/local/lib/libgdcmDICT.so    /usr/local/lib/libgdcmMEXD.so /usr/local/lib/libgdcmDSED.so    /usr/local/lib/libgdcmMSFF.so /usr/local/lib/libgdcmexpat.so   /usr/local/lib/libgdcmopenjpeg.so /usr/local/lib/libgdcmIOD.so     /usr/local/lib/libgdcmuuid.so /usr/local/lib/libgdcmjpeg12.so  /usr/local/lib/libgdcmzlib.so   ${QT_LIBRARIES} /usr/local/lib/libDisplayImage.so /usr/local/lib/libMRIOpenCV.so /usr/local/lib/libMRIPCL.so ${OpenCV_LIBS} /usr/local/lib/libpugixml.so ${PCL_LIBRARIES}
 
 )
 

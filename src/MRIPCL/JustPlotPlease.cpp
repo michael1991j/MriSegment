@@ -9,7 +9,8 @@
 
 JustPlotPlease::JustPlotPlease() {
 	// TODO Auto-generated constructor stub
-	this->viewer = new pcl::visualization::PCLVisualizer ("Point Cloud Viewrzz ;) Hi Chris");
+	this->viewer = new pcl::visualization::PCLVisualizer ("Point Cloud Viewrzz ;) Hi Chris",false);
+
     this->clouds = new std::vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr>(500);
 
 }
@@ -28,16 +29,24 @@ void JustPlotPlease::PlusCloud(pcl::PointCloud<pcl::PointXYZ> * cloudnine, int i
 			cloud_xyzrgb->points[i].b = b;
 	}
 	this->clouds->at(id) = cloud_xyzrgb;
+	char dig = id;
+
+	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(this->clouds->at(id));
+	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id)), rgb, &dig);
+
+	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, &dig);
 }
 
 void JustPlotPlease::ShowCloud(int id , char *  name ) {
+	char dig = id;
 
+	viewer->updatePointCloud((this->clouds->at(id)),&dig);
 
-	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(this->clouds->at(id));
-	viewer->addPointCloud<pcl::PointXYZRGB>((this->clouds->at(id)), rgb, name);
-	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, name);
-
-
+}
+void  JustPlotPlease::RemoveCloud( int id)
+{
+	char dig = id;
+	viewer->removePointCloud(&dig);
 }
 
 void JustPlotPlease::ShowViewer()

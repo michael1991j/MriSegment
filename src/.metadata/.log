@@ -37,3 +37,45 @@ Command-line arguments:  -os linux -ws gtk -arch x86
 
 !ENTRY org.eclipse.core.resources 2 10035 2014-05-15 13:25:24.604
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2014-05-19 14:33:43.680 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-19 14:34:11.311
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-19 14:34:27.577
+!MESSAGE Indexed 'MRICommon' (7 sources, 191 headers) in 12.44 sec: 29,435 declarations; 36,990 references; 128 unresolved inclusions; 875 syntax errors; 3,118 unresolved names (4.48%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-19 14:34:34.546
+!MESSAGE Indexed 'MRIOpenCV' (11 sources, 441 headers) in 6.96 sec: 33,889 declarations; 49,313 references; 161 unresolved inclusions; 1,089 syntax errors; 4,033 unresolved names (4.62%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-19 14:34:38.780
+!MESSAGE Indexed 'MRIPCL' (10 sources, 446 headers) in 4.11 sec: 33,750 declarations; 47,870 references; 240 unresolved inclusions; 1,089 syntax errors; 5,072 unresolved names (5.85%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-19 14:34:43.034
+!MESSAGE Indexed 'Test' (12 sources, 446 headers) in 4.16 sec: 33,986 declarations; 48,633 references; 334 unresolved inclusions; 1,089 syntax errors; 4,466 unresolved names (5.13%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-05-19 14:34:45.192
+!MESSAGE Indexed 'Tools' (14 sources, 173 headers) in 2.06 sec: 22,169 declarations; 26,790 references; 177 unresolved inclusions; 955 syntax errors; 3,446 unresolved names (6.58%)
+!SESSION 2014-05-20 18:57:13.532 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-20 18:57:18.552
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2014-05-21 11:13:50.517 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-21 11:15:09.418
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.

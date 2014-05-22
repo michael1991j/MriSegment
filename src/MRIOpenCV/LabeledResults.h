@@ -13,11 +13,9 @@
 #include <pcl/point_types.h>
 #include <string>
 #include <iostream>
-
 #include <pcl/point_types.h>
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/conditional_removal.h>
-#include <pcl/surface/vtk_smoothing/vtk_mesh_smoothing_laplacian.h>
 #include <pcl/registration/ndt.h>
 #include <pcl/filters/approximate_voxel_grid.h>
 #include <pcl/visualization/pcl_visualizer.h>
@@ -32,6 +30,13 @@
 #include <pcl/io/pcd_io.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/surface/gp3.h>
+#include <pcl/io/vtk_io.h>
+
+#include <pcl/point_types.h>
+
+#include <boost/thread/thread.hpp>
+
+
 #include <pcl/io/vtk_io.h>
 
 using namespace std;

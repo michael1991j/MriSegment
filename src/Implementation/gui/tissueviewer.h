@@ -30,7 +30,8 @@ public:
     wizardController * controller;
     JustPlotPlease * handel;
     void run();
-
+public slots:
+    void On_tree_itemclicked();
 private:
     Ui::tissueviewer *ui;
 };
