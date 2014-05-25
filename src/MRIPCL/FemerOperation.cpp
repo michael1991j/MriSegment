@@ -23,29 +23,33 @@ FemerOperation::~FemerOperation() {
 
 void FemerOperation::Preprocess() {
 
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
+	/* initialize input and output pointers, and value storage */
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(FEMER_SAG)->cloud);
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
-	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
+	long val 	= cloudin->size();
+	long val1	= 0;
 
-	cout << "Radius outlier filtering.\n" << "radius is: " << radius << "\n" << "minimum neighbors is: " << minFriends << "\n";
-	
-	cout << "points in cloud before filtering: " << cloudin->size() << "\n";
-
-	/* Create the filtering object */
+	/* initialize down-sampling filter and apply to cloudin, store output in cloud_filtered */
+	cout << "Down-Sampling, number of points before down-sample: " << val << ".\n";
 	pcl::VoxelGrid < pcl::PointXYZ > sor;
 	sor.setInputCloud(cloudin);
 	sor.setLeafSize(leafSize, leafSize, leafSize);
 	sor.filter(*cloud_filtered);
+	val1 = cloud_filtered->size();
+	cout << val - val1 << " points removed in down-sampling.\n";
 
-	/* build the filter */
-	outrem.setInputCloud(cloudin);
+	/* initialize radius outlier removal filter and apply to cloud_filtered, store output in cloud_filtered. */
+	cout << "Radius outlier removal filtering, number of points befor filter: " << val1 << ".\n";
+	pcl::RadiusOutlierRemoval<pcl::PointXYZ> outrem;
+	outrem.setInputCloud(cloud_filtered);
 	outrem.setRadiusSearch(radius);
 	outrem.setMinNeighborsInRadius(minFriends);
-
-	// apply filter
 	outrem.filter (*cloud_filtered);
+	cout << val1 - cloud_filtered->size() << " points removed in radius outlier removal filtering.\n";
 
-	cout << (cloudin->size() - cloud_filtered->size()) << " points removed.\n";
+	/* status of points removed in during preprocessing */
+	cout << val - cloud_filtered->size() << " points removed in preprocessing.\n";
+	return;
 }
 
 void FemerOperation::Fuse() {
