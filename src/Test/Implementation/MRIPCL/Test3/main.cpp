@@ -30,23 +30,22 @@ int main(int argc, char **argv) {
 
 
 	MRIOpenCV * OpencvProcessor = new MRIOpenCV();
+                MRIOpenCVSettings * config = new MRIOpenCVSettings();
+                        config->LoadSettings(
+                                        "/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
 
-		MRIOpenCVSettings * config = new MRIOpenCVSettings();
-			config->LoadSettings(
-					"/home/mri/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
-
-			 QApplication app (argc, argv);
-			        QStringList nameFilter("*.dcm");
-			               QDir directory(QString::fromAscii(config->GetSettings("Imagesets","tdcubefat","/hoagittalCube-NoFatSat/")));
-			               QStringList files = directory.entryList(nameFilter);
-			               for(int i = 0; i <  files.count(); i++)
-			                   files[i]=QString::fromAscii(config->GetSettings("Imagesets","tdcubefat","/hoagittalCube-NoFatSat/"))+files[i];
+                QApplication app (argc, argv);
+                QStringList nameFilter("*.dcm");
+                       QDir directory("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/");
+                       QStringList files = directory.entryList(nameFilter);
+                       for(int i = 0; i <  files.count(); i++)
+                           files[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")+files[i];
 
 
-			                          QDir dir(QString::fromAscii(config->GetSettings("Imagesets","tdcubewater","/hoagittalCube-NoFatSat/")));
-			                          QStringList filesfat = dir.entryList(nameFilter);
-			                          for(int i = 0; i <  filesfat.count(); i++)
-			                        	  filesfat[i]=QString::fromAscii(config->GetSettings("Imagesets","tdcubewater","/hoagittalCube-NoFatSat/"))+filesfat[i];
+                                  QDir dir("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/");
+                                  QStringList filesfat = dir.entryList(nameFilter);
+                                  for(int i = 0; i <  filesfat.count(); i++)
+                                          filesfat[i]=QString("/home/mri/Dropbox/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+filesfat[i];
 
 
 	    	MRICommon * fat = new MRICommon();
@@ -84,9 +83,8 @@ int main(int argc, char **argv) {
 	    	results.at(PATELLA) = new LabeledResults();
 
 	    	PatellaOperation filter(&results, &results, 3, 18, 220);
-	    	filter.Megaprocess();
-	    	//filter.Fuse();
-	    	//filter.Postprocess();
+	    	filter.Preprocess();
+		filter.Tomesh();
 
 	    	cout << "I hate bugs\n";
 	    	return 0;

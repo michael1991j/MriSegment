@@ -39,13 +39,15 @@ class TibiaOperation: public MRIPCLProcess {
     double radius;
     int minFriends;
 public:
-	TibiaOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i);
+	TibiaOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc);
 	virtual ~TibiaOperation();
+	const char *loc;
     std::vector<LabeledResults *> * Labeledinput;
     std::vector<LabeledResults *> * Labeledoutput;
 	void Preprocess();
 	void Fuse();
 	void Postprocess();
+	void Tomesh();
 	void Megaprocess();
 };
 

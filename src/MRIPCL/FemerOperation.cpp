@@ -8,11 +8,12 @@
 #include "FemerOperation.h"
 #include "JustPlotPlease.h"
 
-FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i) {
+FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc) {
         // Constructor called for filtering
         leafSize = s;
         radius = r;
         minFriends = i;
+        this->loc = loc;
         this->Labeledoutput = Labeledoutput;
         this->Labeledinput = Labeledinput;
 }
@@ -21,11 +22,15 @@ FemerOperation::~FemerOperation() {
 	// TODO Auto-generated destructor stub
 }
 
+/*
+ * Preprocess applies down-sampling radial outlier removal filtering to the post 
+ * post processed point cloud
+ */
 void FemerOperation::Preprocess() {
 
 	/* initialize input and output pointers, and value storage */
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(FEMER_SAG)->cloud);
-  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+  	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud, NullDeleter());
 	long val 	= cloudin->size();
 	long val1	= 0;
 
@@ -53,83 +58,69 @@ void FemerOperation::Preprocess() {
 }
 
 void FemerOperation::Fuse() {
-  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(BONE)->cloud);
-  		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
-
-  		cout << "Empty Cloud Check.\n";
-        /* Ensure clouds arent empty */
-        if (cloudin->size() == 0)
-                PCL_ERROR ("cloudin point cloud is empty, exiting registration.\n");
-        else if(cloud_filtered->size() == 0)
-                PCL_ERROR ("cloud_filtered point cloud is empty, exiting registration.\n");
-        else
-                cout << "cloudin size is: " << cloudin->size() << " cloud_filtered size is: " << cloud_filtered->size() << ".\n";
-
-    	// Defining rotation matrix and translation vector
-    	Eigen::Matrix4f transformation_matrix = Eigen::Matrix4f::Identity(); // We initialize this matrix to a null transformation.
-
-    	// Defining a rotation matrix (see https://en.wikipedia.org/wiki/Rotation_matrix)
-    	float theta = M_PI/4; // The angle of rotation in radians
-    	transformation_matrix (0,0) = cos(theta);
-    	transformation_matrix (0,1) = -sin(theta);
-    	transformation_matrix (1,0) = sin(theta);
-    	transformation_matrix (1,1) = cos(theta);
-
-    	// Executing the transformation
-    	pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud (new pcl::PointCloud<pcl::PointXYZ> ());	// A pointer on a new cloud
-    	pcl::transformPointCloud (*cloudin, *transformed_cloud, transformation_matrix);
+	// Not implemented
+	return;
 }
 
 void FemerOperation::Postprocess() {
+	// Not implemented
+	return;
+}
 
-		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud);
+/*
+ * Tomesh writes the filtered point cloud to a mesh file (.vtk)
+ */
+void FemerOperation::Tomesh() {
+	 /* initialize input pointer */
+        pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud, NullDeleter());
 
-		// Normal estimation*
-		pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
-		pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
-		pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
-		tree->setInputCloud (cloud_filtered);
-		n.setInputCloud (cloud_filtered);
-		n.setSearchMethod (tree);
-		n.setKSearch (20);
-		n.compute (*normals);
-		//* normals should not contain the point normals + surface curvatures
+        /* initialize normals point cloud, and KD search trees */
+        pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
+        pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
+        pcl::PointCloud<pcl::PointNormal>::Ptr cloud_with_normals (new pcl::PointCloud<pcl::PointNormal>);
+        pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
+        pcl::search::KdTree<pcl::PointNormal>::Ptr tree2 (new pcl::search::KdTree<pcl::PointNormal>);
 
-		// Concatenate the XYZ and normal fields*
-		pcl::PointCloud<pcl::PointNormal>::Ptr cloud_with_normals (new pcl::PointCloud<pcl::PointNormal>);
-		pcl::concatenateFields (*cloud_filtered, *normals, *cloud_with_normals);
-		//* cloud_with_normals = cloud + normals
 
-		// Create search tree*
-		pcl::search::KdTree<pcl::PointNormal>::Ptr tree2 (new pcl::search::KdTree<pcl::PointNormal>);
-		tree2->setInputCloud (cloud_with_normals);
+        /* implement search tree, and populate normals cloud */
+        tree->setInputCloud (cloud_filtered);
+        n.setInputCloud (cloud_filtered);
+        n.setSearchMethod (tree);
+        n.setKSearch (20);
+        n.compute (*normals);
 
-		// Initialize objects
-		pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
-		pcl::PolygonMesh triangles;
+        /* concatenate the XYZ and normal fields */
+        pcl::concatenateFields (*cloud_filtered, *normals, *cloud_with_normals);
 
-		// Set the maximum distance between connected points (maximum edge length)
-		gp3.setSearchRadius (100);
+        /* set cloud_with_normals as inpout to second search tree */
+        tree2->setInputCloud (cloud_with_normals);
 
-		// Set typical values for the parameters
-		gp3.setMu (2.5);
-		gp3.setMaximumNearestNeighbors (100);
-		gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
-		gp3.setMinimumAngle(M_PI/18); // 10 degrees
-		gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
-		gp3.setNormalConsistency(false);
+        /* initialize triangulation object */
+        pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
+        pcl::PolygonMesh triangles;
 
-		// Get result
-		gp3.setInputCloud (cloud_with_normals);
-		gp3.setSearchMethod (tree2);
-		gp3.reconstruct (triangles);
+        /* set triangulation parameters */
+        gp3.setSearchRadius (100);
+        gp3.setMu (2.5);
+        gp3.setMaximumNearestNeighbors (100);
+        gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
+        gp3.setMinimumAngle(M_PI/18); // 10 degrees
+        gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
+        gp3.setNormalConsistency(false);
 
-		// Additional vertex information
-		std::vector<int> parts = gp3.getPartIDs();
-		std::vector<int> states = gp3.getPointStates();
+        /* triangulate point cloud */
+        gp3.setInputCloud (cloud_with_normals);
+        gp3.setSearchMethod (tree2);
+        gp3.reconstruct (triangles);
+        std::vector<int> parts = gp3.getPartIDs();
+        std::vector<int> states = gp3.getPointStates();
 
-		// Finish
-		pcl::io::saveVTKFile ("mesh.vtk", triangles);
+        /* save triangulation projection out to a .vtk file */
+        Labeledoutput->at(FEMER)->Mesh = triangles;
+        pcl::io::saveVTKFile (loc, triangles);
+        cout << "Success, meshfile saved to: " << *loc << "\n";
+	
+	return;
 }
 
 void FemerOperation::Megaprocess() {

@@ -11,5 +11,8 @@ Test/Implementation/MRIPCL/Test1
 Test/Implementation/MRIPCL/Test2
 Test/Implementation/MRIPCL/Test3
 Test/Implementation/MRIPCL/Test4
+Test/Implementation/MRIPCL/Test5
+Test/Implementation/MRIPCL/Test6
+Test/Implementation/MRIPCL/Test7
 Implementation/gui
 Tools/ManualSegment
