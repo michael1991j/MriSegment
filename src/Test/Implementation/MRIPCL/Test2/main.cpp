@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
 	    	Imagesets.at(WATERCUBE)= water;
 	     	vector<LabeledResults *> results(400);
 
-	     	results.at(BONE) = new LabeledResults();
+	     	results.at(FEMER_SAG) = new LabeledResults();
 	    	///blur( img, img, Size(3,3) );
 	 	  QThreadPool *threadPool = QThreadPool::globalInstance();
 
@@ -82,12 +82,9 @@ int main(int argc, char **argv) {
 
 	    	}
 	    	results.at(FEMER) = new LabeledResults();
-
-	    	FemerOperation filter(&results, &results, 6, 25, 100);
-	    	filter.Megaprocess();
-	    	//filter.Fuse();
-	    	//filter.Postprocess();
-
+	    	FemerOperation filter(&results, &results, 6, 25, 100, "/home/mri/mesh1.vtk");
+	    	filter.Preprocess();
+	    	filter.Tomesh();
 	    	cout << "I hate bugs\n";
 	    	return 0;
 }

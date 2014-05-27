@@ -66,7 +66,6 @@ int main(int argc, char **argv) {
 	     	vector<LabeledResults *> qresults(400);
 
 	     	results.at(CARTILAGE_COR) = new LabeledResults();
-	     	qresults.at(CARTILAGE) = new LabeledResults();
 	    	///blur( img, img, Size(3,3) );
 	 	  QThreadPool *threadPool = QThreadPool::globalInstance();
 
@@ -84,9 +83,8 @@ int main(int argc, char **argv) {
 	    	results.at(CARTILAGE) = new LabeledResults();
 
 	    	CartilageOperation filter(&results, &results, 5, 25, 120);
-	    		    	filter.Megaprocess();
-	    		    	//filter.Fuse();
-	    		    	//filter.Postprocess();
+		filter.Preprocess();
+		filter.Tomesh();
 
 	    		    	cout << "I hate bugs\n";
 	    		    	return 0;

@@ -84,10 +84,8 @@ int main(int argc, char **argv) {
 	    	results.at(TIBIA) = new LabeledResults();
 
 	    	TibiaOperation filter(&results, &results, 5, 10, 1);
-	    	filter.Megaprocess();
-	    	//filter.Fuse();
-	    	//filter.Postprocess();
-
+		filter.Preprocess();
+		filter.Tomesh();
 	    	cout << "I hate bugs\n";
 	    	return 0;
 }

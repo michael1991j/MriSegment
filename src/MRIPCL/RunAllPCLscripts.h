@@ -36,6 +36,7 @@ class RunAllPCLscripts {
 public:
 	RunAllPCLscripts();
 	virtual ~RunAllPCLscripts();
+	const char *loc;
 	void  Femer(vector<LabeledResults *> * input);
 	void  Tibia(vector<LabeledResults *> * input);
 	void  Patella(vector<LabeledResults *> * input);

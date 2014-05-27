@@ -39,13 +39,15 @@ class PatellaOperation: public MRIPCLProcess {
     double radius;
     int minFriends;
 	public:
-		PatellaOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i);
+		PatellaOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc);
 		virtual ~PatellaOperation();
+		const char *loc;
         std::vector<LabeledResults *> * Labeledinput;
         std::vector<LabeledResults *> * Labeledoutput;
 		void Preprocess();
 		void Fuse();
 		void Postprocess();
+		void Tomesh();
 		void Megaprocess();
 };
 
