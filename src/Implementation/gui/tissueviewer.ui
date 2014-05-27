@@ -48,9 +48,15 @@
         <rect>
          <x>210</x>
          <y>0</y>
-         <width>1061</width>
-         <height>861</height>
+         <width>1031</width>
+         <height>821</height>
         </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
        <property name="minimumSize">
         <size>

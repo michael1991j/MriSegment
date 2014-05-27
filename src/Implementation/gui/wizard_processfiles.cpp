@@ -3,7 +3,7 @@
 #include "processworkerthread.h"
 
 
-Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets,vector<LabeledResults *> * results,QWidget *parent) :
+Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets,vector<LabeledResults *> * results,Dataset * Configuration,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Wizard_processfiles)
 {
@@ -13,6 +13,7 @@ Wizard_processfiles::Wizard_processfiles( MRIOpenCVSettings * settings, vector<M
     this->Imagesets = Imagesets;
     this->settings = settings;
     this->toggle = 0;
+    this->Configuration = Configuration;
     ui->setupUi(this);
 
 
@@ -93,16 +94,41 @@ void Wizard_processfiles::UpdateProgress(int id, int value)
     {
 
 std:cout << "this is true\n";
+        Config_Labeledcartilage *  P  = new Config_Labeledcartilage();
+        P->id = PATELLA;
+        P->PCLpath= "pat.pcl";
+        P->VTK= "pat.vtk";
+        this->Configuration->Labels->push_back(P);
         Processworkerthread * D =  new Processworkerthread(PATELLA,settings,Imagesets,results);
         connect(D,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
          D->start();
 
+         Config_Labeledcartilage *  PT  = new Config_Labeledcartilage();
+         PT->id = TIBIA;
+         PT->PCLpath= "tiba.pcl";
+         PT->VTK= "tiba.vtk";
+         this->Configuration->Labels->push_back(PT);
+
           Processworkerthread * E =  new Processworkerthread(TIBIA,settings,Imagesets,results);
           connect(E,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
           E->start();
+
+          Config_Labeledcartilage *  CE  = new Config_Labeledcartilage();
+          CE->id = CARTILAGE;
+          CE->PCLpath= "cart.pcl";
+          CE->VTK= "cart.vtk";
+          this->Configuration->Labels->push_back(CE);
+
             Processworkerthread * F =  new Processworkerthread(CARTILAGE,settings,Imagesets,results);
             connect(F,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
-             F->start();
+
+            F->start();
+             Config_Labeledcartilage *  Fe  = new Config_Labeledcartilage();
+             Fe->id = FEMER;
+             Fe->PCLpath= "femer.pcl";
+             Fe->VTK= "femer.vtk";
+             this->Configuration->Labels->push_back(Fe);
+
              Processworkerthread * G =  new Processworkerthread(FEMER,settings,Imagesets,results);
              connect(G,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
               G->start();

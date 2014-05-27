@@ -20,8 +20,8 @@ JustPlotPlease::~JustPlotPlease() {
 }
 
 void JustPlotPlease::PlusCloud(pcl::PointCloud<pcl::PointXYZ> * cloudnine, int id, unsigned char r, unsigned char g, unsigned char b) {
-	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in(cloudnine);
-	pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in(cloudnine, NullDeleter());
+	pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_xyzrgb (new pcl::PointCloud<pcl::PointXYZRGB>, NullDeleter());
 	pcl::copyPointCloud(*cloud_in, *cloud_xyzrgb);
 	for (size_t i = 0; i < cloud_xyzrgb->points.size(); ++i) {
 			cloud_xyzrgb->points[i].r = r;
@@ -51,6 +51,8 @@ void  JustPlotPlease::RemoveCloud( int id)
 
 void JustPlotPlease::ShowViewer()
 {
+	viewer->setRepresentationToWireframeForAllActors( 	);
+
 
 	viewer->setBackgroundColor(0, 0, 0);
 
@@ -68,5 +70,6 @@ void JustPlotPlease::ShowViewer()
 		cin >> z;
 		viewer->setCameraPosition(x, y, z, 0, 0, 0, 0);
 	}
+
 
 }

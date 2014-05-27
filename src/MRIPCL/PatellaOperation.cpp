@@ -122,9 +122,10 @@ void PatellaOperation::Postprocess() {
 	// Additional vertex information
 	std::vector<int> parts = gp3.getPartIDs();
 	std::vector<int> states = gp3.getPointStates();
-
-	// Finish
-	pcl::io::saveVTKFile ("mesh.vtk", triangles);
+	 pcl::PCDWriter writer;
+	  	    writer.write<pcl::PointXYZ> ("./tmp/pat.pcd", *cloud_filtered, false);
+	  	  	// Finish
+	  	  	pcl::io::saveVTKFile ("./tmp/pat.vtk", triangles);
 }
 
 void PatellaOperation::Megaprocess() {
@@ -205,6 +206,10 @@ void PatellaOperation::Megaprocess() {
 	std::vector<int> states = gp3.getPointStates();
 	Labeledoutput->at(PATELLA)->Mesh = triangles;
 	// Finish
-	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
+	 pcl::PCDWriter writer;
+	  	    writer.write<pcl::PointXYZ> ("./tmp/Patella.pcd", *cloud_filtered, false);
+	  	  	// Finish
+
+	  	  	pcl::io::saveVTKFile ("./tmp/Patella.vtk", triangles);
 	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

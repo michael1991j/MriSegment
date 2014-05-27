@@ -104,6 +104,19 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e6c12c;&quot;&gt;MRI Segmentation &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e6c12c;&quot;&gt;Tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="OutputPath">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>290</y>
+     <width>221</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Testrun</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

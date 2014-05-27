@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     wizard_processfiles.cpp \
     loadworkerthread.cpp \
     mriscene.cpp \
-    processworkerthread.cpp
+    processworkerthread.cpp \
+    dataset.cpp
 
 HEADERS  += mainwindow.h \
     welcomescreen.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     wizard_processfiles.h \
     loadworkerthread.h \
     mriscene.h \
-    processworkerthread.h
+    processworkerthread.h \
+    dataset.h
 
 FORMS    += mainwindow.ui \
     welcomescreen.ui \

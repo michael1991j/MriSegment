@@ -10,14 +10,14 @@
 #include <MRIOpenCVSettings.h>
 #include <MRIProcess.h>
 #include <LabeledResults.h>
-
-enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS};
+#include <dataset.h>
+enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS , LOADOLD};
 class wizardController: public QObject
 {
        Q_OBJECT
 public:
     wizardController();
-
+    Dataset Configuration;
     WizarddataConfig data;
     MRIOpenCVSettings  CVConfig;
     vector<MRICommon *>  * Imagesets;

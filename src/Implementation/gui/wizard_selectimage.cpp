@@ -8,11 +8,18 @@ wizard_selectimage::wizard_selectimage(MRIOpenCVSettings *settings,vector<MRICom
 {
     ui->setupUi(this);
     this->tabWidget = new QTabWidget;
+// findbone femer
+    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATCUBE),"Femer",0.5,1), tr("Select Femur"));
 
-    this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"Femer",0.5,1), tr("Select Femur"));
+    //findbonepatella
+
     this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"patillia",0.5,3),tr("Select Patella"));
+   //FindBoneTibia
     this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"TIBA_TRAN",0.8,3),tr("Select Tibia"));
+    //findCartilage
+     this->tabWidget->addTab(new Selectregionwidget(settings, Imagesets->at(FATSPGR),"TIBA_TRAN",0.8,3),tr("Select Tibia"));
 
+    //
     this->tabWidget->setMinimumHeight(500);
     ui->formLayout->addWidget(this->tabWidget);
 

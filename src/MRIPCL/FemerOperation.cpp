@@ -4,7 +4,7 @@
  *  Created on: Apr 30, 2014
  *      Author: mri
  */
-
+#define FLANN_USE_CUDA
 #include "FemerOperation.h"
 #include "JustPlotPlease.h"
 
@@ -206,6 +206,9 @@ void FemerOperation::Megaprocess() {
 	  	std::vector<int> states = gp3.getPointStates();
 	  	Labeledoutput->at(FEMER)->Mesh = triangles;
 	  	// Finish
-	  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
+	  	 pcl::PCDWriter writer;
+	  	    writer.write<pcl::PointXYZ> ("./tmp/FEMER.pcd", *cloud_filtered, false);
+	  	  	// Finish
+	  	  	pcl::io::saveVTKFile ("./tmp/FEMER.vtk", triangles);
 	  	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

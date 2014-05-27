@@ -198,8 +198,9 @@ void TibiaOperation::Megaprocess() {
   	std::vector<int> parts = gp3.getPartIDs();
   	std::vector<int> states = gp3.getPointStates();
   	Labeledoutput->at(TIBIA)->Mesh = triangles;
-
+    pcl::PCDWriter writer;
+    writer.write<pcl::PointXYZ> ("./tmp/TIBIA.pcl", *cloud_filtered, false);
   	// Finish
-  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
+  	pcl::io::saveVTKFile ("./tmp/TIBIA.vtk", triangles);
   	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

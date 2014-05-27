@@ -121,8 +121,10 @@ void CartilageOperation::Postprocess() {
 	std::vector<int> parts = gp3.getPartIDs();
 	std::vector<int> states = gp3.getPointStates();
 
-	// Finish
-	pcl::io::saveVTKFile ("mesh.vtk", triangles);
+	 pcl::PCDWriter writer;
+	  	    writer.write<pcl::PointXYZ> ("./tmp/cart.pcd", *cloud_filtered, false);
+	  	  	// Finish
+	  	  	pcl::io::saveVTKFile ("./tmp/cart.vtk", triangles);
 }
 void CartilageOperation::Megaprocess() {
 	long val = 0;
@@ -199,7 +201,9 @@ void CartilageOperation::Megaprocess() {
   	std::vector<int> states = gp3.getPointStates();
   	Labeledoutput->at(CARTILAGE)->Mesh = triangles;
 
-  	// Finish
-  	pcl::io::saveVTKFile ("/home/mri/mesh.vtk", triangles);
+	 pcl::PCDWriter writer;
+	  	    writer.write<pcl::PointXYZ> ("./tmp/CARTILAGE.pcd", *cloud_filtered, false);
+	  	  	// Finish
+	  	  	pcl::io::saveVTKFile ("./tmp/CARTILAGE.vtk", triangles);
   	cout << "Mesh file saved to: /home/mri/mesh.vtk" << "\n";
 }

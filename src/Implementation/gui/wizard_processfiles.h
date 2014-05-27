@@ -6,7 +6,7 @@
 #include <LabeledResults.h>
 #include <QDialog>
 #include "processworkerthread.h"
-
+#include "dataset.h"
 namespace Ui {
 class Wizard_processfiles;
 }
@@ -16,11 +16,13 @@ class Wizard_processfiles : public QDialog
     Q_OBJECT
 
 public:
-     Wizard_processfiles(MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets,vector<LabeledResults *> * results, QWidget *parent = 0);
+     Wizard_processfiles(MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets,vector<LabeledResults *> * results,Dataset * Configuration, QWidget *parent = 0);
     ~Wizard_processfiles();
      MRIOpenCVSettings * settings;
      vector<MRICommon *> * Imagesets;
      vector<LabeledResults *> * results;
+     Dataset * Configuration;
+
      int toggle;
 private slots:
 

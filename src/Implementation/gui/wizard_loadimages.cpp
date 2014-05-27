@@ -7,12 +7,13 @@
 
 
 
-Wizard_Loadimages::Wizard_Loadimages(MRIOpenCVSettings *settings,vector<MRICommon *> * Imagesets,  QWidget *parent) :
+Wizard_Loadimages::Wizard_Loadimages(MRIOpenCVSettings *settings,vector<MRICommon *> * Imagesets,Dataset * Configuration,  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Wizard_Loadimages)
 {
     this->Imagesets = Imagesets;
     ui->setupUi(this);
+    this->Configuration = Configuration;
 
     ui->lineEdit_cubef->setText(  QString::fromAscii(settings->GetSettings("Imagesets","tdcubefat","/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")));
     ui->lineEdit_cubew->setText(  QString::fromAscii(settings->GetSettings("Imagesets","tdcubewater","/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/")));
@@ -79,20 +80,54 @@ void Wizard_Loadimages::on_pushButton_clicked()
     ui->progressBar_spgrf->setValue(0);
     ui->progressBar_cubew->setValue(100);
     ui->progressBar_SPGRW->setValue(0);
+    Config_MriCommon* fc = new Config_MriCommon();
+   fc->id = FATCUBE;
+   fc->totran= 1;
+   fc->tosag= 1;
+   fc->tocor= 0;
+   fc->FilePath = ui->lineEdit_cubef->text();
+
+    Configuration->Imagesets->push_back(fc);
 
     LoadWorkerthread * t =  new LoadWorkerthread(Imagesets->at(FATCUBE), ui->lineEdit_cubef->text(), 10,true,false);
     connect(t,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
      t->run();
 
-      LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,true ,true);
+
+     Config_MriCommon* fs = new Config_MriCommon();
+    fs->id = FATSPGR;
+    fs->totran= 1;
+    fs->tosag= 1;
+    fs->tocor= 1;
+    fs->FilePath = ui->lineEdit_spgrf->text();
+
+     Configuration->Imagesets->push_back(fs);
+
+     LoadWorkerthread * b =  new LoadWorkerthread(Imagesets->at(FATSPGR), ui->lineEdit_spgrf->text(), 11,true ,true);
       connect(b,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
        b->run();
+       Config_MriCommon*  wc = new Config_MriCommon();
 
-        LoadWorkerthread * c =  new LoadWorkerthread(Imagesets->at(WATERCUBE), ui->lineEdit_cubew->text(), 12, true,false);
+       wc->id = WATERCUBE;
+       wc->totran= 1;
+       wc->tosag= 1;
+       wc->tocor= 0;
+       wc->FilePath = ui->lineEdit_cubew->text();
+       Configuration->Imagesets->push_back(wc);
+
+       LoadWorkerthread * c =  new LoadWorkerthread(Imagesets->at(WATERCUBE), ui->lineEdit_cubew->text(), 12, true,false);
         connect(c,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
         c->run();
 
-          LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,true , true);
+       Config_MriCommon*  ws = new Config_MriCommon();
+        ws->id = WATERSPGR;
+        ws->totran= 1;
+        ws->tosag= 1;
+        ws->tocor= 0;
+        ws->FilePath = ui->lineEdit_spgrw->text();
+        Configuration->Imagesets->push_back(ws);
+
+        LoadWorkerthread * d =  new LoadWorkerthread(Imagesets->at(WATERSPGR), ui->lineEdit_spgrw->text(), 13 ,true , true);
           connect(d,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
          d->run();
       std::cout << "hello \n";

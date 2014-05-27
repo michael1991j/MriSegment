@@ -6,25 +6,88 @@ tissueviewer::tissueviewer(wizardController * controller, QWidget *parent) :
     ui(new Ui::tissueviewer)
 {
 
-    handel = new JustPlotPlease();
 
     ui->setupUi(this);
     this->controller = controller;
+}
+void  tissueviewer::managecloud()
+{
+    handel = new JustPlotPlease();
+     QTreeWidgetItemIterator it(ui->treeWidget);
+ int i = 0;
+     while (*it) {
+    int rownum  = i++;
+    if((*it)->checkState(0))
+    {
+    if(rownum == 0)
+    {
+     this->handel->PlusCloud( this->controller->results->at(TIBIA)->cloud,TIBIA,244,23,0);
+        this->handel->ShowCloud(TIBIA, "name");
+
+    }
+    else if(rownum == 1)
+    {
+    this->handel->PlusCloud( this->controller->results->at(PATELLA)->cloud,PATELLA,0,255,0);
+        this->handel->ShowCloud(PATELLA, "name3");
+
+    }
+    else if(rownum == 2)
+    {
+        this->handel->PlusCloud( this->controller->results->at(CARTILAGE)->cloud,CARTILAGE,0,0,255);
+        this->handel->ShowCloud(CARTILAGE, "name2");
+    }
+    else if(rownum == 3)
+    {
+        this->handel->PlusCloud( this->controller->results->at(FEMER)->cloud,FEMER,250,250,210);
+
+        this->handel->ShowCloud(FEMER, "name4");
+
+    }
+    else if(rownum == 4)
+    {
+       this->handel->viewer->addPolygonMesh(  this->controller->results->at(TIBIA)->Mesh, "dsf");
+
+
+    }
+    else if(rownum == 5)
+    {
+       this->handel->viewer->addPolygonMesh(  this->controller->results->at(PATELLA)->Mesh, "dsDDf");
+
+
+    }
+    else if(rownum == 6)
+    {
+       this->handel->viewer->addPolygonMesh(  this->controller->results->at(CARTILAGE)->Mesh, "dsD");
+
+
+    }
+    else if(rownum == 7)
+    {
+       this->handel->viewer->addPolygonMesh(  this->controller->results->at(FEMER)->Mesh, "dsSDf");
+
+
+    }
+    }
+
+    ++it;
+
+
+}
+     this->handel->viewer->setRepresentationToWireframeForAllActors( 	);
+     ui->qvtkWidget->SetRenderWindow( this->handel->viewer->getRenderWindow());
+
 }
 void tissueviewer::run()
 {
     QList<QString> list;
     list.append("Tibia");
-    this->handel->PlusCloud( this->controller->results->at(TIBIA)->cloud,TIBIA,244,23,0);
-
     list.append("Patella");
-    this->handel->PlusCloud( this->controller->results->at(PATELLA)->cloud,PATELLA,0,255,0);
-
     list.append("Cartilage");
-    this->handel->PlusCloud( this->controller->results->at(CARTILAGE)->cloud,CARTILAGE,0,0,255);
-
     list.append("Femer");
-    this->handel->PlusCloud( this->controller->results->at(FEMER)->cloud,FEMER,250,250,210);
+    list.append("Tibia mesh");
+    list.append("Patella mesh");
+    list.append("Cartilage mesh");
+    list.append("Femer mesh");
 
     int index = list.size();
     QList<QTreeWidgetItem *> items;
@@ -39,61 +102,20 @@ void tissueviewer::run()
     }
     ui->treeWidget->insertTopLevelItems(0, items);
     ui->treeWidget->setCurrentIndex(ui->treeWidget->model()->index(0,index));
-    connect(ui->treeWidget,SIGNAL(itemSelectionChanged()),this,SLOT(On_tree_itemclicked()));
-    vtkSmartPointer< vtkPolyData >  body;
-//    pcl::VTKUtils::mesh2vtk(this->controller->results->at(FEMER)->mesh,body);
-    this->handel->ShowCloud(CARTILAGE, "name");
-    this->handel->ShowCloud(PATELLA, "name3");
-    this->handel->ShowCloud(TIBIA, "name2");
-    this->handel->ShowCloud(FEMER, "name4");
 
-    //this->handel->ShowViewer();
-    // Sphere
-
-    // Cube
-    vtkSmartPointer<vtkCubeSource> cubeSource =
-        vtkSmartPointer<vtkCubeSource>::New();
-    cubeSource->Update();
-    vtkSmartPointer<vtkPolyDataMapper> cubeMapper =
-        vtkSmartPointer<vtkPolyDataMapper>::New();
-    cubeMapper->SetInputConnection(cubeSource->GetOutputPort());
-    vtkSmartPointer<vtkActor> cubeActor =
-        vtkSmartPointer<vtkActor>::New();
-    cubeActor->SetMapper(cubeMapper);
-
-    // VTK Renderer
-
-    vtkSmartPointer<vtkRenderer> rightRenderer =
-        vtkSmartPointer<vtkRenderer>::New();
-
-    // Add Actor to renderer
-    rightRenderer->AddActor(cubeActor);
-
-
-    ui->qvtkWidget->SetRenderWindow( this->handel->viewer->getRenderWindow());
+managecloud();
 }
 
-void tissueviewer::On_tree_itemclicked()
-{
-    int rownum  = ui->treeWidget->currentIndex().row();
-    QTreeWidgetItem  * item =    ui->treeWidget->itemAt(0,rownum);
-    if(rownum == 0)
-        rownum = TIBIA;
-    else if(rownum == 1)
-        rownum = PATELLA;
-    else if(rownum == 2)
-        rownum = CARTILAGE;
-    else if(rownum == 3)
-        rownum = FEMER;
 
-  if(item->checkState(0) == Qt::Checked)
-      this->handel->ShowCloud(rownum,"a");
-  else
-      this->handel->RemoveCloud(rownum);
-//    qDebug() << rownum;
 
-}
+
 tissueviewer::~tissueviewer()
 {
     delete ui;
+}
+
+void tissueviewer::on_treeWidget_clicked(const QModelIndex &index)
+{
+    managecloud();
+
 }

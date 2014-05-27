@@ -30,10 +30,13 @@ public:
     wizardController * controller;
     JustPlotPlease * handel;
     void run();
-public slots:
-    void On_tree_itemclicked();
+private slots:
+    void on_treeWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::tissueviewer *ui;
+    void  managecloud();
+
 };
 
 #endif // TISSUEVIEWER_H
