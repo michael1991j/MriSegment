@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include "MRIPCLProcess.h"
+#include "MRIOpenCVSettings.h"
 #include <MRIProcess.h>
 #include <pcl/point_types.h>
 #include <pcl/filters/radius_outlier_removal.h>
@@ -39,7 +40,7 @@ class CartilageOperation: public MRIPCLProcess {
     double radius;
     int minFriends;
 public:
-	CartilageOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc);
+	CartilageOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc, MRIOpenCVSettings *config);
 	virtual ~CartilageOperation();
 	const char *loc;
     std::vector<LabeledResults *> * Labeledinput;
@@ -49,6 +50,7 @@ public:
 	void Postprocess();
 	void Tomesh();
 	void Megaprocess();
+	MRIOpenCVSettings *config;
 };
 
 #endif /* CartilageOperation_H_ */

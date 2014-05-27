@@ -7,7 +7,7 @@
 
 #include "CartilageOperation.h"
 
-CartilageOperation::CartilageOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc) {
+CartilageOperation::CartilageOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc, MRIOpenCVSettings *config) {
 	// TODO Auto-generated constructor stub
     leafSize = s;
     radius = r;
@@ -15,6 +15,7 @@ CartilageOperation::CartilageOperation(std::vector<LabeledResults *> * Labeledin
     this->loc = loc;
     this->Labeledoutput = Labeledoutput;
     this->Labeledinput = Labeledinput;
+    this->config = config;
 }
 
 CartilageOperation::~CartilageOperation() {
@@ -116,7 +117,16 @@ void CartilageOperation::Postprocess() {
  * Tomesh writes the filtered point cloud to a mesh file (.vtk)
  */
 void CartilageOperation::Tomesh() {
-	 /* initialize input pointer */
+        /* get configuration settings */
+        float ksearch           = config->GetSettings("CartilageOperation", "ksearch", 25);
+        float trisearchrad      = config->GetSettings("CartilageOperation", "trisearchrad", 100);
+        float mu                = config->GetSettings("CartilageOperation", "mu", 2.5);
+        float maxnearestneighbor= config->GetSettings("CartilageOperation", "maxnearestneighbor", 100);
+        float maxsurfangle      = config->GetSettings("CartilageOperation", "maxsurfangle", M_PI/4);
+        float minangle          = config->GetSettings("CartilageOperation", "minangle", M_PI/18);
+        float maxangle          = config->GetSettings("CartilageOperation", "maxangle", 2*M_PI/3);
+
+	/* initialize input pointer */
         pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(CARTILAGE)->cloud, NullDeleter());
 
         /* initialize normals point cloud, and KD search trees */
@@ -131,7 +141,7 @@ void CartilageOperation::Tomesh() {
         tree->setInputCloud (cloud_filtered);
         n.setInputCloud (cloud_filtered);
         n.setSearchMethod (tree);
-        n.setKSearch (20);
+        n.setKSearch (ksearch);
         n.compute (*normals);
 
         /* concatenate the XYZ and normal fields */
@@ -145,12 +155,12 @@ void CartilageOperation::Tomesh() {
         pcl::PolygonMesh triangles;
 
         /* set triangulation parameters */
-        gp3.setSearchRadius (100);
-        gp3.setMu (2.5);
-        gp3.setMaximumNearestNeighbors (100);
-        gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
-        gp3.setMinimumAngle(M_PI/18); // 10 degrees
-        gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
+        gp3.setSearchRadius (trisearchrad);
+        gp3.setMu (mu);
+        gp3.setMaximumNearestNeighbors (maxnearestneighbor);
+        gp3.setMaximumSurfaceAngle(maxsurfangle); // 45 degrees
+        gp3.setMinimumAngle(minangle); // 10 degrees
+        gp3.setMaximumAngle(maxangle); // 120 degrees
         gp3.setNormalConsistency(false);
 
         /* triangulate point cloud */

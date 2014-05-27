@@ -34,13 +34,13 @@
 
 class RunAllPCLscripts {
 public:
-	RunAllPCLscripts();
+	RunAllPCLscripts(MRIOpenCVSettings *config);
 	virtual ~RunAllPCLscripts();
-	const char *loc;
-	void  Femer(vector<LabeledResults *> * input);
-	void  Tibia(vector<LabeledResults *> * input);
-	void  Patella(vector<LabeledResults *> * input);
-	void  Cartilage(vector<LabeledResults *> * input);
+	void  Femer(vector<LabeledResults *> * input, const char *loc);
+	void  Tibia(vector<LabeledResults *> * input, const char *loc);
+	void  Patella(vector<LabeledResults *> * input, const char *loc);
+	void  Cartilage(vector<LabeledResults *> * input, const char *loc);
+	MRIOpenCVSettings *config;
 };
 
 #endif /* RunAllPCL_H_ */

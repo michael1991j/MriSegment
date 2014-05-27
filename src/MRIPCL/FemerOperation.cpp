@@ -8,7 +8,7 @@
 #include "FemerOperation.h"
 #include "JustPlotPlease.h"
 
-FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc) {
+FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc, MRIOpenCVSettings *config) {
         // Constructor called for filtering
         leafSize = s;
         radius = r;
@@ -16,6 +16,7 @@ FemerOperation::FemerOperation(std::vector<LabeledResults *> * Labeledinput, std
         this->loc = loc;
         this->Labeledoutput = Labeledoutput;
         this->Labeledinput = Labeledinput;
+        this->config = config;
 }
 
 FemerOperation::~FemerOperation() {
@@ -27,7 +28,6 @@ FemerOperation::~FemerOperation() {
  * post processed point cloud
  */
 void FemerOperation::Preprocess() {
-
 	/* initialize input and output pointers, and value storage */
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloudin (Labeledinput->at(FEMER_SAG)->cloud);
   	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud, NullDeleter());
@@ -71,7 +71,16 @@ void FemerOperation::Postprocess() {
  * Tomesh writes the filtered point cloud to a mesh file (.vtk)
  */
 void FemerOperation::Tomesh() {
-	 /* initialize input pointer */
+	/* get configuration settings */
+        float ksearch           = config->GetSettings("FemerOperation", "ksearch", 25);
+        float trisearchrad      = config->GetSettings("FemerOperation", "trisearchrad", 100);
+        float mu                = config->GetSettings("FemerOperation", "mu", 2.5);
+        float maxnearestneighbor= config->GetSettings("FemerOperation", "maxnearestneighbor", 100);
+        float maxsurfangle	= config->GetSettings("FemerOperation", "maxsurfangle", M_PI/4);
+	float minangle          = config->GetSettings("FemerOperation", "minangle", M_PI/18);
+        float maxangle          = config->GetSettings("FemerOperation", "maxangle", 2*M_PI/3);
+
+	/* initialize input pointer */
         pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (Labeledoutput->at(FEMER)->cloud, NullDeleter());
 
         /* initialize normals point cloud, and KD search trees */
@@ -86,7 +95,7 @@ void FemerOperation::Tomesh() {
         tree->setInputCloud (cloud_filtered);
         n.setInputCloud (cloud_filtered);
         n.setSearchMethod (tree);
-        n.setKSearch (20);
+        n.setKSearch (ksearch);
         n.compute (*normals);
 
         /* concatenate the XYZ and normal fields */
@@ -100,12 +109,12 @@ void FemerOperation::Tomesh() {
         pcl::PolygonMesh triangles;
 
         /* set triangulation parameters */
-        gp3.setSearchRadius (100);
-        gp3.setMu (2.5);
-        gp3.setMaximumNearestNeighbors (100);
-        gp3.setMaximumSurfaceAngle(M_PI/4); // 45 degrees
-        gp3.setMinimumAngle(M_PI/18); // 10 degrees
-        gp3.setMaximumAngle(2*M_PI/3); // 120 degrees
+        gp3.setSearchRadius (trisearchrad);
+        gp3.setMu (mu);
+        gp3.setMaximumNearestNeighbors (maxnearestneighbor);
+        gp3.setMaximumSurfaceAngle(maxsurfangle); // 45 degrees
+        gp3.setMinimumAngle(minangle); // 10 degrees
+        gp3.setMaximumAngle(maxangle); // 120 degrees
         gp3.setNormalConsistency(false);
 
         /* triangulate point cloud */

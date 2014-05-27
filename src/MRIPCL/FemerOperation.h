@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include "MRIPCLProcess.h"
+#include "MRIOpenCVSettings.h"
 #include <MRIProcess.h>
 #include <pcl/point_types.h>
 #include <pcl/filters/radius_outlier_removal.h>
@@ -32,6 +33,7 @@
 #include <pcl/features/normal_3d.h>
 #include <pcl/surface/gp3.h>
 #include <pcl/io/vtk_io.h>
+#include <string.h>
 
 using namespace std;
 
@@ -40,7 +42,7 @@ class FemerOperation: public MRIPCLProcess {
                 double radius;
                 int minFriends;
         public:
-                FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc);
+                FemerOperation (std::vector<LabeledResults *> * Labeledinput, std::vector<LabeledResults *> * Labeledoutput, double s, double r, int i, const char *loc, MRIOpenCVSettings *config);
                 virtual ~FemerOperation();
                 const char *loc;
                 std::vector<LabeledResults *> * Labeledinput;
@@ -50,6 +52,7 @@ class FemerOperation: public MRIPCLProcess {
                 void Postprocess();
                 void Tomesh();
                 void Megaprocess();
+                MRIOpenCVSettings *config;
 };
 
 #endif /* FEMEROPERATION_H_ */
