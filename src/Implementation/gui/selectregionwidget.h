@@ -21,9 +21,12 @@ public:
      MriScene * scene;
     MRIOpenCVSettings * settings ;
     MRICommon * Imagesets;
+    vector<MRISlice * > * dataset;
+
     QImage Mat2QImage(cv::Mat inMat);
     string region;
     int plane;
+
 
 public slots:
     void On_tree_itemclicked();

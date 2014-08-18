@@ -21,7 +21,7 @@ void  tissueviewer::managecloud()
     {
     if(rownum == 0)
     {
-     this->handel->PlusCloud( this->controller->results->at(TIBIA)->cloud,TIBIA,244,23,0);
+     this->handel->PlusCloud( this->controller->results->at(TIBIA)->cloud,TIBIA,255,0,0);
         this->handel->ShowCloud(TIBIA, "name");
 
     }
@@ -35,10 +35,11 @@ void  tissueviewer::managecloud()
     {
         this->handel->PlusCloud( this->controller->results->at(CARTILAGE)->cloud,CARTILAGE,0,0,255);
         this->handel->ShowCloud(CARTILAGE, "name2");
+
     }
     else if(rownum == 3)
     {
-        this->handel->PlusCloud( this->controller->results->at(FEMER)->cloud,FEMER,250,250,210);
+        this->handel->PlusCloud( this->controller->results->at(FEMER)->cloud,FEMER,250,0,210);
 
         this->handel->ShowCloud(FEMER, "name4");
 
@@ -46,24 +47,28 @@ void  tissueviewer::managecloud()
     else if(rownum == 4)
     {
        this->handel->viewer->addPolygonMesh(  this->controller->results->at(TIBIA)->Mesh, "dsf");
-
+        this->handel->viewer->     setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 255, 0, 0 , "dsf");
 
     }
     else if(rownum == 5)
     {
        this->handel->viewer->addPolygonMesh(  this->controller->results->at(PATELLA)->Mesh, "dsDDf");
-
+        this->handel->viewer->     setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0,255, 0 , "dsDDf");
 
     }
     else if(rownum == 6)
     {
        this->handel->viewer->addPolygonMesh(  this->controller->results->at(CARTILAGE)->Mesh, "dsD");
+        this->handel->viewer->     setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0, 0, 255 , "dsD");
+
 
 
     }
     else if(rownum == 7)
     {
        this->handel->viewer->addPolygonMesh(  this->controller->results->at(FEMER)->Mesh, "dsSDf");
+        this->handel->viewer->     setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 255,0,210 , "dsSDf");
+
 
 
     }

@@ -4,6 +4,7 @@
 #include <MRIDataSet.h>
 #include <QImage>
 #include <QPixmap>
+#include <QGraphicsRectItem>
 Selectregionwidget::Selectregionwidget( MRIOpenCVSettings * settings ,MRICommon * Imageset,string region, double ratio, int plane, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Selectregionwidget)
@@ -13,13 +14,17 @@ Selectregionwidget::Selectregionwidget( MRIOpenCVSettings * settings ,MRICommon 
     this->Imagesets = Imageset;
     ui->setupUi(this);
     QList<QTreeWidgetItem *> items;
-    vector<MRISlice * > * dataset;
     if(plane == 1)
-         dataset= this->Imagesets->Data->Sagittal;
+       this->dataset  = this->Imagesets->Data->Sagittal;
     else if(plane == 2)
-        dataset = this->Imagesets->Data->Coronial;
+        this->dataset  = this->Imagesets->Data->Coronial;
     else if(plane == 3)
-       dataset =this->Imagesets->Data->Transversal;
+       this->dataset  =this->Imagesets->Data->Transversal;
+
+    int x1 = settings->GetSettings(region, "bounding_box_x1", 230);
+    int x2 = settings->GetSettings(region, "bounding_box_x2", 270);
+    int y1 = settings->GetSettings(region, "bounding_box_y1", 130);
+    int y2 = settings->GetSettings(region, "bounding_box_y2", 150);
 
 
     for (int i = 0; i < dataset->size(); ++i)
@@ -30,12 +35,15 @@ Selectregionwidget::Selectregionwidget( MRIOpenCVSettings * settings ,MRICommon 
     ui->treeWidget->insertTopLevelItems(0, items);
     ui->treeWidget->setCurrentIndex(ui->treeWidget->model()->index(0,index));
     connect(ui->treeWidget,SIGNAL(itemSelectionChanged()),this,SLOT(On_tree_itemclicked()));
-    this->scene = new MriScene(this);
+    this->scene = new MriScene(region,settings,this);
+
     cv::Mat a = dataset->at((int ) (index))->Slice;
     a.convertTo(a, CV_8U,0.06);
     QGraphicsPixmapItem * p = scene->addPixmap(QPixmap::fromImage(Mat2QImage(a)));
     ui->graphicsView->setScene(scene);
-
+    this->scene->boxes = new QGraphicsRectItem(x1,y1,x2-x1,y2 -y1);
+    this->scene->boxes->setPen(QPen(Qt::red));
+    this->scene->addItem( this->scene->boxes);
     ui->graphicsView->scale(1,1);
 
 
@@ -43,8 +51,12 @@ Selectregionwidget::Selectregionwidget( MRIOpenCVSettings * settings ,MRICommon 
 void Selectregionwidget::On_tree_itemclicked()
 {
     int rownum  = ui->treeWidget->currentIndex().row();
-    scene->clear();
-    cv::Mat a = this->Imagesets->Data->Sagittal->at(rownum)->Slice;
+    scene->clear();//
+
+    cv::Mat a = this->dataset->at(rownum)->Slice;
+
+
+
     a.convertTo(a, CV_8U,0.06);
     QGraphicsPixmapItem * p = scene->addPixmap(QPixmap::fromImage(Mat2QImage(a)));
 

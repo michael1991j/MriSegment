@@ -4,12 +4,15 @@
 #include <QGraphicsPixmapItem>
 #include <cstring>
 #include <QMessageBox>
+#include <MRIOpenCVSettings.h>
 using namespace std;
-MriScene::MriScene(QWidget *parent) :
-    QGraphicsScene( (QObject *)parent)
+MriScene::MriScene(string region, MRIOpenCVSettings * setting,QWidget *parent) :
+    QGraphicsScene(  (QObject *)parent)
 {
     boxes =0;
     firstmouseloc=0;
+    this->region = region;
+    this->setting = setting;
 }
 
 
@@ -37,6 +40,21 @@ void MriScene::mouseMoveEvent ( QGraphicsSceneMouseEvent * mouseEvent )
         {
 
         boxes->setRect(firstmouseloc->x(),firstmouseloc->y(),mouseloc.x()-firstmouseloc->x(), mouseloc.y()-firstmouseloc->y());
+
+
+        int x1 = setting->GetSettings(region, "bounding_box_x1", 230);
+        int x2 = setting->GetSettings(region, "bounding_box_x2", 270);
+        int y1 = setting->GetSettings(region, "bounding_box_y1", 130);
+        int y2 = setting->GetSettings(region, "bounding_box_y2", 150);
+        cout << x1  <<" x2 " <<  x2 << "y1 "<< y1 << "y2 " << y2<<"\n";
+
+                cout << firstmouseloc->x()  <<" x2 " <<   mouseloc.x() << "y1 "<<firstmouseloc->y() << "y2 " << mouseloc.y()<<"\n";
+             this->setting->table->at(region)->at("bounding_box_x1")= QString::number(firstmouseloc->x()).toStdString();
+            this->setting->table->at(region)->at("bounding_box_x2")=  QString::number(mouseloc.x()).toStdString();
+            this->setting->table->at(region)->at("bounding_box_y1")=  QString::number(firstmouseloc->y()).toStdString();
+            this->setting->table->at(region)->at("bounding_box_y2")=   QString::number(mouseloc.y()).toStdString();
+
+
         this->update();
 
         }

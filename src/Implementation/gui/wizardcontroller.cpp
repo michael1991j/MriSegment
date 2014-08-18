@@ -13,19 +13,20 @@ wizardController::wizardController()
     WelcomeScreen * window = new WelcomeScreen(&this->Configuration);
     connect(window,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
     window->show();
+    Imagesets  = new  vector<MRICommon *> (4);
+
 }
 void wizardController::ProcessState(int Nextstate)
 {
  if(Nextstate == LOADHEADER)
  {
-     Imagesets  = new  vector<MRICommon *> (4);
      Imagesets->at(FATCUBE) = new MRICommon();
      Imagesets->at(WATERCUBE) =new MRICommon();
      Imagesets->at(FATSPGR) =new MRICommon();
      Imagesets->at(WATERSPGR) =new MRICommon();
 
-     this->CVConfig.LoadSettings("/home/michael/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
-   Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages(&this->CVConfig,Imagesets, &this->Configuration);
+     this->CVConfig.LoadSettings("/home/michaelroberts/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
+   Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages(&this->CVConfig,Imagesets, &this->Configuration,SELECTREGION);
    connect(imagewindow,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
 
    imagewindow->show();
@@ -59,6 +60,19 @@ void wizardController::ProcessState(int Nextstate)
  }
  else if(Nextstate == LOADOLD)
  {
+     Imagesets->at(FATCUBE) = new MRICommon();
+     Imagesets->at(WATERCUBE) =new MRICommon();
+     Imagesets->at(FATSPGR) =new MRICommon();
+     Imagesets->at(WATERSPGR) =new MRICommon();
+
+     this->CVConfig.LoadSettings("/home/michaelroberts/Build/MriSegment/src/Conf/MRIOpenCV/Default.conf");
+   Wizard_Loadimages *   imagewindow =  new  Wizard_Loadimages(&this->CVConfig,Imagesets, &this->Configuration,LOADOLDB);
+   connect(imagewindow,SIGNAL(nextwindow(int)),this, SLOT(ProcessState(int)));
+
+   imagewindow->show();
+ }
+   else if(Nextstate == LOADOLDB)
+   {
      this->results = new vector<LabeledResults *>(100);
      this->results->at(CARTILAGE) = new LabeledResults();
      this->results->at(FEMER) = new LabeledResults();
@@ -82,8 +96,6 @@ void wizardController::ProcessState(int Nextstate)
          string path2 = this->Configuration.destinationpath.toStdString() + "/" +this->Configuration.Labels->at(i)->VTK.toStdString();
 
                  pcl::io::loadPolygonFileVTK 	( path2,  this->results->at(this->Configuration.Labels->at(i)->id)->Mesh);
-
-
 
      }
 

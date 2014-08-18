@@ -11,7 +11,7 @@
 #include <MRIProcess.h>
 #include <LabeledResults.h>
 #include <dataset.h>
-enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS , LOADOLD};
+enum state{LOADHEADER, SELECTIMAGES, SELECTREGION, PROCESS , LOADOLD ,LOADOLDB};
 class wizardController: public QObject
 {
        Q_OBJECT

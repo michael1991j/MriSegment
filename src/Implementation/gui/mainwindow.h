@@ -17,6 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     wizardController * controller ;
+     Layerslide * controllerlayerslider ;
     tissueviewer * viewer;
 private:
     Ui::MainWindow *ui;

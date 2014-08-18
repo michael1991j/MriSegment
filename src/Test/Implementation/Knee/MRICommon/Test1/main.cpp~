@@ -1,0 +1,60 @@
+#include <iostream>
+#include "MRICommon.h"
+#include <qfile.h>
+#include <qstringlist.h>
+#include <qfiledialog.h>
+#include <QApplication>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include <sstream>      // std::istringstream
+using namespace cv;
+using namespace std;
+
+int edgeThresh = 1;
+int lowThreshold;
+int const max_lowThreshold = 100;
+int ratio = 3;
+int kernel_size = 3;
+char* window_name = "Edge Map";
+
+int main(int argc, char **argv)
+{
+        QApplication app (argc, argv);
+        QStringList nameFilter("*.dcm");
+               QDir directory("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat");
+               QStringList files = directory.entryList(nameFilter);
+               for(int i = 0; i <  files.count(); i++)
+                   files[i]=QString("/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/")+files[i];
+
+
+    MRICommon * obj = new MRICommon();
+
+
+    obj->LoadImages(&files);
+    obj->Data->ToTransversal();
+    obj->Data->ToCorronial();
+
+    for(int i = 0 ; i < files.size(); i++)
+    {
+    Mat  img = obj->Data->Sagittal->at(60)->Slice;
+    imwrite( "test.jpg",  img );
+    ///blur( img, img, Size(3,3) );
+
+
+
+
+
+     /// Canny detector
+     //Canny( img, img, lowThreshold, lowThreshold*ratio, kernel_size );
+    img.convertTo(img, CV_8UC1, 0.09);
+    cv::threshold(img, img, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+
+
+    imshow("this is ma",img);
+    cout << "Hello World!" << endl;
+    waitKey(0);
+    }
+
+    return 0;
+}
+

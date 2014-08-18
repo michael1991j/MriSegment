@@ -32,7 +32,7 @@ void Processworkerthread::run()
     {
      CVrunner.RunTibia();
     }
-    RunAllPCLscripts * as  =new RunAllPCLscripts();
+    RunAllPCLscripts * as  =new RunAllPCLscripts(settings);
     if(id==FEMER)
     {
         cout << this->results->at(FEMER_SAG)->cloud->size() << "hi \n";

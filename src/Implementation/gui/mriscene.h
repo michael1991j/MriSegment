@@ -2,15 +2,17 @@
 #define MRISCENE_H
 
 #include <QGraphicsScene>
-
+#include <MRIOpenCVSettings.h>
 class MriScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit MriScene(QWidget *parent = 0);
+    explicit MriScene(string region, MRIOpenCVSettings * setting,QWidget *parent = 0);
     QGraphicsRectItem* boxes;
      QPointF * firstmouseloc;
      void  outputregion();
+     MRIOpenCVSettings * setting;
+     string region;
 signals:
 
 

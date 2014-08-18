@@ -5,6 +5,7 @@
 #include <MRIOpenCVSettings.h>
 #include <MRICommon.h>
 #include "loadworkerthread.h"
+#include <wizardcontroller.h>
 #include "dataset.h"
 namespace Ui {
 class Wizard_Loadimages;
@@ -15,10 +16,11 @@ class Wizard_Loadimages : public QDialog
     Q_OBJECT
 
 public:
-     Wizard_Loadimages(MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets, Dataset * Configuration, QWidget *parent = 0);
+     Wizard_Loadimages(MRIOpenCVSettings * settings, vector<MRICommon *> * Imagesets, Dataset * Configuration, int next,QWidget *parent = 0);
     ~Wizard_Loadimages();
      vector<MRICommon *> * Imagesets;
      Dataset * Configuration;
+     int next;
 signals:
     void nextwindow(int newValue);
 

@@ -1,0 +1,13 @@
+
+
+<Imagesets>
+<3dcubefat>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/002-SagittalCube-NoFatSat/</3dcubefat>
+
+<3dcubewater>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</3dcubewater>
+
+<spgrwater>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</spgrwater>
+
+<spgrfat>/home/mri/Dropbox/School/MRI Segmentation/SampleData/SaikatKnee2012/003-SagittalCube-FatSat/</spgrfat>
+</Imagesets>
+
+

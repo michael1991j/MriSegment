@@ -96,8 +96,8 @@ void Wizard_processfiles::UpdateProgress(int id, int value)
 std:cout << "this is true\n";
         Config_Labeledcartilage *  P  = new Config_Labeledcartilage();
         P->id = PATELLA;
-        P->PCLpath= "pat.pcl";
-        P->VTK= "pat.vtk";
+        P->PCLpath= "Patella.pcd";
+        P->VTK= "Patella.vtk";
         this->Configuration->Labels->push_back(P);
         Processworkerthread * D =  new Processworkerthread(PATELLA,settings,Imagesets,results);
         connect(D,SIGNAL(updatestatusid(int,int)),this,SLOT(UpdateProgress(int,int)));
@@ -105,8 +105,8 @@ std:cout << "this is true\n";
 
          Config_Labeledcartilage *  PT  = new Config_Labeledcartilage();
          PT->id = TIBIA;
-         PT->PCLpath= "tiba.pcl";
-         PT->VTK= "tiba.vtk";
+         PT->PCLpath= "TIBIA.pcl";
+         PT->VTK= "TIBIA.vtk";
          this->Configuration->Labels->push_back(PT);
 
           Processworkerthread * E =  new Processworkerthread(TIBIA,settings,Imagesets,results);
@@ -115,8 +115,8 @@ std:cout << "this is true\n";
 
           Config_Labeledcartilage *  CE  = new Config_Labeledcartilage();
           CE->id = CARTILAGE;
-          CE->PCLpath= "cart.pcl";
-          CE->VTK= "cart.vtk";
+          CE->PCLpath= "CARTILAGE.pcl";
+          CE->VTK= "CARTILAGE.vtk";
           this->Configuration->Labels->push_back(CE);
 
             Processworkerthread * F =  new Processworkerthread(CARTILAGE,settings,Imagesets,results);
@@ -125,8 +125,8 @@ std:cout << "this is true\n";
             F->start();
              Config_Labeledcartilage *  Fe  = new Config_Labeledcartilage();
              Fe->id = FEMER;
-             Fe->PCLpath= "femer.pcl";
-             Fe->VTK= "femer.vtk";
+             Fe->PCLpath= "FEMER.pcd";
+             Fe->VTK= "FEMER.vtk";
              this->Configuration->Labels->push_back(Fe);
 
              Processworkerthread * G =  new Processworkerthread(FEMER,settings,Imagesets,results);

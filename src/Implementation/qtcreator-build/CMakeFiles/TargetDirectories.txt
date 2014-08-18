@@ -1,0 +1,1 @@
+/home/michaelroberts/Build/MriSegment/src/Implementation/qtcreator-build/CMakeFiles/ManualSEG.dir
